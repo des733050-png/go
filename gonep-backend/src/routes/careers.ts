@@ -53,4 +53,11 @@ router.delete('/jobs/:id', authenticateToken, requireAdmin, CareersController.de
  */
 router.post('/applications', CareersController.submitApplication);
 
+/**
+ * @route   GET /api/careers/departments/stats
+ * @desc    Get department statistics
+ * @access  Public
+ */
+router.get('/departments/stats', CareersController.getDepartmentStats);
+
 export default router;
