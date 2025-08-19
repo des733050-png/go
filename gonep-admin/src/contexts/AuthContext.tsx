@@ -132,6 +132,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (response.success) {
         // Handle both 'token' and 'accessToken' field names
         const token = response.data.token || response.data.accessToken;
+        
+        if (!token) {
+          console.error('❌ No token received from login response');
+          dispatch({ type: 'LOGIN_FAILURE', payload: 'No authentication token received' });
+          return false;
+        }
+        
         console.log('✅ Login successful, storing token:', token);
         localStorage.setItem('authToken', token);
         dispatch({ 
