@@ -7,11 +7,16 @@ export class VideoController {
   // Get all videos (public)
   static async getAllVideos(req: Request, res: Response) {
     try {
+      console.log('🎬 getAllVideos called');
+      
+      console.log('📊 Attempting to query demo_videos table...');
       const videos = await db
         .select()
         .from(demoVideos)
         .where(eq(demoVideos.isActive, true))
         .orderBy(desc(demoVideos.sortOrder), desc(demoVideos.createdAt));
+
+      console.log('✅ Videos query successful, count:', videos.length);
 
       res.json({
         success: true,
@@ -19,7 +24,7 @@ export class VideoController {
         message: 'Videos retrieved successfully'
       });
     } catch (error) {
-      console.error('Error fetching videos:', error);
+      console.error('❌ Error fetching videos:', error);
       res.status(500).json({
         success: false,
         message: 'Failed to fetch videos'
