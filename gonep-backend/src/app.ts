@@ -46,6 +46,7 @@ const allowedOrigins = [
   'http://localhost:3001',
   'https://gonepharm-pearl.vercel.app',
   'https://gonepadmin.vercel.app',
+  'https://gonepbackend.vercel.app',
   'https://*.vercel.app',
   'https://*.vercel.app'
 ];
