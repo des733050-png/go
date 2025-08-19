@@ -160,10 +160,13 @@ export class VideoController {
   // Create new video
   static async createVideo(req: Request, res: Response) {
     try {
+      console.log('🎬 createVideo called with body:', req.body);
+      
       const { title, description, videoUrl, thumbnailUrl, duration, category, placement, isActive, sortOrder } = req.body;
 
       // Validate required fields
       if (!title || !videoUrl) {
+        console.log('❌ Validation failed: missing title or videoUrl');
         return res.status(400).json({
           success: false,
           message: 'Title and video URL are required'
@@ -172,32 +175,41 @@ export class VideoController {
 
       // Validate video URL
       if (!VideoController.isValidVideoUrl(videoUrl)) {
+        console.log('❌ Validation failed: invalid video URL:', videoUrl);
         return res.status(400).json({
           success: false,
           message: 'Invalid video URL. Supported formats: YouTube, Vimeo, or direct video files (.mp4, .webm, .ogg)'
         });
       }
 
+      console.log('✅ Validation passed, preparing to insert video');
+      
+      const videoData = {
+        title,
+        description,
+        videoUrl,
+        thumbnailUrl,
+        duration,
+        category: category || 'demo',
+        placement: placement || 'general',
+        isActive: isActive !== undefined ? isActive : true,
+        sortOrder: sortOrder || 0,
+      };
+      
+      console.log('📝 Video data to insert:', videoData);
+
       await db
         .insert(demoVideos)
-        .values({
-          title,
-          description,
-          videoUrl,
-          thumbnailUrl,
-          duration,
-          category: category || 'demo',
-          placement: placement || 'general',
-          isActive: isActive !== undefined ? isActive : true,
-          sortOrder: sortOrder || 0,
-        });
+        .values(videoData);
+
+      console.log('✅ Video inserted successfully');
 
       res.status(201).json({
         success: true,
         message: 'Video created successfully'
       });
     } catch (error) {
-      console.error('Error creating video:', error);
+      console.error('❌ Error creating video:', error);
       res.status(500).json({
         success: false,
         message: 'Failed to create video'
