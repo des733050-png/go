@@ -55,7 +55,7 @@ router.post('/logout', authenticateToken, async (req, res) => {
  * @access  Private
  */
 router.get('/me', authenticateToken, async (req: any, res) => {
-  const result = await authController.getProfile(req.user);
+  const result = await authController.getProfile(req.user.id);
   res.json(result);
 });
 

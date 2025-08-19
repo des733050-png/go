@@ -100,7 +100,7 @@ export function CareersPage() {
     try {
       // Add cache-busting parameter to ensure fresh data
       const timestamp = Date.now();
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/careers/jobs?t=${timestamp}`);
+              const response = await fetch(`${import.meta.env.PROD ? 'https://gonepbackend.vercel.app/api' : 'http://localhost:8000/api'}/careers/jobs?t=${timestamp}`);
       if (!response.ok) {
         throw new Error('Failed to fetch jobs');
       }

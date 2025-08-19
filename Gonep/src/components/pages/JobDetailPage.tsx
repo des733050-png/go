@@ -97,7 +97,7 @@ export function JobDetailPage() {
     try {
       // Add cache-busting parameter to ensure fresh data
       const timestamp = Date.now();
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/careers/jobs/${jobId}?t=${timestamp}`);
+              const response = await fetch(`${import.meta.env.PROD ? 'https://gonepbackend.vercel.app/api' : 'http://localhost:8000/api'}/careers/jobs/${jobId}?t=${timestamp}`);
       if (!response.ok) {
         throw new Error('Job not found');
       }
@@ -199,7 +199,7 @@ export function JobDetailPage() {
       if (formData.coverLetter) formDataToSend.append('coverLetter', formData.coverLetter);
       if (formData.resume) formDataToSend.append('resume', formData.resume);
 
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/careers/applications`, {
+              const response = await fetch(`${import.meta.env.PROD ? 'https://gonepbackend.vercel.app/api' : 'http://localhost:8000/api'}/careers/applications`, {
         method: 'POST',
         body: formDataToSend,
       });

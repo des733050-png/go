@@ -219,7 +219,7 @@ export function HomePage() {
         setLoadingBlogs(true);
         
         // First try to get featured blogs
-        const featuredResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/blog/posts?featured=true&limit=2`);
+        const featuredResponse = await fetch(`${import.meta.env.PROD ? 'https://gonepbackend.vercel.app/api' : 'http://localhost:8000/api'}/blog/posts?featured=true&limit=2`);
         
         if (featuredResponse.ok) {
           const featuredData = await featuredResponse.json();
@@ -229,7 +229,7 @@ export function HomePage() {
             setIsShowingFeatured(true);
           } else {
             // No featured blogs, get recent blogs instead
-            const recentResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/blog/posts?limit=2`);
+            const recentResponse = await fetch(`${import.meta.env.PROD ? 'https://gonepbackend.vercel.app/api' : 'http://localhost:8000/api'}/blog/posts?limit=2`);
             if (recentResponse.ok) {
               const recentData = await recentResponse.json();
               if (recentData.success) {
@@ -243,7 +243,7 @@ export function HomePage() {
         console.error('Failed to fetch blogs:', err);
         // Fallback to recent blogs on error
         try {
-          const recentResponse = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/blog/posts?limit=2`);
+                      const recentResponse = await fetch(`${import.meta.env.PROD ? 'https://gonepbackend.vercel.app/api' : 'http://localhost:8000/api'}/blog/posts?limit=2`);
           if (recentResponse.ok) {
             const recentData = await recentResponse.json();
             if (recentData.success) {

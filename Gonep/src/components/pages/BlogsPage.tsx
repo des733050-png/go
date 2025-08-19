@@ -41,7 +41,7 @@ export function BlogsPage() {
     setNewsletterMessage("");
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/newsletter/subscribe`, {
+              const response = await fetch(`${import.meta.env.PROD ? 'https://gonepbackend.vercel.app/api' : 'http://localhost:8000/api'}/newsletter/subscribe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,8 +81,8 @@ export function BlogsPage() {
         );
         
         const fetchPromise = Promise.all([
-          fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/blog/posts?limit=50`),
-          fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/blog/categories`)
+          fetch(`${import.meta.env.PROD ? 'https://gonepbackend.vercel.app/api' : 'http://localhost:8000/api'}/blog/posts?limit=50`),
+          fetch(`${import.meta.env.PROD ? 'https://gonepbackend.vercel.app/api' : 'http://localhost:8000/api'}/blog/categories`)
         ]);
         
         const [postsResponse, categoriesResponse] = await Promise.race([
@@ -262,8 +262,8 @@ export function BlogsPage() {
         setError('');
         
         const [postsResponse, categoriesResponse] = await Promise.all([
-          fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/blog/posts?limit=50`),
-          fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/blog/categories`)
+          fetch(`${import.meta.env.PROD ? 'https://gonepbackend.vercel.app/api' : 'http://localhost:8000/api'}/blog/posts?limit=50`),
+          fetch(`${import.meta.env.PROD ? 'https://gonepbackend.vercel.app/api' : 'http://localhost:8000/api'}/blog/categories`)
         ]);
 
         if (postsResponse.ok) {

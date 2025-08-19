@@ -34,8 +34,7 @@ export function BlogDetailPage() {
         setError('');
         
         // For now, we'll use the blogId to fetch from the posts endpoint
-        // In a real app, you'd have a specific endpoint for individual posts
-        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/blog/posts?limit=50`);
+        const response = await fetch(`${import.meta.env.PROD ? 'https://gonepbackend.vercel.app/api' : 'http://localhost:8000/api'}/blog/posts?limit=50`);
         
         if (response.ok) {
           const data = await response.json();
