@@ -36,6 +36,8 @@ const apiClient: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  // Add timeout configuration to prevent hanging requests
+  timeout: 15000, // 15 seconds timeout
 });
 
 // Request interceptor to add auth token
@@ -62,6 +64,26 @@ apiClient.interceptors.response.use(
   },
   (error) => {
     console.log('❌ API Error:', error.response?.status, error.config?.url, error.message);
+    
+    // Handle timeout errors specifically
+    if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
+      console.error('⏰ Request timeout - server may be slow or database connection issue');
+      return Promise.reject({
+        ...error,
+        message: 'Request timed out. Please try again or check your connection.',
+        isTimeout: true
+      });
+    }
+    
+    // Handle network errors
+    if (error.code === 'ERR_NETWORK' || !error.response) {
+      console.error('🌐 Network error - server may be down or CORS issue');
+      return Promise.reject({
+        ...error,
+        message: 'Network error. Please check your connection and try again.',
+        isNetworkError: true
+      });
+    }
     
     // Only handle 401 errors for specific endpoints that should trigger logout
     if (error.response?.status === 401) {

@@ -25,6 +25,34 @@ export async function seedDatabase() {
   try {
     console.log('🌱 Starting database seeding...');
 
+    // Create admin user
+    console.log('👤 Creating admin user...');
+    const adminPasswordHash = await bcrypt.hash('password123', 12);
+    
+    try {
+      await db.insert(users).values({
+        email: 'admin@gonep.com',
+        passwordHash: adminPasswordHash,
+        firstName: 'Admin',
+        lastName: 'User',
+        phone: '+1234567890',
+        organization: 'GONEP Healthcare',
+        title: 'System Administrator',
+        organizationType: 'Healthcare',
+        country: 'United States',
+        role: 'admin',
+        isActive: true,
+        emailVerified: true,
+      });
+      console.log('✅ Admin user created: admin@gonep.com / password123');
+    } catch (error: any) {
+      if (error.message.includes('Duplicate entry')) {
+        console.log('⚠️ Admin user already exists');
+      } else {
+        console.log('❌ Error creating admin user:', error.message);
+      }
+    }
+
     // Create blog categories
     console.log('📝 Creating blog categories...');
     const categories = await db.insert(blogCategories).values([
