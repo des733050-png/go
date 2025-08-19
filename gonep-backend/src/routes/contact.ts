@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { ContactController } from '../controllers/contact';
-import { requireAdmin } from '../middleware/auth';
+import { authenticateToken, requireAdmin } from '../middleware/auth';
 
 const router = Router();
 
@@ -23,6 +23,6 @@ router.get('/methods', ContactController.getContactMethods);
  * @desc    Get all contact inquiries (admin only)
  * @access  Private (Admin)
  */
-router.get('/inquiries', requireAdmin, ContactController.getAllInquiries);
+router.get('/inquiries', authenticateToken, requireAdmin, ContactController.getAllInquiries);
 
 export default router;
