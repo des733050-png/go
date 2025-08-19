@@ -26,7 +26,7 @@ UPLOAD_PATH=./uploads
 MAX_FILE_SIZE=10485760
 
 # Security
-CORS_ORIGIN=http://localhost:8001
+CORS_ORIGIN=https://gonepadmin.vercel.app
 RATE_LIMIT_MAX=100
 
 # Logging
