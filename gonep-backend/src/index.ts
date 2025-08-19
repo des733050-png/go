@@ -1,6 +1,6 @@
 import app from './app';
-import { config } from '@/config';
-import { testConnection } from '@/config/database';
+import { config } from './config';
+import { testConnection } from './config/database';
 
 // Start server
 const PORT = config.PORT;
@@ -8,8 +8,8 @@ const PORT = config.PORT;
 const server = app.listen(PORT, '0.0.0.0', async () => {
   console.log(`🚀 GONEP API Server running on port ${PORT}`);
   console.log(`📊 Environment: ${config.NODE_ENV}`);
-  console.log(`🔗 Health check: http://localhost:${PORT}/health`);
-  console.log(`📚 API docs: http://localhost:${PORT}/api`);
+  console.log(`🔗 Health check: https://gonepbackend.vercel.app/health`);
+  console.log(`📚 API docs: https://gonepbackend.vercel.app/api`);
   
   // Test database connection
   try {

@@ -5,22 +5,22 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
-import { config } from '@/config';
-import { errorHandler, notFoundHandler, securityErrorHandler } from '@/middleware/errorHandler';
+import { config } from './config';
+import { errorHandler, notFoundHandler, securityErrorHandler } from './middleware/errorHandler';
 
 // Import routes
-import authRoutes from '@/routes/auth';
-import blogRoutes from '@/routes/blog';
-import teamRoutes from '@/routes/team';
-import careersRoutes from '@/routes/careers';
-import demoRoutes from '@/routes/demo';
-import demoConfigRoutes from '@/routes/demoConfig';
-import contactRoutes from '@/routes/contact';
-import newsletterRoutes from '@/routes/newsletter';
-import partnersRoutes from '@/routes/partners';
-import analyticsRoutes from '@/routes/analytics';
-import uploadRoutes from '@/routes/upload';
-import videoRoutes from '@/routes/video';
+import authRoutes from './routes/auth';
+import blogRoutes from './routes/blog';
+import teamRoutes from './routes/team';
+import careersRoutes from './routes/careers';
+import demoRoutes from './routes/demo';
+import demoConfigRoutes from './routes/demoConfig';
+import contactRoutes from './routes/contact';
+import newsletterRoutes from './routes/newsletter';
+import partnersRoutes from './routes/partners';
+import analyticsRoutes from './routes/analytics';
+import uploadRoutes from './routes/upload';
+import videoRoutes from './routes/video';
 
 const app = express();
 
@@ -181,7 +181,7 @@ app.get('/api/health', (req, res) => {
 // Database health check endpoint
 app.get('/api/health/db', async (req, res) => {
   try {
-    const { testConnection } = await import('@/config/database');
+    const { testConnection } = await import('./config/database');
     const isConnected = await testConnection();
     res.json({
       success: true,
