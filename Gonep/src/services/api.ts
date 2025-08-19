@@ -1,5 +1,5 @@
 const API_BASE_URL = import.meta.env.PROD 
-  ? 'https://gonep-backend.vercel.app/api' 
+  ? 'https://gonepbackend.vercel.app/api' 
   : 'http://localhost:8000/api';
 
 // Base API class for making HTTP requests

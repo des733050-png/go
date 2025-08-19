@@ -223,7 +223,7 @@ app.get('/api', (req, res) => {
     message: 'GONEP API Documentation',
     version: '1.0.0',
     deployment: 'Vercel Serverless',
-    baseUrl: 'https://gonep-backend.vercel.app',
+    baseUrl: 'https://gonepbackend.vercel.app',
     endpoints: {
       health: '/health',
       apiHealth: '/api/health',
