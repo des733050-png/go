@@ -20,7 +20,7 @@ export const authenticateToken = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    console.log('🔐 authenticateToken middleware called');
+    console.log('🔐 authenticateToken middleware called for:', req.method, req.path);
     console.log('🔐 JWT_SECRET available:', !!config.JWT_SECRET);
     console.log('🔐 JWT_SECRET length:', config.JWT_SECRET?.length || 0);
     
@@ -75,7 +75,11 @@ export const authenticateToken = async (
  */
 export const requireRole = (requiredRole: string) => {
   return (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
+    console.log('🔐 requireRole middleware called for role:', requiredRole);
+    console.log('🔐 User:', req.user ? `${req.user.firstName} ${req.user.lastName} (${req.user.role})` : 'No user');
+    
     if (!req.user) {
+      console.log('❌ No user found in request');
       res.status(401).json({
         success: false,
         error: 'Authentication required',
@@ -85,6 +89,7 @@ export const requireRole = (requiredRole: string) => {
     }
 
     if (!AuthUtils.hasRole(req.user.role, requiredRole)) {
+      console.log('❌ User role insufficient:', req.user.role, 'required:', requiredRole);
       res.status(403).json({
         success: false,
         error: 'Insufficient permissions',
@@ -93,6 +98,7 @@ export const requireRole = (requiredRole: string) => {
       return;
     }
 
+    console.log('✅ Role check passed');
     next();
   };
 };
