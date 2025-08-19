@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset for fixed header when scrolling to anchor links */
+section[id] {
+  scroll-margin-top: 100px;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {

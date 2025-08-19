@@ -17,12 +17,12 @@ export function Footer() {
   ];
 
   const services = [
-    "Diagnostic Solutions",
-    "Training Programs", 
-    "Technical Support",
-    "Data Analytics",
-    "Partnership Programs",
-    "Consulting Services"
+    { label: "Diagnostic Solutions", path: "/solutions#diagnostic-solutions" },
+    { label: "Training Programs", path: "/solutions#training-programs" },
+    { label: "Technical Support", path: "/solutions#technical-support" },
+    { label: "Data Analytics", path: "/solutions#data-analytics" },
+    { label: "Partnership Programs", path: "/solutions#partnership-programs" },
+    { label: "Consulting Services", path: "/solutions#consulting-services" }
   ];
 
   return (
@@ -79,9 +79,12 @@ export function Footer() {
               <ul className="space-y-3">
                 {services.map((service, index) => (
                   <li key={index}>
-                    <span className="text-white/90 hover:text-white transition-colors cursor-pointer">
-                      {service}
-                    </span>
+                    <Link 
+                      to={service.path}
+                      className="text-white/90 hover:text-white transition-colors cursor-pointer"
+                    >
+                      {service.label}
+                    </Link>
                   </li>
                 ))}
               </ul>

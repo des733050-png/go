@@ -175,7 +175,7 @@ export function NewsletterSubscription({ variant = "default", onClose, onSuccess
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="flex-1 text-sm h-8 bg-white text-foreground placeholder:text-muted-foreground border-white/20 focus:border-white/40"
+            className="flex-1 text-sm h-8 bg-white/10 backdrop-blur-sm text-white placeholder:text-white/60 border-white/20 focus:border-white/40 focus:bg-white/20"
             required
           />
           <Button 

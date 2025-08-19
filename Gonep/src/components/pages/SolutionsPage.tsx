@@ -1,6 +1,6 @@
 import { Card, CardContent } from "../ui/card";
 import { Button } from "../ui/button";
-import { Building2, Heart, Users, Package, ArrowRight, Calculator, MapPin } from "lucide-react";
+import { Building2, Heart, Users, Package, ArrowRight, Calculator, MapPin, FlaskConical, Settings, Target, Zap, Stethoscope, GraduationCap, HeadphonesIcon, BarChart3, Users2, MessageSquare } from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 
 export function SolutionsPage() {
@@ -18,6 +18,158 @@ export function SolutionsPage() {
               GONEP's Clinic at Hand addresses specific challenges across the healthcare ecosystem, 
               delivering value to every stakeholder in the African healthcare landscape.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="section-padding">
+        <div className="container">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              Our Services
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Comprehensive healthcare solutions designed to meet your specific needs
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card id="diagnostic-solutions" className="text-center p-6 hover:shadow-lg transition-shadow border-primary/20">
+              <div className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                <Stethoscope className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3">Diagnostic Solutions</h3>
+              <p className="text-muted-foreground">
+                Advanced diagnostic tools and equipment including our flagship Clinic at Hand device, 
+                designed to provide accurate and rapid health assessments in any setting.
+              </p>
+            </Card>
+
+            <Card id="training-programs" className="text-center p-6 hover:shadow-lg transition-shadow border-secondary/20">
+              <div className="bg-secondary/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                <GraduationCap className="h-8 w-8 text-secondary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3">Training Programs</h3>
+              <p className="text-muted-foreground">
+                Comprehensive training for healthcare professionals on our diagnostic tools, 
+                ensuring optimal usage and patient care delivery across all facilities.
+              </p>
+            </Card>
+
+            <Card id="technical-support" className="text-center p-6 hover:shadow-lg transition-shadow border-accent/20">
+              <div className="bg-accent/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                <HeadphonesIcon className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3">Technical Support</h3>
+              <p className="text-muted-foreground">
+                24/7 technical support and maintenance services to ensure your diagnostic equipment 
+                operates at peak performance with minimal downtime.
+              </p>
+            </Card>
+
+            <Card id="data-analytics" className="text-center p-6 hover:shadow-lg transition-shadow border-primary/20">
+              <div className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                <BarChart3 className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3">Data Analytics</h3>
+              <p className="text-muted-foreground">
+                Advanced analytics and reporting tools to track patient outcomes, 
+                facility performance, and population health trends for informed decision-making.
+              </p>
+            </Card>
+
+            <Card id="partnership-programs" className="text-center p-6 hover:shadow-lg transition-shadow border-secondary/20">
+              <div className="bg-secondary/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                <Users2 className="h-8 w-8 text-secondary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3">Partnership Programs</h3>
+              <p className="text-muted-foreground">
+                Collaborative initiatives with healthcare organizations, NGOs, and government agencies 
+                to expand access to quality healthcare across Africa.
+              </p>
+            </Card>
+
+            <Card id="consulting-services" className="text-center p-6 hover:shadow-lg transition-shadow border-accent/20">
+              <div className="bg-accent/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                <MessageSquare className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3">Consulting Services</h3>
+              <p className="text-muted-foreground">
+                Expert consultation on healthcare technology implementation, 
+                facility optimization, and strategic planning for healthcare organizations.
+              </p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* R&D as a Service Section */}
+      <section id="rnd-services" className="section-padding bg-muted/30">
+        <div className="container">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              R&D as a Service
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              At Gonep Pharmaceuticals, we believe healthcare innovation should be accessible, affordable, and locally relevant. 
+              Beyond developing our own products, we work with organizations, healthcare providers, and innovators to turn ideas into impactful medical solutions.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <Card className="text-center p-6 hover:shadow-lg transition-shadow border-primary/20">
+              <div className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                <FlaskConical className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3">Custom Product Development</h3>
+              <p className="text-muted-foreground">
+                We design and develop medical devices tailored to your specific needs, from concept to prototype and final product.
+              </p>
+            </Card>
+
+            <Card className="text-center p-6 hover:shadow-lg transition-shadow border-secondary/20">
+              <div className="bg-secondary/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                <Settings className="h-8 w-8 text-secondary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3">Product Customization</h3>
+              <p className="text-muted-foreground">
+                Whether it's our flagship Clinic at Hand or another solution, we adapt features and capabilities to fit your unique operational requirements.
+              </p>
+            </Card>
+
+            <Card className="text-center p-6 hover:shadow-lg transition-shadow border-accent/20">
+              <div className="bg-accent/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                <Target className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3">Problem-Driven Solutions</h3>
+              <p className="text-muted-foreground">
+                Bring us your healthcare challenge, and our expert team will work with you to design, test, and deliver a practical, cost-effective solution.
+              </p>
+            </Card>
+
+            <Card className="text-center p-6 hover:shadow-lg transition-shadow border-primary/20">
+              <div className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                <Zap className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3">Technology Enhancement & Upgrades</h3>
+              <p className="text-muted-foreground">
+                We refine existing devices or diagnostic tools to improve efficiency, accuracy, and user experience.
+              </p>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <div className="bg-background rounded-lg p-8 max-w-4xl mx-auto shadow-lg">
+              <h3 className="text-2xl font-bold text-foreground mb-4">Our Goal</h3>
+              <p className="text-lg text-muted-foreground">
+                To help you create impactful, affordable, and locally relevant healthcare innovations that address real-world problems.
+              </p>
+              <Button className="mt-6 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+                <ArrowRight className="mr-2 h-4 w-4" />
+                Start Your R&D Project
+              </Button>
+            </div>
           </div>
         </div>
       </section>
