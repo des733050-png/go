@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "build",
+  "installCommand": "npm install",
+  "framework": "create-react-app",
+  "env": {
+    "REACT_APP_API_URL": "https://gonep-backend.vercel.app/api",
+    "REACT_APP_ENVIRONMENT": "production",
+    "GENERATE_SOURCEMAP": "false"
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
