@@ -9,12 +9,30 @@ export class VideoController {
     try {
       console.log('🎬 getAllVideos called');
       
+      // Test database connection first
+      console.log('📊 Testing database connection...');
+      const { testConnection } = await import('../config/database');
+      const isConnected = await testConnection();
+      console.log('📊 Database connected:', isConnected);
+      
+      if (!isConnected) {
+        throw new Error('Database connection failed');
+      }
+      
       console.log('📊 Attempting to query demo_videos table...');
-      const videos = await db
+      
+      // Add timeout to prevent hanging
+      const queryPromise = db
         .select()
         .from(demoVideos)
         .where(eq(demoVideos.isActive, true))
         .orderBy(desc(demoVideos.sortOrder), desc(demoVideos.createdAt));
+      
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Database query timeout')), 8000);
+      });
+      
+      const videos = await Promise.race([queryPromise, timeoutPromise]) as any[];
 
       console.log('✅ Videos query successful, count:', videos.length);
 
@@ -27,7 +45,8 @@ export class VideoController {
       console.error('❌ Error fetching videos:', error);
       res.status(500).json({
         success: false,
-        message: 'Failed to fetch videos'
+        message: 'Failed to fetch videos',
+        error: error instanceof Error ? error.message : 'Unknown error'
       });
     }
   }
