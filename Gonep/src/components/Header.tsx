@@ -354,7 +354,7 @@ export function Header() {
                   </Button>
                   <Button 
                     onClick={handleContactClick}
-                    className="bg-secondary hover:bg-secondary/90 text-white font-semibold w-full"
+                    className="bg-secondary hover:bg-secondary/90 text-black font-semibold w-full"
                   >
                     <Mail className="mr-2 h-4 w-4" />
                     Contact Us

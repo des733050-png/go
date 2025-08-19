@@ -26,7 +26,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="text-white bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+    <footer className="text-white bg-gradient-to-br from-primary via-primary/90 to-accent">
       <div className="container">
         {/* Main Footer Content */}
         <div className="section-padding">
@@ -36,7 +36,7 @@ export function Footer() {
               <div>
                 <div className="text-3xl font-bold mb-2 text-white">GONEP</div>
                 <div className="text-white font-medium">Pharmaceuticals</div>
-                <p className="mt-4 leading-relaxed text-white/80">
+                <p className="mt-4 leading-relaxed text-white/90">
                   Transforming African healthcare through innovative diagnostic solutions. 
                   Bringing quality healthcare to every community across the continent.
                 </p>
@@ -44,13 +44,13 @@ export function Footer() {
               
               {/* Social Links */}
               <div className="flex space-x-4">
-                <Button size="sm" variant="ghost" className="p-2 h-auto hover:bg-white/20 text-white/80 hover:text-white">
+                <Button size="sm" variant="ghost" className="p-2 h-auto hover:bg-white/20 text-white/90 hover:text-white">
                   <Linkedin className="h-5 w-5" />
                 </Button>
-                <Button size="sm" variant="ghost" className="p-2 h-auto hover:bg-white/20 text-white/80 hover:text-white">
+                <Button size="sm" variant="ghost" className="p-2 h-auto hover:bg-white/20 text-white/90 hover:text-white">
                   <Twitter className="h-5 w-5" />
                 </Button>
-                <Button size="sm" variant="ghost" className="p-2 h-auto hover:bg-white/20 text-white/80 hover:text-white">
+                <Button size="sm" variant="ghost" className="p-2 h-auto hover:bg-white/20 text-white/90 hover:text-white">
                   <Facebook className="h-5 w-5" />
                 </Button>
               </div>
@@ -64,7 +64,7 @@ export function Footer() {
                   <li key={link.path}>
                     <Link 
                       to={link.path}
-                      className="text-white/80 hover:text-white transition-colors text-left"
+                      className="text-white/90 hover:text-white transition-colors text-left"
                     >
                       {link.label}
                     </Link>
@@ -79,7 +79,7 @@ export function Footer() {
               <ul className="space-y-3">
                 {services.map((service, index) => (
                   <li key={index}>
-                    <span className="text-white/80 hover:text-white transition-colors cursor-pointer">
+                    <span className="text-white/90 hover:text-white transition-colors cursor-pointer">
                       {service}
                     </span>
                   </li>
@@ -94,24 +94,26 @@ export function Footer() {
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 flex-shrink-0 mt-1 text-white" />
-                    <div className="text-white/80">
+                    <div className="text-white/90">
                       <div className="font-medium">Innovation Plaza</div>
                       <div>Nairobi, Kenya</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Phone className="h-5 w-5 flex-shrink-0 text-white" />
-                    <span className="text-white/80">+254 700 123 456</span>
+                    <span className="text-white/90">+254 700 123 456</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Mail className="h-5 w-5 flex-shrink-0 text-white" />
-                    <span className="text-white/80">info@gonepharm.com</span>
+                    <span className="text-white/90">info@gonepharm.com</span>
                   </div>
                 </div>
               </div>
 
               {/* Newsletter Signup */}
-              <NewsletterSubscription variant="compact" />
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4">
+                <NewsletterSubscription variant="compact" />
+              </div>
             </div>
           </div>
         </div>
@@ -121,18 +123,18 @@ export function Footer() {
         {/* Bottom Footer */}
         <div className="py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-white/80">
+            <div className="text-white/90">
               © 2024 GONEP Pharmaceuticals. All rights reserved.
             </div>
             
             <div className="flex space-x-6 text-sm">
-              <button className="text-white/80 hover:text-white transition-colors">
+              <button className="text-white/90 hover:text-white transition-colors">
                 Privacy Policy
               </button>
-              <button className="text-white/80 hover:text-white transition-colors">
+              <button className="text-white/90 hover:text-white transition-colors">
                 Terms of Service
               </button>
-              <button className="text-white/80 hover:text-white transition-colors">
+              <button className="text-white/90 hover:text-white transition-colors">
                 Cookie Policy
               </button>
             </div>
@@ -140,7 +142,7 @@ export function Footer() {
           
           {/* Developer Credit */}
           <div className="text-center mt-6">
-            <p className="text-white/60 text-xs">
+            <p className="text-white/70 text-xs">
               Developed with ❤️ by <span className="font-medium">GONEP Development Team</span>
             </p>
           </div>

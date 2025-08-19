@@ -3,8 +3,7 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
-import { Badge } from "../ui/badge";
-import { Mail, Phone, MapPin, Clock, Users, Briefcase, Heart, ArrowRight, Upload } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, ArrowRight, Upload } from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 
 export function ContactPage() {
@@ -35,37 +34,6 @@ export function ContactPage() {
     }
   ];
 
-  const jobOpenings = [
-    {
-      title: "Senior Biomedical Engineer",
-      type: "Full-time",
-      location: "Nairobi, Kenya",
-      department: "Engineering",
-      description: "Lead the development of next-generation diagnostic devices for African healthcare."
-    },
-    {
-      title: "Clinical Research Manager",
-      type: "Full-time", 
-      location: "Accra, Ghana",
-      department: "Research",
-      description: "Oversee clinical trials and regulatory compliance across West African markets."
-    },
-    {
-      title: "Field Operations Specialist",
-      type: "Full-time",
-      location: "Lagos, Nigeria",
-      department: "Operations",
-      description: "Support on-ground implementation and training programs for healthcare partners."
-    },
-    {
-      title: "Data Scientist",
-      type: "Full-time",
-      location: "Remote",
-      department: "Technology",
-      description: "Develop AI/ML models for diagnostic accuracy and population health insights."
-    }
-  ];
-
   return (
     <div className="bg-background">
       {/* Hero Section */}
@@ -73,7 +41,7 @@ export function ContactPage() {
         <div className="container">
           <div className="text-center space-y-6 max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-              Get Involved with GONEP
+              Get in Touch with GONEP
             </h1>
             <p className="text-lg text-muted-foreground">
               Whether you're a healthcare provider, investor, partner, or someone passionate about 
@@ -114,7 +82,40 @@ export function ContactPage() {
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <Card>
+            <Card className="relative">
+              {/* Maintenance Overlay */}
+              <div className="absolute inset-0 bg-background/80 backdrop-blur-sm z-10 flex items-center justify-center rounded-lg">
+                <div className="text-center p-8 max-w-sm">
+                  <div className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <svg className="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-2">Form Under Maintenance</h3>
+                  <p className="text-muted-foreground mb-6">
+                    Our contact form is currently being updated. Please use the alternative contact methods below or request a demo.
+                  </p>
+                  <div className="space-y-3">
+                    <Button 
+                      onClick={() => window.location.href = 'tel:+254700123456'}
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                    >
+                      <Phone className="mr-2 h-4 w-4" />
+                      Call Us: +254 700 123 456
+                    </Button>
+                    <Button 
+                      onClick={() => window.location.href = 'mailto:info@gonepharm.com'}
+                      variant="outline"
+                      className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                    >
+                      <Mail className="mr-2 h-4 w-4" />
+                      Email: info@gonepharm.com
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              
               <CardHeader>
                 <CardTitle className="text-2xl">Send Us a Message</CardTitle>
               </CardHeader>
@@ -122,17 +123,17 @@ export function ContactPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Name *</label>
-                    <Input placeholder="Your full name" required />
+                    <Input placeholder="Your full name" required disabled />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Email *</label>
-                    <Input type="email" placeholder="your@email.com" required />
+                    <Input type="email" placeholder="your@email.com" required disabled />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Category *</label>
-                  <Select>
+                  <Select disabled>
                     <SelectTrigger>
                       <SelectValue placeholder="Select inquiry type" />
                     </SelectTrigger>
@@ -141,7 +142,6 @@ export function ContactPage() {
                       <SelectItem value="partnership">Partnership Opportunities</SelectItem>
                       <SelectItem value="investment">Investment Inquiries</SelectItem>
                       <SelectItem value="media">Media & Press</SelectItem>
-                      <SelectItem value="careers">Career Opportunities</SelectItem>
                       <SelectItem value="support">Technical Support</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
@@ -150,7 +150,7 @@ export function ContactPage() {
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Organization (Optional)</label>
-                  <Input placeholder="Your organization name" />
+                  <Input placeholder="Your organization name" disabled />
                 </div>
 
                 <div className="space-y-2">
@@ -159,12 +159,13 @@ export function ContactPage() {
                     placeholder="Tell us about your inquiry, project, or how we can help..."
                     rows={4}
                     required
+                    disabled
                   />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Attach File (Optional)</label>
-                  <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary/50 transition-colors cursor-pointer">
+                  <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary/50 transition-colors cursor-not-allowed opacity-50">
                     <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
                     <p className="text-sm text-muted-foreground">
                       Click to upload or drag and drop
@@ -175,7 +176,7 @@ export function ContactPage() {
                   </div>
                 </div>
 
-                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold" disabled>
                   Send Message
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -229,101 +230,6 @@ export function ContactPage() {
                   </div>
                 </div>
               </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Careers Section */}
-      <section className="section-padding">
-        <div className="container">
-          <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Join Our Mission
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Be part of a team that's transforming healthcare across Africa. 
-              We're looking for passionate individuals who share our vision.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            {jobOpenings.map((job, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-lg font-semibold text-foreground mb-2">{job.title}</h3>
-                      <div className="flex items-center space-x-2 mb-2">
-                        <Badge variant="outline">{job.type}</Badge>
-                        <Badge variant="secondary">{job.department}</Badge>
-                      </div>
-                      <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                        <MapPin className="h-4 w-4" />
-                        <span>{job.location}</span>
-                      </div>
-                    </div>
-                    <Briefcase className="h-6 w-6 text-primary" />
-                  </div>
-                  
-                  <p className="text-muted-foreground text-sm mb-4">{job.description}</p>
-                  
-                  <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground">
-                    Apply Now
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <p className="text-muted-foreground mb-4">
-              Don't see a role that fits? We're always looking for talented individuals.
-            </p>
-            <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              Send General Application
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Partnership CTA */}
-      <section className="bg-primary text-primary-foreground section-padding">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold">
-                Partner with GONEP
-              </h2>
-              <p className="text-lg opacity-90">
-                Whether you're an NGO looking to expand your reach, a government ministry 
-                planning healthcare initiatives, or an investor interested in African healthcare, 
-                we'd love to explore partnership opportunities.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-center space-x-3">
-                  <Users className="h-6 w-6 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">NGO Partnerships</p>
-                    <p className="text-sm opacity-80">Mobile health programs</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Heart className="h-6 w-6 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">Impact Investing</p>
-                    <p className="text-sm opacity-80">Healthcare innovation funding</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center lg:text-right">
-              <Button size="lg" className="bg-white text-primary hover:bg-gray-100 font-semibold px-8">
-                Explore Partnerships
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
             </div>
           </div>
         </div>

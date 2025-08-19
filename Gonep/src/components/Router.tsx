@@ -14,6 +14,7 @@ import {
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { PageTransition } from "./PageTransition";
+import { NewsletterPopup } from "./NewsletterPopup";
 import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
 import { WhoWeArePage } from "./pages/WhoWeArePage";
@@ -176,6 +177,7 @@ export function Router() {
             </PageTransition>
           </main>
           <Footer />
+          <NewsletterPopup />
         </div>
       </BrowserRouter>
     </ThemeProvider>

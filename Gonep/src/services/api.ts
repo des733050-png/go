@@ -153,7 +153,10 @@ export const contactAPI = {
 // Newsletter API
 export const newsletterAPI = {
   // Subscribe to newsletter
-  subscribe: (email: string) => api.post('/newsletter/subscribe', { email }),
+  subscribe: (data: string | { email: string; firstName?: string; lastName?: string }) => {
+    const payload = typeof data === 'string' ? { email: data } : data;
+    return api.post('/newsletter/subscribe', payload);
+  },
   
   // Unsubscribe from newsletter
   unsubscribe: (email: string) => api.post('/newsletter/unsubscribe', { email }),
