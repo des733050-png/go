@@ -130,13 +130,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       console.log('📡 Login API response:', response);
       
       if (response.success) {
-        console.log('✅ Login successful, storing token:', response.data.token);
-        localStorage.setItem('authToken', response.data.token);
+        // Handle both 'token' and 'accessToken' field names
+        const token = response.data.token || response.data.accessToken;
+        console.log('✅ Login successful, storing token:', token);
+        localStorage.setItem('authToken', token);
         dispatch({ 
           type: 'LOGIN_SUCCESS', 
           payload: { 
             user: response.data.user, 
-            token: response.data.token 
+            token: token 
           } 
         });
         return true;

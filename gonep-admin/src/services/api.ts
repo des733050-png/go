@@ -152,7 +152,7 @@ const apiCall = async <T>(endpoint: string, method: string = 'GET', data?: any):
 // Authentication API
 export const authAPI = {
   login: (credentials: LoginCredentials) => 
-    apiCall<{ user: User; token: string }>('/auth/login', 'POST', credentials),
+    apiCall<{ user: User; token?: string; accessToken?: string }>('/auth/login', 'POST', credentials),
   
   register: (userData: any) => 
     apiCall<User>('/auth/register', 'POST', userData),
