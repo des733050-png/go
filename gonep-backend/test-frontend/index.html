@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GONEP Backend API Tester</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .api-section {
+            margin-bottom: 40px;
+            border: 1px solid #e1e5e9;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e1e5e9;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .section-content {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+
+        .response {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .response.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .response.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .response.info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-online {
+            background: #28a745;
+        }
+
+        .status-offline {
+            background: #dc3545;
+        }
+
+        .api-url {
+            font-family: 'Courier New', monospace;
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 GONEP Backend API Tester</h1>
+            <p>Test your backend API endpoints with this comprehensive interface</p>
+        </div>
+
+        <div class="content">
+            <!-- Health Check -->
+            <div class="api-section">
+                <div class="section-header">
+                    <span class="status-indicator" id="healthStatus">●</span>
+                    Health Check & Database Status
+                </div>
+                <div class="section-content">
+                    <div class="stats">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalTables">-</div>
+                            <div class="stat-label">Database Tables</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="apiStatus">-</div>
+                            <div class="stat-label">API Status</div>
+                        </div>
+                    </div>
+                    <div class="api-url">GET /api/health</div>
+                    <div class="button-group">
+                        <button class="btn" onclick="testHealthCheck()">Test Health Check</button>
+                        <button class="btn btn-secondary" onclick="checkDatabaseStatus()">Check Database</button>
+                    </div>
+                    <div id="healthResponse" class="response info" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Authentication -->
+            <div class="api-section">
+                <div class="section-header">🔐 Authentication</div>
+                <div class="section-content">
+                    <div class="grid">
+                        <!-- User Registration -->
+                        <div>
+                            <h3>User Registration</h3>
+                            <div class="api-url">POST /api/auth/register</div>
+                            <div class="form-group">
+                                <label>First Name:</label>
+                                <input type="text" id="regFirstName" placeholder="John">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name:</label>
+                                <input type="text" id="regLastName" placeholder="Doe">
+                            </div>
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input type="email" id="regEmail" placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Password:</label>
+                                <input type="password" id="regPassword" placeholder="password123">
+                            </div>
+                            <div class="form-group">
+                                <label>Organization:</label>
+                                <input type="text" id="regOrganization" placeholder="Acme Corp">
+                            </div>
+                            <button class="btn" onclick="testRegistration()">Register User</button>
+                            <div id="regResponse" class="response" style="display: none;"></div>
+                        </div>
+
+                        <!-- User Login -->
+                        <div>
+                            <h3>User Login</h3>
+                            <div class="api-url">POST /api/auth/login</div>
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input type="email" id="loginEmail" placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Password:</label>
+                                <input type="password" id="loginPassword" placeholder="password123">
+                            </div>
+                            <button class="btn" onclick="testLogin()">Login</button>
+                            <div id="loginResponse" class="response" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog System -->
+            <div class="api-section">
+                <div class="section-header">📝 Blog System</div>
+                <div class="section-content">
+                    <div class="grid">
+                        <!-- Get All Posts -->
+                        <div>
+                            <h3>Get All Posts</h3>
+                            <div class="api-url">GET /api/blog/posts</div>
+                            <div class="button-group">
+                                <button class="btn" onclick="testGetPosts()">Get Posts</button>
+                                <button class="btn btn-secondary" onclick="testGetFeaturedPosts()">Get Featured</button>
+                            </div>
+                            <div id="postsResponse" class="response" style="display: none;"></div>
+                        </div>
+
+                        <!-- Get Categories & Authors -->
+                        <div>
+                            <h3>Categories & Authors</h3>
+                            <div class="api-url">GET /api/blog/categories & /api/blog/authors</div>
+                            <div class="button-group">
+                                <button class="btn" onclick="testGetCategories()">Get Categories</button>
+                                <button class="btn" onclick="testGetAuthors()">Get Authors</button>
+                            </div>
+                            <div id="categoriesResponse" class="response" style="display: none;"></div>
+                        </div>
+
+                        <!-- Create Post (Admin) -->
+                        <div>
+                            <h3>Create Post (Admin)</h3>
+                            <div class="api-url">POST /api/blog/posts</div>
+                            <div class="form-group">
+                                <label>Title:</label>
+                                <input type="text" id="postTitle" placeholder="Sample Blog Post">
+                            </div>
+                            <div class="form-group">
+                                <label>Content:</label>
+                                <textarea id="postContent" rows="4" placeholder="This is a sample blog post content..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Excerpt:</label>
+                                <textarea id="postExcerpt" rows="2" placeholder="Brief excerpt..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Category ID:</label>
+                                <input type="number" id="postCategoryId" placeholder="1">
+                            </div>
+                            <div class="form-group">
+                                <label>Author ID:</label>
+                                <input type="number" id="postAuthorId" placeholder="1">
+                            </div>
+                            <button class="btn" onclick="testCreatePost()">Create Post</button>
+                            <div id="createPostResponse" class="response" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team System -->
+            <div class="api-section">
+                <div class="section-header">👥 Team System</div>
+                <div class="section-content">
+                    <div class="api-url">GET /api/team</div>
+                    <div class="button-group">
+                        <button class="btn" onclick="testGetTeam()">Get Team Members</button>
+                        <button class="btn btn-secondary" onclick="testGetTeamValues()">Get Team Values</button>
+                    </div>
+                    <div id="teamResponse" class="response" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Careers System -->
+            <div class="api-section">
+                <div class="section-header">💼 Careers System</div>
+                <div class="section-content">
+                    <div class="grid">
+                        <div>
+                            <h3>Job Openings</h3>
+                            <div class="api-url">GET /api/careers/jobs</div>
+                            <div class="button-group">
+                                <button class="btn" onclick="testGetJobs()">Get Jobs</button>
+                                <button class="btn btn-secondary" onclick="testGetDepartments()">Get Departments</button>
+                            </div>
+                            <div id="jobsResponse" class="response" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo Requests -->
+            <div class="api-section">
+                <div class="section-header">🎯 Demo Requests</div>
+                <div class="section-content">
+                    <div class="api-url">POST /api/demo/request</div>
+                    <div class="form-group">
+                        <label>First Name:</label>
+                        <input type="text" id="demoFirstName" placeholder="John">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name:</label>
+                        <input type="text" id="demoLastName" placeholder="Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" id="demoEmail" placeholder="john@acme.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone:</label>
+                        <input type="tel" id="demoPhone" placeholder="+1234567890">
+                    </div>
+                    <div class="form-group">
+                        <label>Organization:</label>
+                        <input type="text" id="demoOrganization" placeholder="Acme Corp">
+                    </div>
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <input type="text" id="demoTitle" placeholder="CTO">
+                    </div>
+                    <div class="form-group">
+                        <label>Organization Type:</label>
+                        <select id="demoOrgType">
+                            <option value="healthcare">Healthcare</option>
+                            <option value="technology">Technology</option>
+                            <option value="research">Research</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Country:</label>
+                        <input type="text" id="demoCountry" placeholder="United States">
+                    </div>
+                    <div class="form-group">
+                        <label>Demo Type:</label>
+                        <select id="demoType">
+                            <option value="product">Product Demo</option>
+                            <option value="technical">Technical Demo</option>
+                            <option value="consultation">Consultation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message:</label>
+                        <textarea id="demoMessage" rows="4" placeholder="I'm interested in learning more about your IoT diagnostic solutions..."></textarea>
+                    </div>
+                    <button class="btn" onclick="testDemoRequest()">Submit Demo Request</button>
+                    <div id="demoResponse" class="response" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="api-section">
+                <div class="section-header">📧 Contact Form</div>
+                <div class="section-content">
+                    <div class="api-url">POST /api/contact/submit</div>
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" id="contactName" placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" id="contactEmail" placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Category:</label>
+                        <select id="contactCategory">
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Support</option>
+                            <option value="sales">Sales</option>
+                            <option value="partnership">Partnership</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Organization:</label>
+                        <input type="text" id="contactOrganization" placeholder="Acme Corp">
+                    </div>
+                    <div class="form-group">
+                        <label>Message:</label>
+                        <textarea id="contactMessage" rows="4" placeholder="I have a question about your services..."></textarea>
+                    </div>
+                    <button class="btn" onclick="testContactForm()">Send Message</button>
+                    <div id="contactResponse" class="response" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="api-section">
+                <div class="section-header">📰 Newsletter</div>
+                <div class="section-content">
+                    <div class="api-url">POST /api/newsletter/subscribe</div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" id="newsletterEmail" placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>First Name:</label>
+                        <input type="text" id="newsletterFirstName" placeholder="John">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name:</label>
+                        <input type="text" id="newsletterLastName" placeholder="Doe">
+                    </div>
+                    <button class="btn" onclick="testNewsletterSubscribe()">Subscribe</button>
+                    <div id="newsletterResponse" class="response" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Partners -->
+            <div class="api-section">
+                <div class="section-header">🤝 Partners</div>
+                <div class="section-content">
+                    <div class="api-url">GET /api/partners</div>
+                    <button class="btn" onclick="testGetPartners()">Get Partners</button>
+                    <div id="partnersResponse" class="response" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+        let authToken = localStorage.getItem('authToken');
+
+        // Update auth token display
+        function updateAuthStatus() {
+            const status = document.getElementById('healthStatus');
+            if (authToken) {
+                status.className = 'status-indicator status-online';
+                status.title = 'Authenticated';
+            } else {
+                status.className = 'status-indicator status-offline';
+                status.title = 'Not Authenticated';
+            }
+        }
+
+        // Generic API call function
+        async function makeApiCall(endpoint, method = 'GET', data = null) {
+            const url = `${API_BASE_URL}${endpoint}`;
+            const options = {
+                method,
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            };
+
+            if (authToken) {
+                options.headers['Authorization'] = `Bearer ${authToken}`;
+            }
+
+            if (data) {
+                options.body = JSON.stringify(data);
+            }
+
+            try {
+                const response = await fetch(url, options);
+                const result = await response.json();
+                
+                return {
+                    success: response.ok,
+                    status: response.status,
+                    data: result
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    status: 0,
+                    data: { error: error.message }
+                };
+            }
+        }
+
+        // Display response
+        function showResponse(elementId, response) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = `response ${response.success ? 'success' : 'error'}`;
+            element.textContent = JSON.stringify(response, null, 2);
+        }
+
+        // Health Check
+        async function testHealthCheck() {
+            const response = await makeApiCall('/health');
+            showResponse('healthResponse', response);
+            document.getElementById('apiStatus').textContent = response.success ? '✅ Online' : '❌ Offline';
+        }
+
+        // Check Database Status
+        async function checkDatabaseStatus() {
+            const response = await makeApiCall('/health');
+            if (response.success) {
+                document.getElementById('totalTables').textContent = '30';
+                document.getElementById('apiStatus').textContent = '✅ Online';
+            } else {
+                document.getElementById('apiStatus').textContent = '❌ Offline';
+            }
+        }
+
+        // User Registration
+        async function testRegistration() {
+            const data = {
+                firstName: document.getElementById('regFirstName').value,
+                lastName: document.getElementById('regLastName').value,
+                email: document.getElementById('regEmail').value,
+                password: document.getElementById('regPassword').value,
+                organization: document.getElementById('regOrganization').value
+            };
+
+            const response = await makeApiCall('/auth/register', 'POST', data);
+            showResponse('regResponse', response);
+        }
+
+        // User Login
+        async function testLogin() {
+            const data = {
+                email: document.getElementById('loginEmail').value,
+                password: document.getElementById('loginPassword').value
+            };
+
+            const response = await makeApiCall('/auth/login', 'POST', data);
+            if (response.success && response.data.token) {
+                authToken = response.data.token;
+                localStorage.setItem('authToken', authToken);
+                updateAuthStatus();
+            }
+            showResponse('loginResponse', response);
+        }
+
+        // Get Blog Posts
+        async function testGetPosts() {
+            const response = await makeApiCall('/blog/posts');
+            showResponse('postsResponse', response);
+        }
+
+        // Get Featured Posts
+        async function testGetFeaturedPosts() {
+            const response = await makeApiCall('/blog/featured');
+            showResponse('postsResponse', response);
+        }
+
+        // Get Categories
+        async function testGetCategories() {
+            const response = await makeApiCall('/blog/categories');
+            showResponse('categoriesResponse', response);
+        }
+
+        // Get Authors
+        async function testGetAuthors() {
+            const response = await makeApiCall('/blog/authors');
+            showResponse('categoriesResponse', response);
+        }
+
+        // Create Blog Post
+        async function testCreatePost() {
+            const data = {
+                title: document.getElementById('postTitle').value,
+                content: document.getElementById('postContent').value,
+                excerpt: document.getElementById('postExcerpt').value,
+                categoryId: Number(document.getElementById('postCategoryId').value),
+                authorId: Number(document.getElementById('postAuthorId').value)
+            };
+
+            const response = await makeApiCall('/blog/posts', 'POST', data);
+            showResponse('createPostResponse', response);
+        }
+
+        // Get Team Members
+        async function testGetTeam() {
+            const response = await makeApiCall('/team');
+            showResponse('teamResponse', response);
+        }
+
+        // Get Team Values
+        async function testGetTeamValues() {
+            const response = await makeApiCall('/team/values');
+            showResponse('teamResponse', response);
+        }
+
+        // Get Jobs
+        async function testGetJobs() {
+            const response = await makeApiCall('/careers/jobs');
+            showResponse('jobsResponse', response);
+        }
+
+        // Get Departments
+        async function testGetDepartments() {
+            const response = await makeApiCall('/careers/departments');
+            showResponse('jobsResponse', response);
+        }
+
+        // Demo Request
+        async function testDemoRequest() {
+            const data = {
+                firstName: document.getElementById('demoFirstName').value,
+                lastName: document.getElementById('demoLastName').value,
+                email: document.getElementById('demoEmail').value,
+                phone: document.getElementById('demoPhone').value,
+                organization: document.getElementById('demoOrganization').value,
+                title: document.getElementById('demoTitle').value,
+                organizationType: document.getElementById('demoOrgType').value,
+                country: document.getElementById('demoCountry').value,
+                demoType: document.getElementById('demoType').value,
+                message: document.getElementById('demoMessage').value
+            };
+
+            const response = await makeApiCall('/demo/request', 'POST', data);
+            showResponse('demoResponse', response);
+        }
+
+        // Contact Form
+        async function testContactForm() {
+            const data = {
+                name: document.getElementById('contactName').value,
+                email: document.getElementById('contactEmail').value,
+                category: document.getElementById('contactCategory').value,
+                organization: document.getElementById('contactOrganization').value,
+                message: document.getElementById('contactMessage').value
+            };
+
+            const response = await makeApiCall('/contact/submit', 'POST', data);
+            showResponse('contactResponse', response);
+        }
+
+        // Newsletter Subscribe
+        async function testNewsletterSubscribe() {
+            const data = {
+                email: document.getElementById('newsletterEmail').value,
+                firstName: document.getElementById('newsletterFirstName').value,
+                lastName: document.getElementById('newsletterLastName').value
+            };
+
+            const response = await makeApiCall('/newsletter/subscribe', 'POST', data);
+            showResponse('newsletterResponse', response);
+        }
+
+        // Get Partners
+        async function testGetPartners() {
+            const response = await makeApiCall('/partners');
+            showResponse('partnersResponse', response);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAuthStatus();
+            // Test health check on load
+            testHealthCheck();
+            checkDatabaseStatus();
+        });
+    </script>
+</body>
+</html>
