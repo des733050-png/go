@@ -12,6 +12,13 @@ const router = Router();
 router.get('/', VideoController.getAllVideos);
 
 /**
+ * @route   GET /api/video/admin
+ * @desc    Get all videos for admin
+ * @access  Private (Admin)
+ */
+router.get('/admin', authenticateToken, requireAdmin, VideoController.getAllVideosAdmin);
+
+/**
  * @route   POST /api/video
  * @desc    Create a new video
  * @access  Private (Admin)
