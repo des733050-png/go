@@ -180,25 +180,66 @@ app.get('/api/health', (req, res) => {
 
 // Database health check endpoint
 app.get('/api/health/db', async (req, res) => {
+  const startTime = Date.now();
   try {
     const { testConnection } = await import('./config/database');
     const isConnected = await testConnection();
+    const responseTime = Date.now() - startTime;
+    
     res.json({
       success: true,
       message: 'Database health check',
       database: isConnected ? 'connected' : 'disconnected',
+      responseTime: `${responseTime}ms`,
       timestamp: new Date().toISOString(),
       environment: config.NODE_ENV,
-      deployment: 'Vercel Serverless'
+      deployment: 'Vercel Serverless',
+      status: isConnected ? 'healthy' : 'unhealthy'
     });
   } catch (error) {
+    const responseTime = Date.now() - startTime;
     res.status(500).json({
       success: false,
       message: 'Database health check failed',
       error: error instanceof Error ? error.message : 'Unknown error',
+      responseTime: `${responseTime}ms`,
       timestamp: new Date().toISOString(),
       environment: config.NODE_ENV,
-      deployment: 'Vercel Serverless'
+      deployment: 'Vercel Serverless',
+      status: 'error'
+    });
+  }
+});
+
+// Simple connection test endpoint
+app.get('/api/test/connection', async (req, res) => {
+  const startTime = Date.now();
+  try {
+    // Test database connection
+    const { testConnection } = await import('./config/database');
+    const dbConnected = await testConnection();
+    const dbTime = Date.now() - startTime;
+    
+    res.json({
+      success: true,
+      message: 'Connection test completed',
+      database: {
+        connected: dbConnected,
+        responseTime: `${dbTime}ms`
+      },
+      totalTime: `${Date.now() - startTime}ms`,
+      timestamp: new Date().toISOString(),
+      environment: config.NODE_ENV
+    });
+  } catch (error) {
+    const totalTime = Date.now() - startTime;
+    res.status(500).json({
+      success: false,
+      message: 'Connection test failed',
+      error: error instanceof Error ? error.message : 'Unknown error',
+      totalTime: `${totalTime}ms`,
+      timestamp: new Date().toISOString(),
+      environment: config.NODE_ENV
     });
   }
 });

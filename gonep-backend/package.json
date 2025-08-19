@@ -15,6 +15,7 @@
     "build:tsc": "tsc",
     "vercel-build": "echo 'Skipping TypeScript build for Vercel'",
     "test": "jest",
+    "test:connection": "node test-connection.js",
     "migrate": "drizzle-kit push",
     "migrate:railway": "node migrate-railway.js",
     "migrate:simple": "node migrate-simple.js",

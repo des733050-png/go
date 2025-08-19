@@ -48,12 +48,14 @@ export const createDatabaseConnection = async () => {
 const connection = mysql.createPool({
   uri: databaseUrl,
   waitForConnections: true,
-  connectionLimit: process.env.NODE_ENV === 'production' ? 5 : 10, // Lower limit for serverless
+  connectionLimit: process.env.NODE_ENV === 'production' ? 2 : 10, // Very low limit for serverless
   queueLimit: 0,
   // Serverless-specific settings
   ...(process.env.NODE_ENV === 'production' && {
     // For serverless, we want to close connections quickly
-    idleTimeout: 30000, // 30 seconds
+    idleTimeout: 15000, // 15 seconds - reduced for faster cleanup
+    acquireTimeout: 10000, // 10 seconds to acquire connection
+    timeout: 10000, // 10 seconds query timeout
   })
 });
 
