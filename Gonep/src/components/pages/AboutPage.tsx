@@ -46,11 +46,10 @@ export function AboutPage() {
             className="text-center space-y-6 max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-              About GONEP Pharmaceuticals
+              About GONEP
             </h1>
             <p className="text-lg text-muted-foreground">
-              Founded by healthcare professionals who witnessed firsthand the diagnostic gaps in African communities, 
-              GONEP is driven by a mission to democratize healthcare access across the continent.
+              At GONEP, we believe healthcare should never be a luxury of geography. In 2022, we set out to close the critical diagnostic gap that leaves millions across Africa undiagnosed, untreated, and unheard.
             </p>
           </motion.div>
         </div>
@@ -147,10 +146,10 @@ export function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { number: "50,000+", label: "Patients Served", description: "Across 12 African countries" },
+              { number: "2022", label: "Founded", description: "From concept to prototype" },
               { number: "95%", label: "Diagnostic Accuracy", description: "Validated through clinical trials" },
-              { number: "500+", label: "Healthcare Workers", description: "Trained and empowered" },
-              { number: "3", label: "Years of Innovation", description: "From concept to impact" }
+              { number: "15min", label: "Test Results", description: "Rapid processing time" },
+              { number: "3-in-1", label: "Diagnostic Device", description: "Blood, urine, and vital signs" }
             ].map((stat, index) => (
               <motion.div
                 key={index}

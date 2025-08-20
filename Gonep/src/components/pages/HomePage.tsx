@@ -49,13 +49,13 @@ export function HomePage() {
       <PartnersSection />
       <FinalCTASection onDemoRequest={handleDemoRequest} />
 
-      {/* Newsletter Popup */}
-      {isNewsletterPopupOpen && (
-        <NewsletterSubscription 
-          variant="popup"
-          onClose={() => setIsNewsletterPopupOpen(false)} 
-        />
-      )}
+              {/* Newsletter Popup */}
+        {isNewsletterPopupOpen && (
+          <NewsletterSubscription 
+            variant="popup"
+            onClose={() => setIsNewsletterPopupOpen(false)} 
+          />
+        )}
 
       {/* Demo Request Modal */}
       <DemoRequestModal 

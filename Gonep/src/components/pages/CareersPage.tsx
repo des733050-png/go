@@ -157,19 +157,19 @@ export function CareersPage() {
 
   const values = [
     {
-      title: "Mission-Driven Excellence",
+      title: "Passion for solving real health challenges",
       description: "We're committed to eliminating healthcare disparities through innovative, accessible diagnostic solutions."
     },
     {
-      title: "Community-Centered Approach", 
+      title: "Curiosity, creativity, and resilience", 
       description: "Every solution is built with and for the African communities we serve, ensuring cultural relevance and adoption."
     },
     {
-      title: "Collaborative Innovation",
+      title: "Commitment to equity and ethical innovation",
       description: "We foster an environment where diverse perspectives drive breakthrough solutions for complex healthcare challenges."
     },
     {
-      title: "Sustainable Impact",
+      title: "Team players who can thrive in a fast-paced, mission-driven environment",
       description: "We build for long-term positive change, creating sustainable healthcare infrastructure across Africa."
     }
   ];
@@ -230,11 +230,16 @@ export function CareersPage() {
             className="text-center space-y-6 max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-              Join Our Mission to Transform African Healthcare
+              Careers & Opportunities at GONEP
             </h1>
             <p className="text-lg text-muted-foreground">
-              Be part of a diverse, passionate team building innovative solutions that improve healthcare 
-              access for millions across Africa. Together, we're making quality diagnostics accessible to every community.
+              Join Us in Building Africa's Future of Healthcare
+            </p>
+            <p className="text-muted-foreground">
+              At GONEP, we're not just creating medical devices we're transforming access to healthcare across underserved communities. Whether you're looking to build, learn, partner, or test, there's a place for you in our mission.
+            </p>
+            <p className="text-muted-foreground">
+              Our flagship product, Clinic at Hand, is Africa's first 3-in-1 portable diagnostic lab—and we need passionate minds and hands to help it reach every corner of the continent.
             </p>
             <Button 
               onClick={() => document.getElementById('job-openings')?.scrollIntoView({ behavior: 'smooth' })}
@@ -542,12 +547,26 @@ export function CareersPage() {
             className="text-center space-y-6 max-w-3xl mx-auto"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Don't See Your Perfect Role?
+              Get Involved in Our Mission
             </h2>
             <p className="text-lg text-muted-foreground">
               We're always looking for passionate individuals who share our mission. 
               Send us your resume and tell us how you'd like to contribute to transforming African healthcare.
             </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div className="text-center p-4 border rounded-lg">
+                <h3 className="font-semibold text-foreground mb-2">Request a Device Demo</h3>
+                <p className="text-sm text-muted-foreground">See Clinic at Hand in action whether you're a healthcare provider, NGO, or policymaker.</p>
+              </div>
+              <div className="text-center p-4 border rounded-lg">
+                <h3 className="font-semibold text-foreground mb-2">Participate in Clinical Trials</h3>
+                <p className="text-sm text-muted-foreground">We're currently conducting multi-phase trials with local clinics and university hospitals.</p>
+              </div>
+              <div className="text-center p-4 border rounded-lg">
+                <h3 className="font-semibold text-foreground mb-2">Join the Waitlist</h3>
+                <p className="text-sm text-muted-foreground">Be the first to purchase or pilot our next-gen diagnostic device.</p>
+              </div>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 Send Your Resume
@@ -555,6 +574,11 @@ export function CareersPage() {
               <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
                 Contact HR Team
               </Button>
+            </div>
+            <div className="text-sm text-muted-foreground mt-4">
+              <p><strong>Headquarters:</strong> Chandaria Business Innovation Centre, Nairobi, Kenya</p>
+              <p><strong>Remote-Friendly:</strong> Tech and operations roles may be hybrid</p>
+              <p><strong>Field-Based:</strong> Clinical and piloting work across Kenya</p>
             </div>
           </motion.div>
         </div>

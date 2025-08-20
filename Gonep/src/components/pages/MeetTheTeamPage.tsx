@@ -104,10 +104,10 @@ export function MeetTheTeamPage() {
             className="text-center space-y-6 max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-              Meet Our Team
+              Leadership Team
             </h1>
             <p className="text-lg text-muted-foreground">
-              Our diverse team combines decades of healthcare experience, technical expertise, 
+              Meet the minds driving our mission: Our diverse team combines decades of healthcare experience, technical expertise, 
               and deep understanding of African healthcare challenges to deliver innovative solutions.
             </p>
           </motion.div>
@@ -343,7 +343,7 @@ export function MeetTheTeamPage() {
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-center sm:text-left">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                  Meet Our Leadership Team
+                  Meet the minds driving our mission:
                 </h2>
                 <p className="text-muted-foreground max-w-2xl">
                   Our diverse team combines decades of healthcare experience, technical expertise, 

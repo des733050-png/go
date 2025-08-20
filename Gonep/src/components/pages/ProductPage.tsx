@@ -164,11 +164,15 @@ export function ProductPage() {
                   </span>
                 </h1>
                 
-                <h2 className="text-2xl md:text-3xl text-muted-foreground font-semibold">
+                <h2 className="text-2xl md:text-3xl text-black dark:text-white font-semibold">
                   3-in-1 Portable Diagnostic Solution
                 </h2>
                 
-                <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                <p className="text-lg text-black dark:text-white leading-relaxed max-w-2xl">
+                  The Problem → Our Solution → Tangible Impact
+                </p>
+                
+                <p className="text-lg text-black dark:text-white leading-relaxed max-w-2xl">
                   Transform healthcare delivery with our revolutionary IoT-enabled diagnostic device. 
                   Perform blood tests, urine analysis, and vital signs monitoring anywhere, anytime, 
                   with results in just 15 minutes.

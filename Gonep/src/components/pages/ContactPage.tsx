@@ -12,7 +12,7 @@ export function ContactPage() {
       icon: Phone,
       title: "Phone Support",
       description: "24/7 technical support for urgent issues",
-      contact: "+254 700 123 456",
+      contact: "+254 707 231 654",
       hours: "Available 24/7",
       color: "primary"
     },
@@ -27,7 +27,7 @@ export function ContactPage() {
     {
       icon: MapPin,
       title: "Visit Our Office",
-      description: "Innovation Plaza, Nairobi, Kenya",
+      description: "Chandaria Business Innovation Centre, Nairobi, Kenya",
       contact: "Schedule a visit",
       hours: "Mon-Fri: 8:00 AM - 6:00 PM",
       color: "accent"
@@ -41,10 +41,10 @@ export function ContactPage() {
         <div className="container">
           <div className="text-center space-y-6 max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-              Get in Touch with GONEP
+              Contact / Get Involved
             </h1>
             <p className="text-lg text-muted-foreground">
-              Whether you're a healthcare provider, investor, partner, or someone passionate about 
+              Open communication channels for collaboration and conversion. Whether you're a healthcare provider, investor, partner, or someone passionate about 
               improving African healthcare, we'd love to hear from you.
             </p>
           </div>
@@ -138,10 +138,12 @@ export function ContactPage() {
                       <SelectValue placeholder="Select inquiry type" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="partnership">Partner With Us</SelectItem>
+                      <SelectItem value="demo">Request Demo / Trial Unit</SelectItem>
+                      <SelectItem value="investment">Invest in GONEP</SelectItem>
+                      <SelectItem value="media">Press & Media Inquiry</SelectItem>
+                      <SelectItem value="careers">Career Opportunities</SelectItem>
                       <SelectItem value="product">Product Information</SelectItem>
-                      <SelectItem value="partnership">Partnership Opportunities</SelectItem>
-                      <SelectItem value="investment">Investment Inquiries</SelectItem>
-                      <SelectItem value="media">Media & Press</SelectItem>
                       <SelectItem value="support">Technical Support</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
@@ -195,7 +197,7 @@ export function ContactPage() {
                       <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                       <div>
                         <p className="font-medium text-foreground">GONEP Pharmaceuticals HQ</p>
-                        <p className="text-muted-foreground">Innovation Plaza, 3rd Floor</p>
+                        <p className="text-muted-foreground">Chandaria Business Innovation Centre</p>
                         <p className="text-muted-foreground">Nairobi, Kenya</p>
                       </div>
                     </div>

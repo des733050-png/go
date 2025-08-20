@@ -11,6 +11,7 @@ export function Footer() {
     { label: "About", path: "/about" },
     { label: "Clinic at Hand", path: "/clinic-at-hand" },
     { label: "Solutions", path: "/solutions" },
+    { label: "Media", path: "/media" },
     { label: "Blogs", path: "/blogs" },
     { label: "Contact", path: "/contact" },
     { label: "Careers", path: "/careers" },
@@ -98,13 +99,13 @@ export function Footer() {
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 flex-shrink-0 mt-1 text-white" />
                     <div className="text-white/90">
-                      <div className="font-medium">Innovation Plaza</div>
+                      <div className="font-medium">Chandaria Business Innovation Centre</div>
                       <div>Nairobi, Kenya</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Phone className="h-5 w-5 flex-shrink-0 text-white" />
-                    <span className="text-white/90">+254 700 123 456</span>
+                    <span className="text-white/90">+254 707 231 654</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Mail className="h-5 w-5 flex-shrink-0 text-white" />

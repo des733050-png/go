@@ -188,9 +188,9 @@ export function HeroSection({ onDemoRequest }: HeroSectionProps) {
               >
                 Africa's First{" "}
                 <span className="text-primary">
-                  IoT-Powered
+                  transformative
                 </span>{" "}
-                Healthcare Solution
+                healthcare solution
               </motion.h1>
               
               {/* Product Name */}
@@ -210,6 +210,7 @@ export function HeroSection({ onDemoRequest }: HeroSectionProps) {
                 transition={{ delay: 0.5 }}
                 className="text-lg text-muted-foreground leading-relaxed max-w-2xl"
               >
+                When hospitals can't reach the people, our device does. 
                 Bridging the diagnostic gap in rural Africa with our revolutionary IoT-enabled 3-in-1 portable diagnostic kit. 
                 Delivering healthcare solutions through AI-powered, offline-capable technology that provides results in just{" "}
                 <span className="font-bold text-secondary">15 minutes</span>.
@@ -284,23 +285,6 @@ export function HeroSection({ onDemoRequest }: HeroSectionProps) {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-muted-foreground"
-      >
-        <div className="flex flex-col items-center space-y-2">
-          <div className="w-6 h-10 border-2 border-muted-foreground rounded-full flex justify-center">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-muted-foreground rounded-full mt-2"
-            />
-          </div>
-          <span className="text-xs">Scroll to explore</span>
-        </div>
-      </motion.div>
     </section>
   );
 }

@@ -27,78 +27,73 @@ export function SolutionsPage() {
         <div className="container">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Our Services
+              Tailored Solutions for Every Healthcare Partner
             </h2>
             <p className="text-lg text-muted-foreground">
-              Comprehensive healthcare solutions designed to meet your specific needs
+              GONEP's Clinic at Hand addresses specific challenges across the healthcare ecosystem, 
+              delivering value to every stakeholder in the African healthcare landscape.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card id="diagnostic-solutions" className="text-center p-6 hover:shadow-lg transition-shadow border-primary/20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Card id="clinics-hospitals" className="text-center p-6 hover:shadow-lg transition-shadow border-primary/20">
               <div className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
-                <Stethoscope className="h-8 w-8 text-primary" />
+                <Building2 className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">Diagnostic Solutions</h3>
-              <p className="text-muted-foreground">
-                Advanced diagnostic tools and equipment including our flagship Clinic at Hand device, 
-                designed to provide accurate and rapid health assessments in any setting.
+              <h3 className="text-xl font-bold text-foreground mb-3">Clinics & Hospitals</h3>
+              <p className="text-muted-foreground mb-4">
+                Reduce diagnostic backlogs, support frontline staff
               </p>
+              <div className="text-sm text-muted-foreground">
+                <p>• Streamlined patient flow</p>
+                <p>• Enhanced diagnostic capacity</p>
+                <p>• Reduced wait times</p>
+              </div>
             </Card>
 
-            <Card id="training-programs" className="text-center p-6 hover:shadow-lg transition-shadow border-secondary/20">
+            <Card id="ngos-mobile" className="text-center p-6 hover:shadow-lg transition-shadow border-secondary/20">
               <div className="bg-secondary/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
-                <GraduationCap className="h-8 w-8 text-secondary" />
+                <Heart className="h-8 w-8 text-secondary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">Training Programs</h3>
-              <p className="text-muted-foreground">
-                Comprehensive training for healthcare professionals on our diagnostic tools, 
-                ensuring optimal usage and patient care delivery across all facilities.
+              <h3 className="text-xl font-bold text-foreground mb-3">NGOs & Mobile Health Programs</h3>
+              <p className="text-muted-foreground mb-4">
+                Rapid deployment, ideal for outreach & emergencies
               </p>
+              <div className="text-sm text-muted-foreground">
+                <p>• Mobile health camps</p>
+                <p>• Emergency response</p>
+                <p>• Community outreach</p>
+              </div>
             </Card>
 
-            <Card id="technical-support" className="text-center p-6 hover:shadow-lg transition-shadow border-accent/20">
+            <Card id="governments" className="text-center p-6 hover:shadow-lg transition-shadow border-accent/20">
               <div className="bg-accent/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
-                <HeadphonesIcon className="h-8 w-8 text-accent" />
+                <Users className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">Technical Support</h3>
-              <p className="text-muted-foreground">
-                24/7 technical support and maintenance services to ensure your diagnostic equipment 
-                operates at peak performance with minimal downtime.
+              <h3 className="text-xl font-bold text-foreground mb-3">Governments & Ministries of Health</h3>
+              <p className="text-muted-foreground mb-4">
+                Scalable tool for achieving Universal Health Coverage
               </p>
+              <div className="text-sm text-muted-foreground">
+                <p>• National health programs</p>
+                <p>• Rural health initiatives</p>
+                <p>• Policy implementation</p>
+              </div>
             </Card>
 
-            <Card id="data-analytics" className="text-center p-6 hover:shadow-lg transition-shadow border-primary/20">
+            <Card id="distributors" className="text-center p-6 hover:shadow-lg transition-shadow border-primary/20">
               <div className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
-                <BarChart3 className="h-8 w-8 text-primary" />
+                <Package className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">Data Analytics</h3>
-              <p className="text-muted-foreground">
-                Advanced analytics and reporting tools to track patient outcomes, 
-                facility performance, and population health trends for informed decision-making.
+              <h3 className="text-xl font-bold text-foreground mb-3">Distributors / Procurement Agents</h3>
+              <p className="text-muted-foreground mb-4">
+                High-demand, scalable, ready-to-sell solution
               </p>
-            </Card>
-
-            <Card id="partnership-programs" className="text-center p-6 hover:shadow-lg transition-shadow border-secondary/20">
-              <div className="bg-secondary/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
-                <Users2 className="h-8 w-8 text-secondary" />
+              <div className="text-sm text-muted-foreground">
+                <p>• Proven market demand</p>
+                <p>• Comprehensive support</p>
+                <p>• Training programs</p>
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">Partnership Programs</h3>
-              <p className="text-muted-foreground">
-                Collaborative initiatives with healthcare organizations, NGOs, and government agencies 
-                to expand access to quality healthcare across Africa.
-              </p>
-            </Card>
-
-            <Card id="consulting-services" className="text-center p-6 hover:shadow-lg transition-shadow border-accent/20">
-              <div className="bg-accent/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
-                <MessageSquare className="h-8 w-8 text-accent" />
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">Consulting Services</h3>
-              <p className="text-muted-foreground">
-                Expert consultation on healthcare technology implementation, 
-                facility optimization, and strategic planning for healthcare organizations.
-              </p>
             </Card>
           </div>
         </div>
@@ -181,10 +176,13 @@ export function SolutionsPage() {
         <div className="container">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Digital Health Tools
+              Our Digital Health Services
             </h2>
-            <p className="text-lg text-muted-foreground">
-              Additional tools to support your healthcare initiatives
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Simple Tools. Smarter Health. Better Access.
+            </p>
+            <p className="text-muted-foreground max-w-3xl mx-auto">
+              At GONEP, we believe healthcare shouldn't begin at the hospital it should begin with access, knowledge, and everyday decisions. Alongside our flagship device, Clinic at Hand, we offer a suite of digital health tools to support individuals and communities in taking charge of their well-being.
             </p>
           </div>
 
@@ -194,11 +192,14 @@ export function SolutionsPage() {
                 <MapPin className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3">Find a Health Facility</h3>
-              <p className="text-muted-foreground mb-6">
-                Interactive map to locate nearby healthcare facilities equipped with GONEP technology
+              <p className="text-muted-foreground mb-4">
+                Quickly locate nearby clinics, pharmacies, or hospitals wherever you are.
+              </p>
+              <p className="text-sm text-muted-foreground mb-6">
+                We understand that access to care begins with knowing where to go. Our Find Facility tool uses location data to help users locate the nearest public or private healthcare facility, view operating hours, services offered, and emergency options, and contact clinics directly or request directions via Google Map.
               </p>
               <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-                Launch Tool
+                Find a facility Now
               </Button>
             </Card>
 
@@ -207,11 +208,14 @@ export function SolutionsPage() {
                 <Calculator className="h-8 w-8 text-secondary" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3">BMI Calculator</h3>
-              <p className="text-muted-foreground mb-6">
-                Quick and easy BMI calculator for health screening and patient education
+              <p className="text-muted-foreground mb-4">
+                Track your body mass index and stay ahead of preventable risks.
+              </p>
+              <p className="text-sm text-muted-foreground mb-6">
+                Understanding your body is the first step toward a healthier life. Our BMI Calculator lets you enter height and weight to calculate Body Mass Index, instantly see if you're underweight, healthy, overweight, or obese, and receive basic insights on what your BMI means for your health.
               </p>
               <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold">
-                Calculate BMI
+                Calculate Your BMI
               </Button>
             </Card>
           </div>

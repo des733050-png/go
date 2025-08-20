@@ -9,7 +9,7 @@ import { Mail, Phone, MessageCircle, Download, BookOpen, Users, ArrowRight } fro
 export function SupportPage() {
   const faqs = [
     {
-      category: "Setup",
+      category: "How to Set Up the Device",
       items: [
         {
           question: "How long does it take to set up the Clinic at Hand device?",
@@ -26,19 +26,19 @@ export function SupportPage() {
       ]
     },
     {
-      category: "Operation",
+      category: "Battery Charging & Field Use",
       items: [
         {
-          question: "How accurate are the diagnostic results?",
-          answer: "Our clinical trials show 95%+ accuracy rates across all three diagnostic functions. The AI algorithms have been trained on diverse African patient populations to ensure reliable results across different demographics."
+          question: "How long does the battery last during field use?",
+          answer: "The device battery lasts 8-12 hours of continuous operation. For extended field use, we provide portable charging solutions and recommend carrying spare batteries for remote deployments."
         },
         {
-          question: "What types of tests can the device perform?",
-          answer: "The device performs blood glucose testing, blood pressure monitoring, and comprehensive urine analysis including protein, glucose, ketones, and infection markers. Results are available within 15 minutes."
+          question: "Can the device be used in remote locations without power?",
+          answer: "Yes, the device is designed for field use with battery power. It can operate for a full day on a single charge and includes power-saving modes for extended deployments."
         },
         {
-          question: "How many tests can be performed per day?",
-          answer: "The device can handle 50-80 patient tests per day depending on the test mix. Each test takes 15 minutes including sample processing and result generation."
+          question: "What charging options are available?",
+          answer: "The device can be charged via standard AC power, USB-C, or solar charging adapters. We provide multiple charging solutions for different field conditions."
         }
       ]
     },
@@ -60,15 +60,19 @@ export function SupportPage() {
       ]
     },
     {
-      category: "Training",
+      category: "Operation",
       items: [
         {
-          question: "How much training is required to operate the device?",
-          answer: "Basic operation can be learned in 2-3 hours. We provide comprehensive training materials, video tutorials, and on-site training for healthcare teams. No specialized technical background is required."
+          question: "How accurate are the diagnostic results?",
+          answer: "Our clinical trials show 95%+ accuracy rates across all three diagnostic functions. The AI algorithms have been trained on diverse African patient populations to ensure reliable results across different demographics."
         },
         {
-          question: "Is ongoing training support available?",
-          answer: "Yes, we offer continuous learning resources including online modules, monthly webinars, and access to our technical support team. New feature training is provided with software updates."
+          question: "What types of tests can the device perform?",
+          answer: "The device performs blood glucose testing, blood pressure monitoring, and comprehensive urine analysis including protein, glucose, ketones, and infection markers. Results are available within 15 minutes."
+        },
+        {
+          question: "How many tests can be performed per day?",
+          answer: "The device can handle 50-80 patient tests per day depending on the test mix. Each test takes 15 minutes including sample processing and result generation."
         }
       ]
     }
@@ -102,10 +106,10 @@ export function SupportPage() {
         <div className="container">
           <div className="text-center space-y-6 max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-              Support & Resources
+              Support & FAQs
             </h1>
             <p className="text-lg text-muted-foreground">
-              Get the help you need to maximize your Clinic at Hand experience. 
+              Help new or potential users navigate product usage smoothly. 
               From setup to advanced features, we're here to support your healthcare mission.
             </p>
           </div>

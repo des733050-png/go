@@ -229,7 +229,7 @@ export function WhoWeArePage() {
               </div>
               <div className="space-y-4 text-muted-foreground">
                 <p className="text-lg font-semibold text-foreground">
-                  To democratize healthcare access across Africa through innovative, affordable, and culturally-relevant diagnostic solutions.
+                  To develop innovative, field-ready medical technologies that bring life-saving diagnostics and care to the last mile.
                 </p>
                 <p>
                   Our mission is driven by the belief that healthcare is a fundamental human right. We work 

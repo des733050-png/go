@@ -81,7 +81,7 @@ export function StatisticsSection() {
           className="text-center space-y-6 mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            The Healthcare Reality in Kenya
+            The Challenge We Solve
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Understanding the challenges we're solving with data-driven insights from Kenya's healthcare landscape.
@@ -103,7 +103,7 @@ export function StatisticsSection() {
             </div>
             
             <div className="relative z-10">
-              <h3 className="text-xl font-semibold text-foreground mb-8">In Kenya,</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-8">Across Africa, hundreds of millions lack access to timely, affordable diagnostics. In Kenya alone:</h3>
               
               {/* Statistics Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -115,9 +115,9 @@ export function StatisticsSection() {
                   className="border-2 border-dashed border-border rounded-lg p-4 text-center hover:border-primary transition-colors duration-300 bg-background"
                 >
                   <div className="text-3xl font-bold text-primary mb-2">
-                    <AnimatedNumber value={20} suffix="%" />
+                    <AnimatedNumber value={60} suffix="%" />
                   </div>
-                  <p className="text-sm text-foreground">Of Kenyans lack access to essential health services.</p>
+                  <p className="text-sm text-foreground">Of people resort to self-medication</p>
                 </motion.div>
 
                 <motion.div
@@ -128,9 +128,9 @@ export function StatisticsSection() {
                   className="border-2 border-dashed border-border rounded-lg p-4 text-center hover:border-primary transition-colors duration-300 bg-background"
                 >
                   <div className="text-3xl font-bold text-primary mb-2">
-                    <AnimatedRatio />
+                    <AnimatedNumber value={74} suffix="%" />
                   </div>
-                  <p className="text-sm text-foreground">Doctor to patient ratio in Kenya.</p>
+                  <p className="text-sm text-foreground">Of urban residents avoid clinics in favor of "quick fixes"</p>
                 </motion.div>
 
                 <motion.div
@@ -141,9 +141,9 @@ export function StatisticsSection() {
                   className="border-2 border-dashed border-border rounded-lg p-4 text-center hover:border-primary transition-colors duration-300 bg-background"
                 >
                   <div className="text-3xl font-bold text-primary mb-2">
-                    <AnimatedNumber value={58} suffix="%" />
+                    <AnimatedNumber value={672} suffix="M" />
                   </div>
-                  <p className="text-sm text-foreground">Rural Kenyans struggle to access quality healthcare.</p>
+                  <p className="text-sm text-foreground">Africans lack adequate access to healthcare</p>
                 </motion.div>
 
                 <motion.div
@@ -154,9 +154,9 @@ export function StatisticsSection() {
                   className="border-2 border-dashed border-border rounded-lg p-4 text-center hover:border-primary transition-colors duration-300 bg-background"
                 >
                   <div className="text-3xl font-bold text-primary mb-2">
-                    <AnimatedNumber value={77} suffix="%" />
+                    <AnimatedNumber value={15} suffix="min" />
                   </div>
-                  <p className="text-sm text-foreground">Healthcare expenses are paid out-of-pocket.</p>
+                  <p className="text-sm text-foreground">Test results with our device</p>
                 </motion.div>
               </div>
             </div>
@@ -171,7 +171,7 @@ export function StatisticsSection() {
           className="text-center mt-8"
         >
           <p className="text-muted-foreground mb-6">
-            These statistics drive our mission to make healthcare accessible to every Kenyan community.
+            This silent epidemic leads to delayed treatment, drug resistance, and preventable deaths.
           </p>
           <Link to="/about">
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 py-3 rounded-lg">

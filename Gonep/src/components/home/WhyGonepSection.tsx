@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const benefits = [
+  "Groundbreaking innovation closing Africa's diagnostic gap",
+  "Designed for underserved communities",
   "Portable, all-in-one diagnostic solution for remote areas",
   "Immediate 15-minute results with clinical-grade accuracy",
-  "Low maintenance, durable design for harsh environments",
-  "Intuitive interface requiring minimal training",
-  "Works completely offline with cloud sync when available"
+  "Low maintenance, durable design for harsh environments"
 ];
 
 export function WhyGonepSection() {
@@ -24,14 +24,14 @@ export function WhyGonepSection() {
             className="space-y-6"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Why Choose GONEP?
+              Why GonePharm?
             </h2>
             <p className="text-lg text-muted-foreground">
-              Our innovative IoT approach combines cutting-edge technology with deep understanding 
+              Our innovative approach combines cutting-edge technology with deep understanding 
               of African healthcare challenges to deliver practical, impactful solutions.
             </p>
             
-            <ul className="space-y-4">
+            <ul className="space-y-4 mb-8">
               {benefits.map((benefit, index) => (
                 <motion.li 
                   key={index}
@@ -47,12 +47,14 @@ export function WhyGonepSection() {
               ))}
             </ul>
             
-            <Link to="/about">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold border-0">
-                Learn More About Our Impact
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+            <div className="pt-4 border-t border-border/50">
+              <Link to="/about">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold border-0 px-8 py-3">
+                  Learn More About Our Impact
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
           </motion.div>
 
           <motion.div 
@@ -63,17 +65,16 @@ export function WhyGonepSection() {
           >
             <div className="bg-background rounded-2xl p-8 shadow-lg border border-border">
               <div className="aspect-square bg-primary/5 rounded-lg flex items-center justify-center relative overflow-hidden">
-                {/* IoT Healthcare Visual */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="grid grid-cols-3 gap-4">
-                    <Stethoscope className="h-12 w-12 text-primary/60" />
-                    <Monitor className="h-12 w-12 text-secondary/60" />
-                    <Database className="h-12 w-12 text-primary/60" />
-                  </div>
-                </div>
-                <div className="text-center space-y-4 relative z-10">
-                  <Award className="h-20 w-20 text-secondary mx-auto" />
-                  <p className="text-muted-foreground font-medium">IoT Healthcare Innovation</p>
+                {/* GONEP People Visual */}
+                <img
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="GONEP team working together"
+                  className="w-full h-full object-cover rounded-lg"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent rounded-lg"></div>
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <h3 className="text-lg font-bold mb-1">Our Team</h3>
+                  <p className="text-sm opacity-90">Dedicated to transforming African healthcare</p>
                 </div>
               </div>
             </div>

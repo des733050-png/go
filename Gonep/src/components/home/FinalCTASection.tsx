@@ -61,10 +61,10 @@ export function FinalCTASection({ onDemoRequest }: FinalCTASectionProps) {
             <div className="relative z-10 space-y-8">
               <div className="space-y-4">
                 <h2 className="text-3xl md:text-5xl font-bold text-foreground">
-                  Ready to Transform Healthcare?
+                  Let's make healthcare truly universal. Partner with us today.
                 </h2>
                 <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                  Join us in revolutionizing healthcare across Africa through innovative IoT technology. 
+                  Join us in revolutionizing healthcare across Africa through innovative technology. 
                   Together, we can make quality healthcare accessible to every community.
                 </p>
               </div>
@@ -76,23 +76,21 @@ export function FinalCTASection({ onDemoRequest }: FinalCTASectionProps) {
                   className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-10 py-6 text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
                 >
                   <Phone className="mr-3 h-6 w-6" />
-                  Request Live Demo
+                  Request Demo
                 </Button>
-                <Link to="/health-tools/bmi-calculator">
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
-                    className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold px-10 py-6 text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 bg-background"
-                  >
-                    Try Health Tools
-                  </Button>
-                </Link>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold px-10 py-6 text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 bg-background"
+                >
+                  Download Brochure
+                </Button>
                 <Link to="/contact">
                   <Button 
                     size="lg" 
                     className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-10 py-6 text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
                   >
-                    Get in Touch
+                    Invest in Us
                   </Button>
                 </Link>
               </div>

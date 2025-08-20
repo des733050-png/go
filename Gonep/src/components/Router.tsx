@@ -22,6 +22,7 @@ import { HistoryPage } from "./pages/HistoryPage";
 import { MeetTheTeamPage } from "./pages/MeetTheTeamPage";
 import { ProductPage } from "./pages/ProductPage";
 import { SolutionsPage } from "./pages/SolutionsPage";
+import { MediaPage } from "./pages/MediaPage";
 import { BlogsPage } from "./pages/BlogsPage";
 import { BlogDetailPage } from "./pages/BlogDetailPage";
 import { BMICalculatorPage } from "./pages/BMICalculatorPage";
@@ -129,6 +130,10 @@ export function Router() {
                 <Route path="/blogs" element={<BlogsPage />} />
                 <Route path="/blogs/:blogId" element={<BlogDetailPage />} />
                 <Route
+                  path="/media"
+                  element={<MediaPage />}
+                />
+                <Route
                   path="/health-tools/bmi-calculator"
                   element={<BMICalculatorPage />}
                 />
@@ -145,10 +150,6 @@ export function Router() {
                   element={<SupportPage />}
                 />
                 {/* Redirect old routes */}
-                <Route
-                  path="/media"
-                  element={<Navigate to="/blogs" replace />}
-                />
                 <Route
                   path="/product"
                   element={

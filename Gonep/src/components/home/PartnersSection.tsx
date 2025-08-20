@@ -1,38 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-
-const partners = [
-  {
-    name: "Microsoft Founders Hub",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2048px-Microsoft_logo.svg.png",
-    hasLogo: true
-  },
-  {
-    name: "Chandaria Innovation Centre",
-    logo: "",
-    hasLogo: false
-  },
-  {
-    name: "Gates Foundation",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/1/11/Gates_Foundation_Logo.svg",
-    hasLogo: true
-  },
-  {
-    name: "African Development Bank",
-    logo: "",
-    hasLogo: false
-  },
-  {
-    name: "WHO Africa",
-    logo: "",
-    hasLogo: false
-  },
-  {
-    name: "USAID",
-    logo: "https://logotyp.us/file/usaid.svg",
-    hasLogo: true
-  }
-];
+import { partners } from "../../config/partners";
 
 export function PartnersSection() {
   return (
@@ -76,42 +44,134 @@ export function PartnersSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-primary rounded-2xl p-8 border border-border shadow-lg"
+          className="bg-primary rounded-2xl p-8 border border-border shadow-lg overflow-hidden"
         >
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center ">
-            {partners.map((partner, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="text-center"
-              >
-                <div className="bg-background rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow border border-border h-24 flex flex-col items-center justify-center">
-                  {partner.hasLogo ? (
-                    <div className="flex flex-col items-center space-y-3">
-                      <img
-                        src={partner.logo}
-                        alt={`${partner.name} logo`}
-                        className="h-10 w-auto object-contain max-w-full"
-                      />
-                      <span className="text-xs font-bold text-foreground text-center leading-tight">
+          {/* CSS Infinite Scroll Container */}
+          <div className="relative overflow-hidden">
+            <div className="flex gap-8 items-center infinite-scroll">
+              {/* First set of partners */}
+              {partners.map((partner, index) => (
+                <motion.div 
+                  key={`first-${index}`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="text-center flex-shrink-0"
+                  style={{ minWidth: '180px', maxWidth: '200px' }}
+                >
+                  <div className="bg-background rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow border border-border h-24 flex flex-col items-center justify-center">
+                    {partner.hasLogo ? (
+                      <div className="flex flex-col items-center space-y-3">
+                        <img
+                          src={partner.logo}
+                          alt={`${partner.name} logo`}
+                          className="h-10 w-auto object-contain max-w-full"
+                        />
+                        <span className="text-xs font-bold text-foreground text-center leading-tight">
+                          {partner.name}
+                        </span>
+                      </div>
+                    ) : (
+                      <span className="text-sm font-bold text-foreground text-center leading-tight">
                         {partner.name}
                       </span>
-                    </div>
-                  ) : (
-                    <span className="text-sm font-bold text-foreground text-center leading-tight">
-                      {partner.name}
-                    </span>
-                  )}
-                </div>
-              </motion.div>
-            ))}
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+              
+              {/* Duplicate set for seamless loop */}
+              {partners.map((partner, index) => (
+                <motion.div 
+                  key={`second-${index}`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="text-center flex-shrink-0"
+                  style={{ minWidth: '180px', maxWidth: '200px' }}
+                >
+                  <div className="bg-background rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow border border-border h-24 flex flex-col items-center justify-center">
+                    {partner.hasLogo ? (
+                      <div className="flex flex-col items-center space-y-3">
+                        <img
+                          src={partner.logo}
+                          alt={`${partner.name} logo`}
+                          className="h-10 w-auto object-contain max-w-full"
+                        />
+                        <span className="text-xs font-bold text-foreground text-center leading-tight">
+                          {partner.name}
+                        </span>
+                      </div>
+                    ) : (
+                      <span className="text-sm font-bold text-foreground text-center leading-tight">
+                        {partner.name}
+                      </span>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+              
+              {/* Third set for extra smoothness */}
+              {partners.map((partner, index) => (
+                <motion.div 
+                  key={`third-${index}`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="text-center flex-shrink-0"
+                  style={{ minWidth: '180px', maxWidth: '200px' }}
+                >
+                  <div className="bg-background rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow border border-border h-24 flex flex-col items-center justify-center">
+                    {partner.hasLogo ? (
+                      <div className="flex flex-col items-center space-y-3">
+                        <img
+                          src={partner.logo}
+                          alt={`${partner.name} logo`}
+                          className="h-10 w-auto object-contain max-w-full"
+                        />
+                        <span className="text-xs font-bold text-foreground text-center leading-tight">
+                          {partner.name}
+                        </span>
+                      </div>
+                    ) : (
+                      <span className="text-sm font-bold text-foreground text-center leading-tight">
+                        {partner.name}
+                      </span>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
+
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          .infinite-scroll {
+            animation: scroll 25s linear infinite;
+          }
+          
+          .infinite-scroll:hover {
+            animation-play-state: paused;
+          }
+          
+          @keyframes scroll {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(calc(-200px * ${partners.length}));
+            }
+          }
+        `
+      }} />
     </section>
   );
 }

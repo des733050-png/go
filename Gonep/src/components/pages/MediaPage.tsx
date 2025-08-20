@@ -59,6 +59,22 @@ export function MediaPage() {
       date: "October 2023",
       fileSize: "4.5 MB",
       category: "reports"
+    },
+    {
+      type: "clinical-data",
+      title: "Clinical Data & Performance Summary",
+      description: "Performance metrics and clinical validation results from field trials",
+      date: "September 2023",
+      fileSize: "1.6 MB",
+      category: "research"
+    },
+    {
+      type: "press-mention",
+      title: "Press Coverage & Interviews",
+      description: "Media coverage and executive interviews about GONEP's mission",
+      date: "August 2023",
+      fileSize: "2.1 MB",
+      category: "press"
     }
   ];
 
@@ -102,7 +118,8 @@ export function MediaPage() {
     { id: "case-studies", label: "Case Studies" },
     { id: "research", label: "Research" },
     { id: "product", label: "Product Info" },
-    { id: "reports", label: "Reports" }
+    { id: "reports", label: "Reports" },
+    { id: "press", label: "Press & Media" }
   ];
 
   const filteredItems = activeFilter === "all" 
@@ -134,6 +151,7 @@ export function MediaPage() {
               Media Center
             </h1>
             <p className="text-lg text-muted-foreground">
+              Establish credibility, provide proof points, and support due diligence. 
               Access the latest research, case studies, press coverage, and resources 
               about GONEP's impact on African healthcare.
             </p>
