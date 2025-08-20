@@ -52,10 +52,29 @@ export function ProductPage() {
       const videoId = url.split('vimeo.com/')[1]?.split('?')[0];
       return videoId ? `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1&muted=1` : url;
     }
+    // Dailymotion
+    if (url.includes('dailymotion.com/video/')) {
+      const videoId = url.split('dailymotion.com/video/')[1]?.split('?')[0];
+      return videoId ? `https://www.dailymotion.com/embed/video/${videoId}?autoplay=1&mute=1&loop=1` : url;
+    }
+    // Facebook
+    if (url.includes('facebook.com/') && url.includes('/videos/')) {
+      return url.replace('facebook.com', 'facebook.com/plugins/video.php') + '&autoplay=1&mute=1';
+    }
+    // Instagram
+    if (url.includes('instagram.com/p/') && url.includes('/')) {
+      const postId = url.split('instagram.com/p/')[1]?.split('/')[0];
+      return postId ? `https://www.instagram.com/p/${postId}/embed/` : url;
+    }
+    // TikTok
+    if (url.includes('tiktok.com/@') && url.includes('/video/')) {
+      return url.replace('tiktok.com', 'tiktok.com/embed');
+    }
     // Direct video file
-    if (url.match(/\.(mp4|webm|ogg)$/i)) {
+    if (url.match(/\.(mp4|webm|ogg|mov|avi|mkv)$/i)) {
       return url;
     }
+    // For any other URL, return as is (will be handled by iframe)
     return url;
   };
 
@@ -261,24 +280,7 @@ export function ProductPage() {
                   </div>
                 )}
 
-                {/* Floating Feature Indicators */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1, type: "spring", stiffness: 300 }}
-                  className="absolute -top-4 -left-4 bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg"
-                >
-                  <span className="font-bold text-sm">AI-Powered</span>
-                </motion.div>
                 
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1.2, type: "spring", stiffness: 300 }}
-                  className="absolute -bottom-4 -right-4 bg-secondary text-secondary-foreground px-4 py-2 rounded-lg shadow-lg"
-                >
-                  <span className="font-bold text-sm">IoT-Enabled</span>
-                </motion.div>
               </div>
             </motion.div>
           </div>

@@ -5,6 +5,10 @@ import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { AnimatedTimeline } from "../AnimatedTimeline";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import kusmile from "../../assets/kusmile.jpeg";
+import WhoWeAre from "../../assets/Grantedcert.jpeg";
+import works from "../../assets/Works.jpg";
+import trial from "../../assets/trial.jpeg";
 
 export function AboutPage() {
   const aboutSections = [
@@ -13,7 +17,7 @@ export function AboutPage() {
       description: "Discover our vision, mission, values, and the guiding principles that drive our commitment to transforming African healthcare.",
       path: "/about/who-we-are",
       icon: Target,
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: WhoWeAre,
       features: ["Vision & Mission", "Core Values", "Our Mottos", "Purpose-Driven Approach"]
     },
     {
@@ -21,7 +25,7 @@ export function AboutPage() {
       description: "Explore our journey from humble beginnings to transformative impact, including key milestones and the stories that shaped our mission.",
       path: "/about/history",
       icon: Award,
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: trial,
       features: ["Our Story", "Key Milestones", "Impact Statistics", "Future Vision"]
     },
     {
@@ -29,8 +33,8 @@ export function AboutPage() {
       description: "Get to know our diverse leadership team and learn about the expertise, passion, and commitment that drives our mission forward.",
       path: "/about/meet-the-team",
       icon: Users,
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      features: ["Leadership Team", "Team Culture", "Expertise", "Join Our Mission"]
+      image: works,
+        features: ["Leadership Team", "Team Culture", "Expertise", "Join Our Mission"]
     }
   ];
 

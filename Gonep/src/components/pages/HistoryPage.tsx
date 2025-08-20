@@ -9,6 +9,8 @@ import { videoAPI } from "../../services/api";
 
 // Use public URL for assets
 import { getImage } from "../../utils/imageUtils";
+import kusmile from "../../assets/kusmile.jpeg";
+import trial from "../../assets/trial.jpeg";
 
 const clinicAtHandDevice = getImage("clinicAtHandOpenWithIllustration");        
 const clinicAtHandClosed = getImage("clinicAtHandClosedFrontLandscape");
@@ -53,10 +55,29 @@ export function HistoryPage() {
       const videoId = url.split('vimeo.com/')[1]?.split('?')[0];
       return videoId ? `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1&muted=1` : url;
     }
+    // Dailymotion
+    if (url.includes('dailymotion.com/video/')) {
+      const videoId = url.split('dailymotion.com/video/')[1]?.split('?')[0];
+      return videoId ? `https://www.dailymotion.com/embed/video/${videoId}?autoplay=1&mute=1&loop=1` : url;
+    }
+    // Facebook
+    if (url.includes('facebook.com/') && url.includes('/videos/')) {
+      return url.replace('facebook.com', 'facebook.com/plugins/video.php') + '&autoplay=1&mute=1';
+    }
+    // Instagram
+    if (url.includes('instagram.com/p/') && url.includes('/')) {
+      const postId = url.split('instagram.com/p/')[1]?.split('/')[0];
+      return postId ? `https://www.instagram.com/p/${postId}/embed/` : url;
+    }
+    // TikTok
+    if (url.includes('tiktok.com/@') && url.includes('/video/')) {
+      return url.replace('tiktok.com', 'tiktok.com/embed');
+    }
     // Direct video file
-    if (url.match(/\.(mp4|webm|ogg)$/i)) {
+    if (url.match(/\.(mp4|webm|ogg|mov|avi|mkv)$/i)) {
       return url;
     }
+    // For any other URL, return as is (will be handled by iframe)
     return url;
   };
 
@@ -94,7 +115,7 @@ export function HistoryPage() {
       icon: TrendingUp,
       title: "The Innovation Journey",
       description: "Our founders, a team of medical professionals and engineers, spent years working in rural African communities and witnessed the devastating impact of delayed or unavailable diagnostics. They saw patients traveling hundreds of kilometers for basic tests, waiting weeks for results, and often resorting to dangerous self-medication.",
-      image: clinicAtHandDevice
+      image: trial
     },
     {
       icon: Award,

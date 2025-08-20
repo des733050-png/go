@@ -5,6 +5,7 @@ import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { videoAPI } from "../../services/api";
+import WhoWeAre from "../../assets/Grantedcert.jpeg";
 
 export function WhoWeArePage() {
   const [videos, setVideos] = useState<any[]>([]);
@@ -45,10 +46,29 @@ export function WhoWeArePage() {
       const videoId = url.split('vimeo.com/')[1]?.split('?')[0];
       return videoId ? `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1&muted=1` : url;
     }
+    // Dailymotion
+    if (url.includes('dailymotion.com/video/')) {
+      const videoId = url.split('dailymotion.com/video/')[1]?.split('?')[0];
+      return videoId ? `https://www.dailymotion.com/embed/video/${videoId}?autoplay=1&mute=1&loop=1` : url;
+    }
+    // Facebook
+    if (url.includes('facebook.com/') && url.includes('/videos/')) {
+      return url.replace('facebook.com', 'facebook.com/plugins/video.php') + '&autoplay=1&mute=1';
+    }
+    // Instagram
+    if (url.includes('instagram.com/p/') && url.includes('/')) {
+      const postId = url.split('instagram.com/p/')[1]?.split('/')[0];
+      return postId ? `https://www.instagram.com/p/${postId}/embed/` : url;
+    }
+    // TikTok
+    if (url.includes('tiktok.com/@') && url.includes('/video/')) {
+      return url.replace('tiktok.com', 'tiktok.com/embed');
+    }
     // Direct video file
-    if (url.match(/\.(mp4|webm|ogg)$/i)) {
+    if (url.match(/\.(mp4|webm|ogg|mov|avi|mkv)$/i)) {
       return url;
     }
+    // For any other URL, return as is (will be handled by iframe)
     return url;
   };
 
@@ -205,7 +225,7 @@ export function WhoWeArePage() {
                 </div>
               ) : (
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  src={WhoWeAre}
                   alt="GONEP team working in African community"
                   className="w-full h-auto rounded-2xl shadow-lg"
                 />

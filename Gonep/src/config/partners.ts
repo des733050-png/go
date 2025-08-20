@@ -16,16 +16,16 @@ export const partners: Partner[] = [
   },
   {
     name: "Chandaria Innovation Centre",
-    logo: "",
-    hasLogo: false,
-    website: "https://chandaria.uonbi.ac.ke/",
+    logo: "https://iiuil.ku.ac.ke/images/2024/logoiiuil.png",
+    hasLogo: true,
+    website: "https://iiuil.ku.ac.ke/",
     description: "University of Nairobi's innovation and entrepreneurship hub"
   },
   {
     name: "Kenya Innovation Agency",
-    logo: "",
-    hasLogo: false,
-    website: "https://keniainvest.org/",
+    logo: "https://www.innovationagency.go.ke/assets/new/images/logo/kenialogo2.png",
+    hasLogo: true,
+    website: "https://www.innovationagency.go.ke/",
     description: "Government agency promoting innovation and entrepreneurship"
   },
   {
@@ -36,10 +36,10 @@ export const partners: Partner[] = [
     description: "Leading Kenyan university supporting research and innovation"
   }, 
   {
-    name: "SEKU",
-    logo: "https://www.seku.ac.ke/images/Logo/seku_logo.jpg",
+    name: "KEPSA",
+    logo: "https://www.kepsa.or.ke/kepsa.png",
     hasLogo: true,
-    website: "https://www.seku.ac.ke/",
-    description: "Leading Kenyan university supporting research and innovation"
+    website: "https://www.kepsa.or.ke/",
+    description: "leading umbrella organization representing the private sector in Kenya."
   }
 ];

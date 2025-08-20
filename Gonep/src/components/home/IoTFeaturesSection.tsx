@@ -18,8 +18,8 @@ const iotFeatures = [
   },
   {
     icon: Wifi,
-    title: "IoT Connectivity",
-    description: "Seamless device-to-device communication"
+    title: "Smart Connectivity",
+    description: "Seamless device-to-device communication for remote healthcare delivery"
   }
 ];
 
@@ -55,10 +55,10 @@ export function IoTFeaturesSection() {
           className="text-center space-y-4 mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            IoT-Powered <span className="text-secondary">Healthcare Innovation</span>
+            Transformative Point <span className="text-secondary">of Care Technology</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Advanced Internet of Things technology enabling connected healthcare solutions for remote communities
+            Advanced diagnostic technology bringing professional healthcare directly to underserved communities across Africa
           </p>
         </motion.div>
 

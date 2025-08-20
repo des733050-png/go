@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { ArrowRight, CheckCircle, Award, Monitor, Database, Stethoscope } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import gonepCheque from "../../assets/gonepcheque.jpeg";
 
 const benefits = [
   "Groundbreaking innovation closing Africa's diagnostic gap",
@@ -24,7 +25,7 @@ export function WhyGonepSection() {
             className="space-y-6"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Why GonePharm?
+              Why Gonep?
             </h2>
             <p className="text-lg text-muted-foreground">
               Our innovative approach combines cutting-edge technology with deep understanding 
@@ -49,7 +50,7 @@ export function WhyGonepSection() {
             
             <div className="pt-4 border-t border-border/50">
               <Link to="/about">
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold border-0 px-8 py-3">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold border-0 px-8 py-3">
                   Learn More About Our Impact
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -67,14 +68,14 @@ export function WhyGonepSection() {
               <div className="aspect-square bg-primary/5 rounded-lg flex items-center justify-center relative overflow-hidden">
                 {/* GONEP People Visual */}
                 <img
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="GONEP team working together"
+                  src={gonepCheque}
+                  alt="GONEP receiving Presidential Innovation Award"
                   className="w-full h-full object-cover rounded-lg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent rounded-lg"></div>
                 <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <h3 className="text-lg font-bold mb-1">Our Team</h3>
-                  <p className="text-sm opacity-90">Dedicated to transforming African healthcare</p>
+                  <h3 className="text-lg font-bold mb-1">Presidential Innovation Award</h3>
+                  <p className="text-sm opacity-90">Recognized for transforming African healthcare</p>
                 </div>
               </div>
             </div>

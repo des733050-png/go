@@ -5,6 +5,7 @@ import { Linkedin, Twitter, Mail, Users, Award, Heart, Loader2, RefreshCw, Phone
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { motion } from "framer-motion";
 import { teamAPI } from "../../services/api";
+import works from "../../assets/Works.jpg";
 
 interface TeamMember {
   id: number;
@@ -591,7 +592,7 @@ export function MeetTheTeamPage() {
               className="relative"
             >
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                src={works}
                 alt="GONEP team collaboration"
                 className="w-full h-auto rounded-2xl shadow-lg"
               />

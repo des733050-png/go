@@ -78,13 +78,7 @@ export function FinalCTASection({ onDemoRequest }: FinalCTASectionProps) {
                   <Phone className="mr-3 h-6 w-6" />
                   Request Demo
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold px-10 py-6 text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 bg-background"
-                >
-                  Download Brochure
-                </Button>
+                
                 <Link to="/contact">
                   <Button 
                     size="lg" 

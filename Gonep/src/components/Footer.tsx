@@ -1,9 +1,10 @@
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Separator } from "./ui/separator";
-import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Instagram, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { NewsletterSubscription } from "./NewsletterSubscription";
+import logoWithoutTagline from "../assets/logo without tagline bg white.jpeg";
 
 export function Footer() {
   const quickLinks = [
@@ -35,8 +36,17 @@ export function Footer() {
             {/* Company Info */}
             <div className="space-y-6">
               <div>
-                <div className="text-3xl font-bold mb-2 text-white">GONEP</div>
-                <div className="text-white font-medium">Pharmaceuticals</div>
+                <div className="flex items-center space-x-3 mb-2">
+                  <img 
+                    src={logoWithoutTagline} 
+                    alt="GONEP Pharmaceuticals Logo" 
+                    className="h-12 w-auto"
+                  />
+                  <div>
+                    <div className="text-3xl font-bold text-white">GONEP</div>
+                    <div className="text-white font-medium">Pharmaceuticals</div>
+                  </div>
+                </div>
                 <p className="mt-4 leading-relaxed text-white/90">
                   Transforming African healthcare through innovative diagnostic solutions. 
                   Bringing quality healthcare to every community across the continent.
@@ -45,15 +55,30 @@ export function Footer() {
               
               {/* Social Links */}
               <div className="flex space-x-4">
-                <Button size="sm" variant="ghost" className="p-2 h-auto hover:bg-white/20 text-white/90 hover:text-white">
+                <a 
+                  href="https://www.linkedin.com/company/g-one-pharmaceuticals/posts/?feedView=all" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-2 h-auto hover:bg-white/20 text-white/90 hover:text-white transition-colors rounded-md"
+                >
                   <Linkedin className="h-5 w-5" />
-                </Button>
-                <Button size="sm" variant="ghost" className="p-2 h-auto hover:bg-white/20 text-white/90 hover:text-white">
-                  <Twitter className="h-5 w-5" />
-                </Button>
-                <Button size="sm" variant="ghost" className="p-2 h-auto hover:bg-white/20 text-white/90 hover:text-white">
+                </a>
+                <a 
+                  href="https://www.instagram.com/gonep_pharmaceauticals/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-2 h-auto hover:bg-white/20 text-white/90 hover:text-white transition-colors rounded-md"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a 
+                  href="https://www.facebook.com/Gonepharmaceuticals" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-2 h-auto hover:bg-white/20 text-white/90 hover:text-white transition-colors rounded-md"
+                >
                   <Facebook className="h-5 w-5" />
-                </Button>
+                </a>
               </div>
             </div>
 
