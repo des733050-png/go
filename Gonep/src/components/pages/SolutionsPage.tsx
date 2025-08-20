@@ -61,7 +61,7 @@ export function SolutionsPage() {
               </p>
               <div className="text-sm text-muted-foreground">
                 <p>• Mobile health camps</p>
-                <p>• Emergency response</p>
+                <p>• Home Based Care</p>
                 <p>• Community outreach</p>
               </div>
             </Card>

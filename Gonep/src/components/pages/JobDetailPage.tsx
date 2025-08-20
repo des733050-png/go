@@ -596,11 +596,11 @@ export function JobDetailPage() {
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
                         <Mail className="h-4 w-4 text-primary" />
-                        <span className="text-sm text-muted-foreground">careers@gonep.com</span>
+                        <span className="text-sm text-muted-foreground">careers@gonepharm.com</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <Phone className="h-4 w-4 text-primary" />
-                        <span className="text-sm text-muted-foreground">+254 700 000 000</span>
+                        <span className="text-sm text-muted-foreground">+254 707 231 654</span>
                       </div>
                     </div>
                   </CardContent>

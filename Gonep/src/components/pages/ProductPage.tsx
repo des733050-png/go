@@ -90,14 +90,14 @@ export function ProductPage() {
       icon: Heart,
       title: "Vital Signs Monitoring",
       description: "Real-time monitoring of essential vital signs for immediate health assessment",
-      features: ["Blood pressure", "Heart rate", "Temperature", "Oxygen saturation"],
+      features: ["Blood pressure", "Heart rate", "Temperature"],
       color: "secondary"
     },
     {
       icon: Stethoscope,
       title: "Urine Analysis",
       description: "Complete urinalysis for detecting infections, kidney function, and metabolic conditions",
-      features: ["Protein levels", "Glucose detection", "Infection screening", "Kidney function"],
+      features: ["Protein levels", "Glucose detection", "Liver function", "Kidney function"],
       color: "primary"
     }
   ];
@@ -131,7 +131,7 @@ export function ProductPage() {
     {
       icon: Globe,
       title: "Remote Connectivity",
-      description: "IoT-enabled for seamless integration with healthcare management systems"
+      description: " Point-of -Care for seamless integration with healthcare management systems"
     }
   ];
 
@@ -147,8 +147,8 @@ export function ProductPage() {
       icon: "🚐"
     },
     {
-      title: "Emergency Response",
-      description: "Rapid diagnostic capabilities for emergency medical situations and disaster response",
+      title: "Home Based Care",
+      description: "Comprehensive diagnostic testing for convenient at-home healthcare monitoring and management",
       icon: "🚨"
     },
     {
@@ -192,7 +192,7 @@ export function ProductPage() {
                 </p>
                 
                 <p className="text-lg text-black dark:text-white leading-relaxed max-w-2xl">
-                  Transform healthcare delivery with our revolutionary IoT-enabled diagnostic device. 
+                  Transform healthcare delivery with our revolutionary  Point-of -Care diagnostic device. 
                   Perform blood tests, urine analysis, and vital signs monitoring anywhere, anytime, 
                   with results in just 15 minutes.
                 </p>
@@ -207,14 +207,14 @@ export function ProductPage() {
                   Request Live Demo
                   <ArrowRight className="ml-3 h-6 w-6" />
                 </Button>
-                <Button 
+              {/* <Button 
                   size="lg" 
                   variant="outline" 
                   className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-6 text-lg font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 >
                   <Download className="mr-3 h-6 w-6" />
                   Download Specs
-                </Button>
+                </Button> */}
               </div>
 
               {/* Key Stats */}

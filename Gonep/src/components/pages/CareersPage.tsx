@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { videoAPI } from "../../services/api";
+import everyoneImage from "../../assets/everyone.jpg";
 
 interface JobOpening {
   id: number;
@@ -258,7 +259,7 @@ export function CareersPage() {
               At GONEP, we're not just creating medical devices we're transforming access to healthcare across underserved communities. Whether you're looking to build, learn, partner, or test, there's a place for you in our mission.
             </p>
             <p className="text-muted-foreground">
-              Our flagship product, Clinic at Hand, is Africa's first 3-in-1 portable diagnostic lab—and we need passionate minds and hands to help it reach every corner of the continent.
+              Our flagship product, Clinic at Hand, is Africa's first 3-in-1 portable diagnostic lab - and we need passionate minds and hands to help it reach every corner of the continent.
             </p>
             <Button 
               onClick={() => document.getElementById('job-openings')?.scrollIntoView({ behavior: 'smooth' })}
@@ -321,7 +322,7 @@ export function CareersPage() {
                 </div>
               ) : (
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  src={everyoneImage}
                   alt="GONEP team collaboration"
                   className="w-full h-auto rounded-2xl shadow-lg"
                 />

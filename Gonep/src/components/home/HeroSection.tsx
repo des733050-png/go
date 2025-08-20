@@ -230,7 +230,7 @@ export function HeroSection({ onDemoRequest }: HeroSectionProps) {
                 className="text-lg text-muted-foreground leading-relaxed max-w-2xl"
               >
                 When hospitals can't reach the people, our device does. 
-                Bridging the diagnostic gap in rural Africa with our revolutionary IoT-enabled 3-in-1 portable diagnostic kit. 
+                Bridging the diagnostic gap in rural Africa with our revolutionary  Point-of -Care 3-in-1 portable diagnostic kit. 
                 Delivering healthcare solutions through AI-powered, offline-capable technology that provides results in just{" "}
                 <span className="font-bold text-secondary">15 minutes</span>.
               </motion.p>
