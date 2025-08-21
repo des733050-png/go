@@ -30,8 +30,16 @@ app.use(helmet({
     directives: {
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'"],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'"],
       imgSrc: ["'self'", "data:", "https:", "http://localhost:*"],
+      fontSrc: ["'self'", "data:"],
+      connectSrc: ["'self'", "https:", "http://localhost:*"],
+      frameSrc: ["'none'"],
+      objectSrc: ["'none'"],
+      baseUri: ["'self'"],
+      formAction: ["'self'"],
+      frameAncestors: ["'none'"],
+      upgradeInsecureRequests: []
     },
   },
 }));
