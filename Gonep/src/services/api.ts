@@ -102,10 +102,16 @@ export const demoAPI = {
   getConfiguration: () => api.get('/demo/config'),
   
   // Get demo types
-  getDemoTypes: () => api.get('/demo/types'),
+  getDemoTypes: () => api.get('/demo/config/types'),
   
   // Get demo interests
-  getDemoInterests: () => api.get('/demo/interests'),
+  getDemoInterests: () => api.get('/demo/config/interests'),
+  
+  // Get available calendar dates
+  getAvailableDates: () => api.get('/demo/config/calendar'),
+  
+  // Check specific date availability
+  checkDateAvailability: (date: string) => api.post('/demo/config/calendar/check', { date }),
 };
 
 // Careers API

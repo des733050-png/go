@@ -232,10 +232,29 @@ const VideoManagementPage: React.FC = () => {
       const videoId = url.split('vimeo.com/')[1]?.split('?')[0];
       return videoId ? `https://player.vimeo.com/video/${videoId}` : url;
     }
+    // Dailymotion
+    if (url.includes('dailymotion.com/video/')) {
+      const videoId = url.split('dailymotion.com/video/')[1]?.split('?')[0];
+      return videoId ? `https://www.dailymotion.com/embed/video/${videoId}` : url;
+    }
+    // Facebook
+    if (url.includes('facebook.com/') && url.includes('/videos/')) {
+      return url.replace('facebook.com', 'facebook.com/plugins/video.php');
+    }
+    // Instagram
+    if (url.includes('instagram.com/p/') && url.includes('/')) {
+      const postId = url.split('instagram.com/p/')[1]?.split('/')[0];
+      return postId ? `https://www.instagram.com/p/${postId}/embed/` : url;
+    }
+    // TikTok
+    if (url.includes('tiktok.com/@') && url.includes('/video/')) {
+      return url.replace('tiktok.com', 'tiktok.com/embed');
+    }
     // Direct video file
-    if (url.match(/\.(mp4|webm|ogg)$/i)) {
+    if (url.match(/\.(mp4|webm|ogg|mov|avi|mkv)$/i)) {
       return url;
     }
+    // For any other URL, return as is (will be handled by iframe)
     return url;
   };
 
@@ -493,7 +512,7 @@ const VideoManagementPage: React.FC = () => {
                   value={formData.videoUrl}
                   onChange={(e) => setFormData({ ...formData, videoUrl: e.target.value })}
                   required
-                  helperText="Supports YouTube, Vimeo, Dailymotion, or direct video files (.mp4, .webm, .ogg)"
+                  helperText="Supports any video platform URL (YouTube, Vimeo, Dailymotion, Facebook, Instagram, TikTok) or direct video files (.mp4, .webm, .ogg, .mov, .avi, .mkv)"
                 />
               </Box>
               <Box sx={{ flex: '1 1 300px', minWidth: '300px' }}>

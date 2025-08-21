@@ -122,7 +122,7 @@ export function DemoRequestModal({ isOpen, onClose }: DemoRequestModalProps) {
         const [interestsResponse, demoTypesResponse, availableDatesResponse] = await Promise.all([
           demoAPI.getDemoInterests(),
           demoAPI.getDemoTypes(),
-          demoAPI.getConfiguration()
+          demoAPI.getAvailableDates()
         ]);
 
         if (interestsResponse.success) {
@@ -820,10 +820,42 @@ export function DemoRequestModal({ isOpen, onClose }: DemoRequestModalProps) {
                       {validationErrors.preferredDate && (
                         <p className="text-sm text-red-500 mt-1">{validationErrors.preferredDate}</p>
                       )}
-                      {availableDates.length > 0 && (
-                        <p className="text-sm text-muted-foreground mt-1">
-                          {availableDates.filter(d => d.isAvailable).length} dates available for booking
+                      {formData.preferredDate && !validationErrors.preferredDate && (
+                        <p className="text-sm text-green-600 mt-1">
+                          ✓ Date available for demo
                         </p>
+                      )}
+                      
+                      {/* Available Dates Preview */}
+                      {availableDates.length > 0 && (
+                        <div className="mt-3">
+                          <p className="text-xs text-muted-foreground mb-2">
+                            Next available dates:
+                          </p>
+                          <div className="flex flex-wrap gap-1">
+                            {availableDates
+                              .filter(d => d.isAvailable && d.currentBookings < d.maxBookings)
+                              .slice(0, 5)
+                              .map((dateInfo) => (
+                                <Badge
+                                  key={dateInfo.date}
+                                  variant="outline"
+                                  className="text-xs cursor-pointer hover:bg-primary hover:text-primary-foreground"
+                                  onClick={() => setFormData(prev => ({ ...prev, preferredDate: dateInfo.date }))}
+                                >
+                                  {new Date(dateInfo.date).toLocaleDateString('en-US', { 
+                                    month: 'short', 
+                                    day: 'numeric' 
+                                  })}
+                                  {dateInfo.currentBookings > 0 && (
+                                    <span className="ml-1 text-xs">
+                                      ({dateInfo.maxBookings - dateInfo.currentBookings} slots left)
+                                    </span>
+                                  )}
+                                </Badge>
+                              ))}
+                          </div>
+                        </div>
                       )}
                     </div>
                     <div className="space-y-2">

@@ -36,7 +36,7 @@ app.use(helmet({
   },
 }));
 
-// CORS configuration for production
+// CORS configuration for production and development
 const allowedOrigins = [
   config.FRONTEND_URL,
   config.ADMIN_URL,
@@ -44,10 +44,11 @@ const allowedOrigins = [
   'http://localhost:8002',
   'http://localhost:3000',
   'http://localhost:3001',
+  'http://localhost:5173',
+  'http://localhost:4173',
   'https://gonepharm-pearl.vercel.app',
   'https://gonepadmin.vercel.app',
   'https://gonepbackend.vercel.app',
-  'https://*.vercel.app',
   'https://*.vercel.app'
 ];
 
@@ -61,9 +62,15 @@ app.use(cors({
       return callback(null, true);
     }
     
+    // Allow localhost for development
+    if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+      return callback(null, true);
+    }
+    
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
+      console.log('CORS blocked origin:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },

@@ -45,20 +45,54 @@ export const getDemoTypes = async (req: Request, res: Response) => {
 export const getAvailableDates = async (req: Request, res: Response) => {
   try {
     const today = new Date();
-    const availableDates = await db
+    const todayStr = today.toISOString().split('T')[0];
+    
+    // Get existing availability records
+    const existingDates = await db
       .select()
       .from(calendarAvailability)
-      .where(
-        and(
-          eq(calendarAvailability.isAvailable, true),
-          gte(calendarAvailability.date, today.toISOString().split('T')[0])
-        )
-      )
+      .where(gte(calendarAvailability.date, todayStr))
+      .orderBy(calendarAvailability.date);
+    
+    // Generate dates for the next 6 months if they don't exist
+    const datesToGenerate = [];
+    const endDate = new Date();
+    endDate.setMonth(endDate.getMonth() + 6);
+    
+    for (let d = new Date(today); d <= endDate; d.setDate(d.getDate() + 1)) {
+      const dateStr = d.toISOString().split('T')[0];
+      const existingDate = existingDates.find(date => date.date === dateStr);
+      
+      if (!existingDate) {
+        // Skip weekends (Saturday = 6, Sunday = 0)
+        const dayOfWeek = d.getDay();
+        if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+          datesToGenerate.push({
+            date: dateStr,
+            isAvailable: true,
+            maxBookings: 5,
+            currentBookings: 0,
+            reason: null
+          });
+        }
+      }
+    }
+    
+    // Insert new dates if any
+    if (datesToGenerate.length > 0) {
+      await db.insert(calendarAvailability).values(datesToGenerate);
+    }
+    
+    // Get all dates again (including newly generated ones)
+    const allDates = await db
+      .select()
+      .from(calendarAvailability)
+      .where(gte(calendarAvailability.date, todayStr))
       .orderBy(calendarAvailability.date);
     
     res.json({
       success: true,
-      data: availableDates,
+      data: allDates,
       message: 'Available dates retrieved successfully'
     });
   } catch (error) {
@@ -82,6 +116,23 @@ export const checkDateAvailability = async (req: Request, res: Response) => {
       });
     }
 
+    const today = new Date();
+    const selectedDate = new Date(date);
+    
+    // Check if date is in the past
+    if (selectedDate < today && selectedDate.toDateString() !== today.toDateString()) {
+      return res.json({
+        success: true,
+        data: { 
+          isAvailable: false, 
+          reason: 'Cannot book dates in the past',
+          maxBookings: 0,
+          currentBookings: 0
+        },
+        message: 'Date availability checked'
+      });
+    }
+
     const availability = await db
       .select()
       .from(calendarAvailability)
@@ -89,11 +140,39 @@ export const checkDateAvailability = async (req: Request, res: Response) => {
       .limit(1);
 
     if (availability.length === 0) {
-      return res.json({
-        success: true,
-        data: { isAvailable: false, reason: 'Date not configured' },
-        message: 'Date availability checked'
-      });
+      // Auto-generate this date if it's a weekday
+      const dayOfWeek = selectedDate.getDay();
+      if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+        const newDate = await db.insert(calendarAvailability).values({
+          date,
+          isAvailable: true,
+          maxBookings: 5,
+          currentBookings: 0,
+          reason: null
+        });
+        
+        return res.json({
+          success: true,
+          data: {
+            isAvailable: true,
+            maxBookings: 5,
+            currentBookings: 0,
+            reason: null
+          },
+          message: 'Date availability checked successfully'
+        });
+      } else {
+        return res.json({
+          success: true,
+          data: { 
+            isAvailable: false, 
+            reason: 'Weekends are not available for demos',
+            maxBookings: 0,
+            currentBookings: 0
+          },
+          message: 'Date availability checked'
+        });
+      }
     }
 
     const dateInfo = availability[0];

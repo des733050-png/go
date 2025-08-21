@@ -760,7 +760,7 @@ export async function seedDatabase() {
         isActive: true
       },
       {
-        title: 'Emergency Response',
+        title: 'Home Based Care',
         description: 'Quick diagnostic support in emergency situations',
         icon: 'ambulance',
         orderIndex: 4,

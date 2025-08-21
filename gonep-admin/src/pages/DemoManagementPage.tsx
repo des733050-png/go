@@ -71,11 +71,14 @@ const DemoManagementPage: React.FC = () => {
   const [openInterestDialog, setOpenInterestDialog] = useState(false);
   const [openDemoTypeDialog, setOpenDemoTypeDialog] = useState(false);
   const [openCalendarDialog, setOpenCalendarDialog] = useState(false);
+  const [openRequestDetailsDialog, setOpenRequestDetailsDialog] = useState(false);
+  const [openStatusUpdateDialog, setOpenStatusUpdateDialog] = useState(false);
   
   // Editing states
   const [editingInterest, setEditingInterest] = useState<DemoInterest | null>(null);
   const [editingDemoType, setEditingDemoType] = useState<DemoType | null>(null);
   const [editingDate, setEditingDate] = useState<CalendarAvailability | null>(null);
+  const [selectedRequest, setSelectedRequest] = useState<DemoRequest | null>(null);
   
   // Form data
   const [interestFormData, setInterestFormData] = useState<CreateInterestData>({
@@ -96,6 +99,12 @@ const DemoManagementPage: React.FC = () => {
     isAvailable: true,
     maxBookings: 5,
     reason: ''
+  });
+
+  const [statusUpdateData, setStatusUpdateData] = useState({
+    status: '',
+    notes: '',
+    scheduledAt: ''
   });
   
   // Snackbar
@@ -255,6 +264,47 @@ const DemoManagementPage: React.FC = () => {
       fetchAllData();
     } catch (error) {
       showSnackbar('Failed to save calendar availability', 'error');
+    }
+  };
+
+  // Demo request management
+  const handleViewRequestDetails = (request: DemoRequest) => {
+    setSelectedRequest(request);
+    setOpenRequestDetailsDialog(true);
+  };
+
+  const handleUpdateRequestStatus = (request: DemoRequest) => {
+    setSelectedRequest(request);
+    setStatusUpdateData({
+      status: request.status || '',
+      notes: request.notes || '',
+      scheduledAt: request.scheduledAt ? new Date(request.scheduledAt).toISOString().split('T')[0] : ''
+    });
+    setOpenStatusUpdateDialog(true);
+  };
+
+  const handleStatusUpdateSubmit = async () => {
+    if (!selectedRequest) return;
+    
+    try {
+      await demoAPI.updateRequest(selectedRequest.id, statusUpdateData);
+      showSnackbar('Demo request status updated successfully', 'success');
+      setOpenStatusUpdateDialog(false);
+      fetchAllData();
+    } catch (error) {
+      showSnackbar('Failed to update demo request status', 'error');
+    }
+  };
+
+  const handleDeleteRequest = async (id: number) => {
+    if (window.confirm('Are you sure you want to delete this demo request?')) {
+      try {
+        await demoAPI.deleteRequest(id);
+        showSnackbar('Demo request deleted successfully', 'success');
+        fetchAllData();
+      } catch (error) {
+        showSnackbar('Failed to delete demo request', 'error');
+      }
     }
   };
 
@@ -492,6 +542,50 @@ const DemoManagementPage: React.FC = () => {
                 Set Date Availability
               </Button>
             </Box>
+            
+            {/* Calendar Grid View */}
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h6" gutterBottom>
+                Available Dates (Next 30 Days)
+              </Typography>
+              <Box sx={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', 
+                gap: 1,
+                maxHeight: '400px',
+                overflowY: 'auto'
+              }}>
+                {calendarData.slice(0, 30).map((dateData) => (
+                  <Card 
+                    key={dateData.id} 
+                    sx={{ 
+                      p: 1, 
+                      cursor: 'pointer',
+                      backgroundColor: dateData.isAvailable ? 'success.light' : 'error.light',
+                      '&:hover': { opacity: 0.8 }
+                    }}
+                    onClick={() => handleOpenCalendarDialog(dateData)}
+                  >
+                    <Typography variant="body2" align="center" fontWeight="bold">
+                      {new Date(dateData.date).toLocaleDateString('en-US', { 
+                        weekday: 'short',
+                        month: 'short',
+                        day: 'numeric'
+                      })}
+                    </Typography>
+                    <Typography variant="caption" align="center" display="block">
+                      {dateData.isAvailable ? 'Available' : 'Unavailable'}
+                    </Typography>
+                    {dateData.isAvailable && (
+                      <Typography variant="caption" align="center" display="block">
+                        {dateData.currentBookings}/{dateData.maxBookings} booked
+                      </Typography>
+                    )}
+                  </Card>
+                ))}
+              </Box>
+            </Box>
+            
             <TableContainer component={Paper}>
               <Table size="small">
                 <TableHead>
@@ -551,8 +645,10 @@ const DemoManagementPage: React.FC = () => {
                     <TableCell>Email</TableCell>
                     <TableCell>Organization</TableCell>
                     <TableCell>Demo Type</TableCell>
+                    <TableCell>Preferred Date</TableCell>
                     <TableCell>Status</TableCell>
                     <TableCell>Created</TableCell>
+                    <TableCell>Actions</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -563,14 +659,44 @@ const DemoManagementPage: React.FC = () => {
                       <TableCell>{request.organization}</TableCell>
                       <TableCell>{request.demoType}</TableCell>
                       <TableCell>
+                        {request.preferredDate ? 
+                          new Date(request.preferredDate).toLocaleDateString() : 
+                          'Not specified'
+                        }
+                      </TableCell>
+                      <TableCell>
                         <Chip 
                           label={request.status || 'Pending'} 
-                          color={request.status === 'approved' ? 'success' : 'default'} 
+                          color={request.status === 'confirmed' ? 'success' : 'default'} 
                           size="small" 
                         />
                       </TableCell>
                       <TableCell>
                         {new Date(request.createdAt).toLocaleDateString()}
+                      </TableCell>
+                      <TableCell>
+                        <IconButton 
+                          size="small" 
+                          onClick={() => handleViewRequestDetails(request)}
+                          title="View Details"
+                        >
+                          <Dashboard />
+                        </IconButton>
+                        <IconButton 
+                          size="small" 
+                          onClick={() => handleUpdateRequestStatus(request)}
+                          title="Update Status"
+                        >
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton 
+                          size="small" 
+                          onClick={() => handleDeleteRequest(request.id)} 
+                          color="error"
+                          title="Delete"
+                        >
+                          <DeleteIcon />
+                        </IconButton>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -694,6 +820,9 @@ const DemoManagementPage: React.FC = () => {
               margin="normal"
               required
               InputLabelProps={{ shrink: true }}
+              inputProps={{
+                min: new Date().toISOString().split('T')[0] // Prevent past dates
+              }}
             />
             <FormControlLabel
               control={
@@ -714,7 +843,8 @@ const DemoManagementPage: React.FC = () => {
               onChange={(e) => setCalendarFormData({ ...calendarFormData, maxBookings: parseInt(e.target.value) })}
               margin="normal"
               disabled={!calendarFormData.isAvailable}
-              inputProps={{ min: 1 }}
+              inputProps={{ min: 1, max: 20 }}
+              helperText="Set how many demo requests can be booked for this date"
             />
             <TextField
               fullWidth
@@ -724,14 +854,241 @@ const DemoManagementPage: React.FC = () => {
               margin="normal"
               multiline
               rows={3}
-              placeholder="Reason for unavailability or special notes"
+              placeholder="Reason for unavailability or special notes (e.g., 'Holiday', 'Team meeting', etc.)"
             />
+            
+            {/* Quick Actions */}
+            <Box sx={{ mt: 3, p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
+              <Typography variant="subtitle2" gutterBottom>
+                Quick Actions:
+              </Typography>
+              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  onClick={() => setCalendarFormData({ ...calendarFormData, isAvailable: false, reason: 'Holiday' })}
+                >
+                  Mark as Holiday
+                </Button>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  onClick={() => setCalendarFormData({ ...calendarFormData, isAvailable: false, reason: 'Team Meeting' })}
+                >
+                  Team Meeting
+                </Button>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  onClick={() => setCalendarFormData({ ...calendarFormData, isAvailable: true, reason: '' })}
+                >
+                  Make Available
+                </Button>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  onClick={() => setCalendarFormData({ ...calendarFormData, maxBookings: 10 })}
+                >
+                  Increase Capacity
+                </Button>
+              </Box>
+            </Box>
           </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenCalendarDialog(false)}>Cancel</Button>
           <Button onClick={handleCalendarSubmit} variant="contained" disabled={!calendarFormData.date}>
             {editingDate ? 'Update' : 'Set'}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Demo Request Details Dialog */}
+      <Dialog open={openRequestDetailsDialog} onClose={() => setOpenRequestDetailsDialog(false)} maxWidth="md" fullWidth>
+        <DialogTitle>Demo Request Details</DialogTitle>
+        <DialogContent>
+          {selectedRequest && (
+            <Box sx={{ pt: 2 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, mb: 3 }}>
+                <TextField
+                  fullWidth
+                  label="First Name"
+                  value={selectedRequest.firstName}
+                  margin="normal"
+                  InputProps={{ readOnly: true }}
+                />
+                <TextField
+                  fullWidth
+                  label="Last Name"
+                  value={selectedRequest.lastName}
+                  margin="normal"
+                  InputProps={{ readOnly: true }}
+                />
+                <TextField
+                  fullWidth
+                  label="Email"
+                  value={selectedRequest.email}
+                  margin="normal"
+                  InputProps={{ readOnly: true }}
+                />
+                <TextField
+                  fullWidth
+                  label="Phone"
+                  value={selectedRequest.phone}
+                  margin="normal"
+                  InputProps={{ readOnly: true }}
+                />
+                <TextField
+                  fullWidth
+                  label="Organization"
+                  value={selectedRequest.organization}
+                  margin="normal"
+                  InputProps={{ readOnly: true }}
+                />
+                <TextField
+                  fullWidth
+                  label="Title"
+                  value={selectedRequest.title}
+                  margin="normal"
+                  InputProps={{ readOnly: true }}
+                />
+                <TextField
+                  fullWidth
+                  label="Organization Type"
+                  value={selectedRequest.organizationType}
+                  margin="normal"
+                  InputProps={{ readOnly: true }}
+                />
+                <TextField
+                  fullWidth
+                  label="Country"
+                  value={selectedRequest.country}
+                  margin="normal"
+                  InputProps={{ readOnly: true }}
+                />
+                <TextField
+                  fullWidth
+                  label="Demo Type"
+                  value={selectedRequest.demoType}
+                  margin="normal"
+                  InputProps={{ readOnly: true }}
+                />
+                <TextField
+                  fullWidth
+                  label="Preferred Date"
+                  value={selectedRequest.preferredDate ? new Date(selectedRequest.preferredDate).toLocaleDateString() : 'Not specified'}
+                  margin="normal"
+                  InputProps={{ readOnly: true }}
+                />
+                <TextField
+                  fullWidth
+                  label="Attendee Count"
+                  value={selectedRequest.attendeeCount || 'Not specified'}
+                  margin="normal"
+                  InputProps={{ readOnly: true }}
+                />
+                <TextField
+                  fullWidth
+                  label="Status"
+                  value={selectedRequest.status || 'Pending'}
+                  margin="normal"
+                  InputProps={{ readOnly: true }}
+                />
+              </Box>
+              
+              <TextField
+                fullWidth
+                label="Interests"
+                value={selectedRequest.interests?.join(', ') || 'None specified'}
+                margin="normal"
+                InputProps={{ readOnly: true }}
+              />
+              
+              <TextField
+                fullWidth
+                label="Message"
+                value={selectedRequest.message || 'No message provided'}
+                margin="normal"
+                multiline
+                rows={4}
+                InputProps={{ readOnly: true }}
+              />
+              
+              {selectedRequest.notes && (
+                <TextField
+                  fullWidth
+                  label="Admin Notes"
+                  value={selectedRequest.notes}
+                  margin="normal"
+                  multiline
+                  rows={3}
+                  InputProps={{ readOnly: true }}
+                />
+              )}
+              
+              <Box sx={{ mt: 2 }}>
+                <Typography variant="body2" color="textSecondary">
+                  Created: {new Date(selectedRequest.createdAt).toLocaleString()}
+                </Typography>
+                {selectedRequest.updatedAt && (
+                  <Typography variant="body2" color="textSecondary">
+                    Updated: {new Date(selectedRequest.updatedAt).toLocaleString()}
+                  </Typography>
+                )}
+              </Box>
+            </Box>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenRequestDetailsDialog(false)}>Close</Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Status Update Dialog */}
+      <Dialog open={openStatusUpdateDialog} onClose={() => setOpenStatusUpdateDialog(false)} maxWidth="sm" fullWidth>
+        <DialogTitle>Update Demo Request Status</DialogTitle>
+        <DialogContent>
+          <Box sx={{ pt: 2 }}>
+            <FormControl fullWidth margin="normal">
+              <InputLabel>Status</InputLabel>
+              <Select
+                value={statusUpdateData.status}
+                onChange={(e) => setStatusUpdateData({ ...statusUpdateData, status: e.target.value })}
+                label="Status"
+              >
+                <MenuItem value="pending">Pending</MenuItem>
+                <MenuItem value="confirmed">Confirmed</MenuItem>
+                <MenuItem value="completed">Completed</MenuItem>
+                <MenuItem value="cancelled">Cancelled</MenuItem>
+              </Select>
+            </FormControl>
+            
+            <TextField
+              fullWidth
+              label="Scheduled Date"
+              type="date"
+              value={statusUpdateData.scheduledAt}
+              onChange={(e) => setStatusUpdateData({ ...statusUpdateData, scheduledAt: e.target.value })}
+              margin="normal"
+              InputLabelProps={{ shrink: true }}
+            />
+            
+            <TextField
+              fullWidth
+              label="Notes"
+              value={statusUpdateData.notes}
+              onChange={(e) => setStatusUpdateData({ ...statusUpdateData, notes: e.target.value })}
+              margin="normal"
+              multiline
+              rows={3}
+              placeholder="Add any notes about this demo request..."
+            />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenStatusUpdateDialog(false)}>Cancel</Button>
+          <Button onClick={handleStatusUpdateSubmit} variant="contained">
+            Update Status
           </Button>
         </DialogActions>
       </Dialog>
