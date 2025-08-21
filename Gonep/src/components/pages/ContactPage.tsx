@@ -14,7 +14,8 @@ export function ContactPage() {
       description: "24/7 technical support for urgent issues",
       contact: "+254 707 231 654",
       hours: "Available 24/7",
-      color: "primary"
+      color: "primary",
+      action: () => window.open('tel:+254707231654')
     },
     {
       icon: Mail,
@@ -22,7 +23,8 @@ export function ContactPage() {
       description: "Detailed assistance and documentation",
       contact: "info@gonepharm.com",
       hours: "Response within 24 hours",
-      color: "secondary"
+      color: "secondary",
+      action: () => window.open('mailto:info@gonepharm.com')
     },
     {
       icon: MapPin,
@@ -30,7 +32,8 @@ export function ContactPage() {
       description: "2nd Floor, Chandaria Innovation Centre Building, Kenya",
       contact: "Schedule a visit",
       hours: "Mon-Fri: 8:00 AM - 6:00 PM",
-      color: "accent"
+      color: "accent",
+      action: () => window.open('https://maps.google.com/?q=Chandaria+Innovation+Centre+Building+Kenya', '_blank')
     }
   ];
 
@@ -60,7 +63,11 @@ export function ContactPage() {
               const colorClass = method.color === "primary" ? "primary" : method.color === "secondary" ? "secondary" : "accent";
               
               return (
-                <Card key={index} className={`text-center border-2 hover:border-${colorClass}/20 hover:shadow-lg transition-all`}>
+                <Card 
+                  key={index} 
+                  className={`text-center border-2 hover:border-${colorClass}/20 hover:shadow-lg transition-all cursor-pointer`}
+                  onClick={method.action}
+                >
                   <CardContent className="p-8">
                     <div className={`bg-${colorClass}/10 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center`}>
                       <IconComponent className={`h-8 w-8 text-${colorClass}`} />
@@ -215,22 +222,32 @@ export function ContactPage() {
                 </CardContent>
               </Card>
 
-              {/* Map Placeholder */}
+              {/* Interactive Map */}
               <Card className="overflow-hidden">
-                <div className="relative h-64 bg-muted">
-                  <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                    alt="GONEP office location map"
-                    className="w-full h-full object-cover"
+                <CardHeader>
+                  <CardTitle className="text-xl">Our Location</CardTitle>
+                </CardHeader>
+                <div className="relative h-64">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8199999999997!2d36.8175!3d-1.2921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTcnMzEuNiJTIDM2wrA0OScwMy4wIkU!5e0!3m2!1sen!2ske!4v1234567890"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="GONEP Office Location"
                   />
-                  <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
-                    <div className="bg-white p-4 rounded-lg shadow-lg text-center">
-                      <MapPin className="h-8 w-8 text-primary mx-auto mb-2" />
-                      <p className="font-semibold">GONEP Office</p>
-                      <p className="text-sm text-muted-foreground">Nairobi, Kenya</p>
-                    </div>
-                  </div>
                 </div>
+                <CardContent className="p-4">
+                  <Button
+                    onClick={() => window.open('https://maps.google.com/?q=Chandaria+Innovation+Centre+Building+Kenya', '_blank')}
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                  >
+                    <MapPin className="mr-2 h-4 w-4" />
+                    Open in Google Maps
+                  </Button>
+                </CardContent>
               </Card>
             </div>
           </div>

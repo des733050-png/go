@@ -50,7 +50,7 @@ export function WhyGonepSection() {
             
             <div className="pt-4 border-t border-border/50">
               <Link to="/about">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold border-0 px-8 py-3">
+                <Button className="bg-blue-600 hover:bg-blue-600 text-white font-semibold border-0 px-8 py-3">
                   Learn More About Our Impact
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>

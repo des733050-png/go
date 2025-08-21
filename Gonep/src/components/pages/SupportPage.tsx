@@ -9,93 +9,13 @@ import { Mail, Phone, MessageCircle, Download, BookOpen, Users, ArrowRight } fro
 export function SupportPage() {
   const faqs = [
     {
-      category: "How to Set Up the Device",
+      category: "Coming Soon",
       items: [
         {
-          question: "How long does it take to set up the Clinic at Hand device?",
-          answer: "The initial setup takes approximately 15-20 minutes. Our device comes pre-configured with AI algorithms and only requires basic power connection and user account setup. Detailed setup instructions are included in the package."
-        },
-        {
-          question: "What are the technical requirements for installation?",
-          answer: "The device requires a standard power outlet (100-240V) and can operate in temperatures from 10°C to 40°C. No special infrastructure is needed. Optional WiFi connection enhances functionality but is not required for basic operation."
-        },
-        {
-          question: "Do I need internet connectivity for the device to work?",
-          answer: "No, the Clinic at Hand operates fully offline. Internet connectivity is optional and only used for software updates and cloud data synchronization when available."
+          question: "FAQ section is under maintenance",
+          answer: "We're currently updating our FAQ section with the latest information. Please use our contact methods below for immediate support."
         }
       ]
-    },
-    {
-      category: "Battery Charging & Field Use",
-      items: [
-        {
-          question: "How long does the battery last during field use?",
-          answer: "The device battery lasts 8-12 hours of continuous operation. For extended field use, we provide portable charging solutions and recommend carrying spare batteries for remote deployments."
-        },
-        {
-          question: "Can the device be used in remote locations without power?",
-          answer: "Yes, the device is designed for field use with battery power. It can operate for a full day on a single charge and includes power-saving modes for extended deployments."
-        },
-        {
-          question: "What charging options are available?",
-          answer: "The device can be charged via standard AC power, USB-C, or solar charging adapters. We provide multiple charging solutions for different field conditions."
-        }
-      ]
-    },
-    {
-      category: "Maintenance",
-      items: [
-        {
-          question: "What maintenance is required?",
-          answer: "Daily cleaning with provided sanitizing wipes, weekly calibration check (automated), and monthly deep cleaning following our maintenance protocol. Consumable supplies need replenishment every 200-300 tests."
-        },
-        {
-          question: "How often do consumable supplies need replacement?",
-          answer: "Test strips and reagents typically last for 200-300 tests. The device will alert you when supplies are running low. We offer subscription-based automatic replenishment services."
-        },
-        {
-          question: "What is the warranty coverage?",
-          answer: "All devices come with a 2-year comprehensive warranty covering parts, labor, and remote technical support. Extended warranty options up to 5 years are available."
-        }
-      ]
-    },
-    {
-      category: "Operation",
-      items: [
-        {
-          question: "How accurate are the diagnostic results?",
-          answer: "Our clinical trials show 95%+ accuracy rates across all three diagnostic functions. The AI algorithms have been trained on diverse African patient populations to ensure reliable results across different demographics."
-        },
-        {
-          question: "What types of tests can the device perform?",
-          answer: "The device performs blood glucose testing, blood pressure monitoring, and comprehensive urine analysis including protein, glucose, ketones, and infection markers. Results are available within 15 minutes."
-        },
-        {
-          question: "How many tests can be performed per day?",
-          answer: "The device can handle 50-80 patient tests per day depending on the test mix. Each test takes 15 minutes including sample processing and result generation."
-        }
-      ]
-    }
-  ];
-
-  const supportResources = [
-    {
-      title: "Quick Start Guide",
-      description: "Step-by-step setup and first-use instructions",
-      type: "PDF Guide",
-      icon: BookOpen
-    },
-    {
-      title: "Training Materials",
-      description: "Comprehensive training videos and presentations",
-      type: "Video Library",
-      icon: Users
-    },
-    {
-      title: "Maintenance Manual",
-      description: "Complete maintenance and troubleshooting guide",
-      type: "PDF Manual",
-      icon: Download
     }
   ];
 
@@ -142,7 +62,7 @@ export function SupportPage() {
                 <p className="text-muted-foreground mb-4">
                   Detailed technical assistance and documentation
                 </p>
-                <p className="font-semibold text-secondary">support@gonepharm.com</p>
+                <p className="font-semibold text-secondary">info@gonepharm.com</p>
               </CardContent>
             </Card>
 
@@ -163,59 +83,71 @@ export function SupportPage() {
           </div>
 
           {/* Advanced Support Form */}
-          <Card className="max-w-2xl mx-auto">
-            <CardHeader>
-              <CardTitle className="text-2xl text-center">Submit Support Request</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Name</label>
-                  <Input placeholder="Your full name" />
+          <div className="relative max-w-2xl mx-auto">
+            <Card className="opacity-50 blur-sm pointer-events-none">
+              <CardHeader>
+                <CardTitle className="text-2xl text-center">Submit Support Request</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">Name</label>
+                    <Input placeholder="Your full name" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">Email</label>
+                    <Input type="email" placeholder="your@email.com" />
+                  </div>
                 </div>
+                
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Email</label>
-                  <Input type="email" placeholder="your@email.com" />
+                  <label className="text-sm font-medium">Issue Category</label>
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select issue type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="setup">Setup & Installation</SelectItem>
+                      <SelectItem value="operation">Device Operation</SelectItem>
+                      <SelectItem value="maintenance">Maintenance & Repairs</SelectItem>
+                      <SelectItem value="training">Training & Education</SelectItem>
+                      <SelectItem value="supplies">Consumable Supplies</SelectItem>
+                      <SelectItem value="billing">Billing & Account</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
-              </div>
-              
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Issue Category</label>
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select issue type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="setup">Setup & Installation</SelectItem>
-                    <SelectItem value="operation">Device Operation</SelectItem>
-                    <SelectItem value="maintenance">Maintenance & Repairs</SelectItem>
-                    <SelectItem value="training">Training & Education</SelectItem>
-                    <SelectItem value="supplies">Consumable Supplies</SelectItem>
-                    <SelectItem value="billing">Billing & Account</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Device Serial Number (if applicable)</label>
-                <Input placeholder="e.g., GONEP-CAH-2024-001234" />
-              </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Device Serial Number (if applicable)</label>
+                  <Input placeholder="e.g., GONEP-CAH-2024-001234" />
+                </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Describe your issue</label>
-                <Textarea 
-                  placeholder="Please provide detailed information about the issue you're experiencing..."
-                  rows={4}
-                />
-              </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Describe your issue</label>
+                  <Textarea 
+                    placeholder="Please provide detailed information about the issue you're experiencing..."
+                    rows={4}
+                  />
+                </div>
 
-              <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-                Submit Support Request
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </CardContent>
-          </Card>
+                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+                  Submit Support Request
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Maintenance Message Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-lg">
+              <div className="text-center p-6">
+                <h3 className="text-lg font-semibold text-yellow-800 mb-2">Support Form Under Maintenance</h3>
+                <p className="text-yellow-700">
+                  Our support form is currently being updated. Please use the contact methods above for immediate assistance.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -268,30 +200,19 @@ export function SupportPage() {
               Support Resources
             </h2>
             <p className="text-lg text-muted-foreground">
-              Download helpful guides and access training materials
+              We will upload resources for you soon. Please be patient.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {supportResources.map((resource, index) => {
-              const IconComponent = resource.icon;
-              return (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-8 text-center">
-                    <div className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                      <IconComponent className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">{resource.title}</h3>
-                    <p className="text-muted-foreground mb-4">{resource.description}</p>
-                    <div className="text-sm text-muted-foreground mb-4">{resource.type}</div>
-                    <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground w-full">
-                      <Download className="mr-2 h-4 w-4" />
-                      Download
-                    </Button>
-                  </CardContent>
-                </Card>
-              );
-            })}
+          <div className="text-center p-12 bg-muted/30 rounded-lg">
+            <div className="bg-primary/10 p-6 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+              <Download className="h-10 w-10 text-primary" />
+            </div>
+            <h3 className="text-xl font-semibold mb-4">Resources Coming Soon</h3>
+            <p className="text-muted-foreground max-w-md mx-auto">
+              We're currently preparing comprehensive support resources including guides, manuals, and training materials. 
+              Please use our contact methods above for immediate support.
+            </p>
           </div>
         </div>
       </section>
@@ -306,9 +227,20 @@ export function SupportPage() {
             Our technical specialists are available for on-site support, custom training, 
             and specialized implementation assistance.
           </p>
-          <Button size="lg" variant="secondary" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold">
-            Contact Technical Specialists
-          </Button>
+          <div className="space-y-4">
+            <Button 
+              size="lg" 
+              variant="secondary" 
+              disabled
+              className="bg-secondary/50 text-secondary-foreground/50 font-semibold cursor-not-allowed"
+            >
+              Contact Technical Specialists
+            </Button>
+            <div className="text-sm opacity-90">
+              <p>Contact us at: <span className="font-semibold">+254 707 231 654</span></p>
+              <p>Email: <span className="font-semibold">info@gonepharm.com</span></p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

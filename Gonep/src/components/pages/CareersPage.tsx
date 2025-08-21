@@ -591,7 +591,7 @@ export function CareersPage() {
               <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 Send Your Resume
               </Button>
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold">
                 Contact HR Team
               </Button>
             </div>

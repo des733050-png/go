@@ -82,7 +82,7 @@ export function FinalCTASection({ onDemoRequest }: FinalCTASectionProps) {
                 <Link to="/contact">
                   <Button 
                     size="lg" 
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-10 py-6 text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
+                    className="bg-primary hover:bg-primary text-primary-foreground font-bold px-10 py-6 text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
                   >
                     Invest in Us
                   </Button>

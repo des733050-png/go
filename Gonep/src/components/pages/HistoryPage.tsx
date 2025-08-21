@@ -6,6 +6,7 @@ import { AnimatedTimeline } from "../AnimatedTimeline";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { videoAPI } from "../../services/api";
+import { Link } from "react-router-dom";
 
 // Use public URL for assets
 import { getImage } from "../../utils/imageUtils";
@@ -313,12 +314,16 @@ export function HistoryPage() {
               more communities across Africa with life-saving diagnostic solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-                Join Our Mission
-              </Button>
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 font-semibold">
-                Learn About Our Technology
-              </Button>
+              <Link to="/careers">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+                  Join Our Mission
+                </Button>
+              </Link>
+              <Link to="/solutions">
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold">
+                  Learn About Our Technology
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>

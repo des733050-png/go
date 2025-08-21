@@ -201,7 +201,7 @@ export function AboutPage() {
                 </Button>
               </Link>
               <Link to="/about/meet-the-team">
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 font-semibold">
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold">
                   Meet Our Team
                 </Button>
               </Link>

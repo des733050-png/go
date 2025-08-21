@@ -6,6 +6,7 @@ import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { motion } from "framer-motion";
 import { teamAPI } from "../../services/api";
 import works from "../../assets/Works.jpg";
+import { Link } from "react-router-dom";
 
 interface TeamMember {
   id: number;
@@ -579,9 +580,11 @@ export function MeetTheTeamPage() {
                 </p>
               </div>
               
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-                Join Our Team
-              </Button>
+              <Link to="/careers">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+                  Join Our Team
+                </Button>
+              </Link>
             </motion.div>
 
             <motion.div 
@@ -619,12 +622,16 @@ export function MeetTheTeamPage() {
               or business leader, there's a place for you in our team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-                View Open Positions
-              </Button>
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 font-semibold">
-                Contact Our Team
-              </Button>
+              <Link to="/careers">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+                  View Open Positions
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold">
+                  Contact Our Team
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>

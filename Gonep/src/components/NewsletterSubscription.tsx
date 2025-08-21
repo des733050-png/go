@@ -140,8 +140,8 @@ export function NewsletterSubscription({ variant = "default", onClose, onSuccess
           {message && (
             <div className={`mt-4 p-3 rounded-lg text-sm ${
               status === "success" 
-                ? "bg-secondary/10 text-secondary-foreground border border-secondary/20" 
-                : "bg-destructive/10 text-destructive-foreground border border-destructive/20"
+                ? "bg-green-50 text-green-800 border border-green-200" 
+                : "bg-red-50 text-red-800 border border-red-200"
             }`}>
               {message}
             </div>
@@ -188,7 +188,7 @@ export function NewsletterSubscription({ variant = "default", onClose, onSuccess
           </Button>
         </form>
         {message && (
-          <p className={`mt-2 text-xs ${status === "success" ? "text-secondary" : "text-red-300"}`}>
+          <p className={`mt-2 text-xs ${status === "success" ? "text-green-600" : "text-red-600"}`}>
             {message}
           </p>
         )}
@@ -224,7 +224,7 @@ export function NewsletterSubscription({ variant = "default", onClose, onSuccess
         </Button>
       </form>
       {message && (
-        <p className={`mt-2 text-sm ${status === "success" ? "text-secondary" : "text-destructive"}`}>
+        <p className={`mt-2 text-sm ${status === "success" ? "text-green-600" : "text-red-600"}`}>
           {message}
         </p>
       )}

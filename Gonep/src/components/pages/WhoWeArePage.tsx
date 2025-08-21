@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { videoAPI } from "../../services/api";
 import WhoWeAre from "../../assets/Grantedcert.jpeg";
+import { Link } from "react-router-dom";
 
 export function WhoWeArePage() {
   const [videos, setVideos] = useState<any[]>([]);
@@ -384,12 +385,16 @@ export function WhoWeArePage() {
               investor, or partner, there's a place for you in our journey.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-                Partner With Us
-              </Button>
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 font-semibold">
-                Learn More About Our Impact
-              </Button>
+              <Link to="/contact">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+                  Partner With Us
+                </Button>
+              </Link>
+              <Link to="/about/history">
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold">
+                  Learn More About Our Impact
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>

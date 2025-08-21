@@ -2,8 +2,16 @@ import { Card, CardContent } from "../ui/card";
 import { Button } from "../ui/button";
 import { Building2, Heart, Users, Package, ArrowRight, Calculator, MapPin, FlaskConical, Settings, Target, Zap, Stethoscope, GraduationCap, HeadphonesIcon, BarChart3, Users2, MessageSquare } from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { Link } from "react-router-dom";
+import { ContactModal } from "../ContactModal";
+import { useState } from "react";
 
 export function SolutionsPage() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const handleContactOpen = () => {
+    setIsContactModalOpen(true);
+  };
 
   return (
     <div className="bg-background">
@@ -160,7 +168,10 @@ export function SolutionsPage() {
               <p className="text-lg text-muted-foreground">
                 To help you create impactful, affordable, and locally relevant healthcare innovations that address real-world problems.
               </p>
-              <Button className="mt-6 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+              <Button 
+                onClick={handleContactOpen}
+                className="mt-6 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+              >
                 <ArrowRight className="mr-2 h-4 w-4" />
                 Start Your R&D Project
               </Button>
@@ -198,9 +209,11 @@ export function SolutionsPage() {
               <p className="text-sm text-muted-foreground mb-6">
                 We understand that access to care begins with knowing where to go. Our Find Facility tool uses location data to help users locate the nearest public or private healthcare facility, view operating hours, services offered, and emergency options, and contact clinics directly or request directions via Google Map.
               </p>
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-                Find a facility Now
-              </Button>
+              <Link to="/support">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
+                  Find a facility Now
+                </Button>
+              </Link>
             </Card>
 
             <Card className="text-center p-8 hover:shadow-lg transition-shadow">
@@ -214,9 +227,11 @@ export function SolutionsPage() {
               <p className="text-sm text-muted-foreground mb-6">
                 Understanding your body is the first step toward a healthier life. Our BMI Calculator lets you enter height and weight to calculate Body Mass Index, instantly see if you're underweight, healthy, overweight, or obese, and receive basic insights on what your BMI means for your health.
               </p>
-              <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold">
-                Calculate Your BMI
-              </Button>
+              <Link to="/health-tools/bmi-calculator">
+                <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold">
+                  Calculate Your BMI
+                </Button>
+              </Link>
             </Card>
           </div>
         </div>
@@ -262,26 +277,17 @@ export function SolutionsPage() {
         </div>
       </section>
 
+      {/* Target Audience Section with Partnership Buttons */}
+      {/* This section is removed as per the edit hint */}
+
       {/* Call to Action */}
-      <section className="bg-accent text-primary-foreground section-padding">
-        <div className="container text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Transform Healthcare in Your Community?
-          </h2>
-          <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
-            Join the growing network of healthcare partners who are making a difference with GONEP's innovative solutions.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold px-8">
-              Schedule Consultation
-            </Button>
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8">
-              Download Solution Guide
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* This section is removed as per the edit hint */}
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </div>
   );
 }

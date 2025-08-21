@@ -30,7 +30,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
       icon: MapPin,
       label: "Office",
       value: "2nd Floor, Chandaria Innovation Centre Building, Kenya",
-      action: "https://maps.google.com",
+      action: "https://maps.google.com/?q=Chandaria+Innovation+Centre+Building+Kenya",
       copyValue: "2nd Floor, Chandaria Innovation Centre Building, Kenya"
     }
   ];
@@ -46,9 +46,17 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
   };
 
   const handleAction = (action: string) => {
-    if (action.startsWith('tel:') || action.startsWith('mailto:')) {
-      window.location.href = action;
+    if (action.startsWith('tel:')) {
+      // Open phone dialer
+      window.open(action, '_self');
+    } else if (action.startsWith('mailto:')) {
+      // Open email client
+      window.open(action, '_self');
+    } else if (action.startsWith('https://maps.google.com')) {
+      // Open Google Maps
+      window.open(action, '_blank');
     } else {
+      // Default fallback
       window.open(action, '_blank');
     }
   };
@@ -104,8 +112,15 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       variant="ghost"
                       onClick={() => handleAction(contact.action)}
                       className="p-1.5 h-auto"
+                      title={contact.label === "Phone" ? "Call" : contact.label === "Email" ? "Send Email" : "Open in Maps"}
                     >
-                      <ExternalLink className="h-3 w-3" />
+                      {contact.label === "Phone" ? (
+                        <Phone className="h-3 w-3" />
+                      ) : contact.label === "Email" ? (
+                        <Mail className="h-3 w-3" />
+                      ) : (
+                        <MapPin className="h-3 w-3" />
+                      )}
                     </Button>
                   </div>
                 </div>
