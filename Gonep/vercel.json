@@ -41,15 +41,8 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!google1279b00d495c9832\\.html).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/http:(.*)",
-      "destination": "/https:$1",
-      "permanent": true
     }
   ]
 }
