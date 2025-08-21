@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { videoAPI } from "../../services/api";
 import WhoWeAre from "../../assets/Grantedcert.jpeg";
 import { Link } from "react-router-dom";
+import { getVideoEmbedUrl, getSecureIframeAttributes } from "../../utils/iframeUtils";
 
 export function WhoWeArePage() {
   const [videos, setVideos] = useState<any[]>([]);
@@ -33,44 +34,9 @@ export function WhoWeArePage() {
     fetchVideos();
   }, []);
 
-  // Helper function to get video embed URL with autoplay
-  const getVideoEmbedUrl = (url: string) => {
-    // YouTube
-    if (url.includes('youtube.com/watch') || url.includes('youtu.be/')) {
-      const videoId = url.includes('youtu.be/') 
-        ? url.split('youtu.be/')[1]?.split('?')[0]
-        : url.split('v=')[1]?.split('&')[0];
-      return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}` : url;
-    }
-    // Vimeo
-    if (url.includes('vimeo.com/')) {
-      const videoId = url.split('vimeo.com/')[1]?.split('?')[0];
-      return videoId ? `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1&muted=1` : url;
-    }
-    // Dailymotion
-    if (url.includes('dailymotion.com/video/')) {
-      const videoId = url.split('dailymotion.com/video/')[1]?.split('?')[0];
-      return videoId ? `https://www.dailymotion.com/embed/video/${videoId}?autoplay=1&mute=1&loop=1` : url;
-    }
-    // Facebook
-    if (url.includes('facebook.com/') && url.includes('/videos/')) {
-      return url.replace('facebook.com', 'facebook.com/plugins/video.php') + '&autoplay=1&mute=1';
-    }
-    // Instagram
-    if (url.includes('instagram.com/p/') && url.includes('/')) {
-      const postId = url.split('instagram.com/p/')[1]?.split('/')[0];
-      return postId ? `https://www.instagram.com/p/${postId}/embed/` : url;
-    }
-    // TikTok
-    if (url.includes('tiktok.com/@') && url.includes('/video/')) {
-      return url.replace('tiktok.com', 'tiktok.com/embed');
-    }
-    // Direct video file
-    if (url.match(/\.(mp4|webm|ogg|mov|avi|mkv)$/i)) {
-      return url;
-    }
-    // For any other URL, return as is (will be handled by iframe)
-    return url;
+  // Helper function to get video embed URL with autoplay for this page
+  const getVideoEmbedUrlWithAutoplay = (url: string) => {
+    return getVideoEmbedUrl(url, true, true, true); // autoplay, muted, loop
   };
 
   const values = [
@@ -182,12 +148,8 @@ export function WhoWeArePage() {
               {videos.length > 0 ? (
                 <div className="relative w-full aspect-video rounded-2xl shadow-lg overflow-hidden">
                   <iframe
-                    src={getVideoEmbedUrl(videos[0].videoUrl)}
-                    title={videos[0].title}
-                    className="w-full h-full"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
+                    src={getVideoEmbedUrlWithAutoplay(videos[0].videoUrl)}
+                    {...getSecureIframeAttributes(videos[0].title)}
                   />
                 </div>
               ) : (
@@ -216,12 +178,8 @@ export function WhoWeArePage() {
               {videos.length > 1 ? (
                 <div className="relative w-full aspect-video rounded-2xl shadow-lg overflow-hidden">
                   <iframe
-                    src={getVideoEmbedUrl(videos[1].videoUrl)}
-                    title={videos[1].title}
-                    className="w-full h-full"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
+                    src={getVideoEmbedUrlWithAutoplay(videos[1].videoUrl)}
+                    {...getSecureIframeAttributes(videos[1].title)}
                   />
                 </div>
               ) : (
