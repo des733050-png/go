@@ -124,8 +124,8 @@ export function Footer() {
                   <div className="flex items-start space-x-3">
                     <MapPin className="h-5 w-5 flex-shrink-0 mt-1 text-white" />
                     <div className="text-white/90">
-                      <div className="font-medium">Chandaria Business Innovation Centre</div>
-                      <div>Nairobi, Kenya</div>
+                      <div className="font-medium">2nd Floor, Chandaria Innovation Centre Building</div>
+                      <div>Kenya</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">

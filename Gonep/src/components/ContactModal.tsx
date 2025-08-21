@@ -15,9 +15,9 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
     {
       icon: Phone,
       label: "Phone",
-      value: "+254 700 123 456",
-      action: "tel:+254700123456",
-      copyValue: "+254700123456"
+      value: "+254 707 231 654",
+      action: "tel:+254707231654",
+      copyValue: "+254707231654"
     },
     {
       icon: Mail,
@@ -29,9 +29,9 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
     {
       icon: MapPin,
       label: "Office",
-      value: "Innovation Plaza, Nairobi",
+      value: "2nd Floor, Chandaria Innovation Centre Building, Kenya",
       action: "https://maps.google.com",
-      copyValue: "Innovation Plaza, Nairobi, Kenya"
+      copyValue: "2nd Floor, Chandaria Innovation Centre Building, Kenya"
     }
   ];
 
@@ -138,7 +138,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
           {/* Quick Actions */}
           <div className="grid grid-cols-2 gap-2">
             <Button
-              onClick={() => handleAction('tel:+254700123456')}
+              onClick={() => handleAction('tel:+254707231654')}
               size="sm"
               className="bg-primary hover:bg-primary/90 text-primary-foreground"
             >

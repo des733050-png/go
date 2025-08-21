@@ -596,7 +596,7 @@ export function CareersPage() {
               </Button>
             </div>
             <div className="text-sm text-muted-foreground mt-4">
-              <p><strong>Headquarters:</strong> Chandaria Business Innovation Centre, Nairobi, Kenya</p>
+              <p><strong>Headquarters:</strong> 2nd Floor, Chandaria Innovation Centre Building, Kenya</p>
               <p><strong>Remote-Friendly:</strong> Tech and operations roles may be hybrid</p>
               <p><strong>Field-Based:</strong> Clinical and piloting work across Kenya</p>
             </div>

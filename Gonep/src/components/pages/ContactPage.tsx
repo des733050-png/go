@@ -27,7 +27,7 @@ export function ContactPage() {
     {
       icon: MapPin,
       title: "Visit Our Office",
-      description: "Chandaria Business Innovation Centre, Nairobi, Kenya",
+      description: "2nd Floor, Chandaria Innovation Centre Building, Kenya",
       contact: "Schedule a visit",
       hours: "Mon-Fri: 8:00 AM - 6:00 PM",
       color: "accent"
@@ -98,11 +98,11 @@ export function ContactPage() {
                   </p>
                   <div className="space-y-3">
                     <Button 
-                      onClick={() => window.location.href = 'tel:+254700123456'}
+                      onClick={() => window.location.href = 'tel:+254707231654'}
                       className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                     >
                       <Phone className="mr-2 h-4 w-4" />
-                      Call Us: +254 700 123 456
+                      Call Us: +254 707 231 654
                     </Button>
                     <Button 
                       onClick={() => window.location.href = 'mailto:info@gonepharm.com'}
@@ -197,8 +197,8 @@ export function ContactPage() {
                       <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                       <div>
                         <p className="font-medium text-foreground">GONEP Pharmaceuticals HQ</p>
-                        <p className="text-muted-foreground">Chandaria Business Innovation Centre</p>
-                        <p className="text-muted-foreground">Nairobi, Kenya</p>
+                        <p className="text-muted-foreground">2nd Floor, Chandaria Innovation Centre Building</p>
+                        <p className="text-muted-foreground">Kenya</p>
                       </div>
                     </div>
                     

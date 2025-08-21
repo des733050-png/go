@@ -129,7 +129,7 @@ export function SupportPage() {
                 <p className="text-muted-foreground mb-4">
                   24/7 technical support for urgent issues
                 </p>
-                <p className="font-semibold text-primary">+254 700 123 456</p>
+                <p className="font-semibold text-primary">+254 707 231 654</p>
               </CardContent>
             </Card>
 
