@@ -2,6 +2,8 @@
 
 A modern, responsive React website for the GONEP healthcare platform built with Vite, TypeScript, and Tailwind CSS.
 
+<!-- DEPLOYMENT TRIGGER: Force gonepharm deployment with latest security fixes -->
+
 ## 🚀 Quick Start
 
 ```bash
