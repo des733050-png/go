@@ -1,7 +1,7 @@
 import { Button } from "./ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Menu, X, ChevronDown, Calculator, Apple, Phone, Mail, Sun, Moon } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { DemoRequestModal } from "./DemoRequestModal";
 import { ContactModal } from "./ContactModal";
@@ -16,8 +16,49 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isNearFooter, setIsNearFooter] = useState(false);
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
+
+  // Scroll detection for footer area
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const footerThreshold = documentHeight - 400; // 400px before footer
+      
+      setIsNearFooter(scrollPosition > footerThreshold);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Prevent body scroll when mobile menu is open and handle keyboard events
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      
+      // Handle escape key to close mobile menu
+      const handleEscape = (event: KeyboardEvent) => {
+        if (event.key === 'Escape') {
+          setMobileMenuOpen(false);
+        }
+      };
+      
+      document.addEventListener('keydown', handleEscape);
+      return () => {
+        document.removeEventListener('keydown', handleEscape);
+        document.body.style.overflow = 'unset';
+      };
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
 
   const navigationItems = [
     { id: 'product', label: 'Clinic at Hand', path: '/clinic-at-hand' },
@@ -88,7 +129,11 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-lg">
+      <header className={`sticky top-0 z-50 backdrop-blur-md border-b border-border shadow-lg transition-all duration-300 ${
+        isNearFooter 
+          ? 'bg-white/95 text-gray-900' 
+          : 'bg-background/95'
+      }`}>
         <div className="container max-w-full px-4 lg:px-8">
           <div className="flex justify-between items-center py-4 gap-4">
             {/* Left: Logo */}
@@ -108,7 +153,9 @@ export function Header() {
                 className={`text-sm xl:text-base font-medium transition-all duration-300 hover:text-primary relative px-1 xl:px-2 py-1 whitespace-nowrap ${
                   isActivePath('/') 
                     ? 'text-primary' 
-                    : 'text-foreground hover:scale-105'
+                    : isNearFooter 
+                      ? 'text-gray-900 hover:text-primary' 
+                      : 'text-foreground hover:scale-105'
                 }`}
               >
                 Home
@@ -122,7 +169,9 @@ export function Header() {
                 <button className={`text-sm xl:text-base font-medium transition-all duration-300 hover:text-primary relative px-1 xl:px-2 py-1 flex items-center space-x-1 whitespace-nowrap ${
                   isAboutActive() 
                     ? 'text-primary' 
-                    : 'text-foreground hover:scale-105'
+                    : isNearFooter 
+                      ? 'text-gray-900 hover:text-primary' 
+                      : 'text-foreground hover:scale-105'
                 }`}>
                   <span>About</span>
                   <ChevronDown className="h-3 w-3 xl:h-4 xl:w-4 group-hover:rotate-180 transition-transform duration-300" />
@@ -156,7 +205,9 @@ export function Header() {
                   className={`text-sm xl:text-base font-medium transition-all duration-300 hover:text-primary relative px-1 xl:px-2 py-1 whitespace-nowrap ${
                     isActivePath(item.path) 
                       ? 'text-primary' 
-                      : 'text-foreground hover:scale-105'
+                      : isNearFooter 
+                        ? 'text-gray-900 hover:text-primary' 
+                        : 'text-foreground hover:scale-105'
                   }`}
                 >
                   {item.label}
@@ -171,7 +222,9 @@ export function Header() {
                 <button className={`text-sm xl:text-base font-medium transition-all duration-300 hover:text-primary relative px-1 xl:px-2 py-1 flex items-center space-x-1 whitespace-nowrap ${
                   isHealthToolsActive() 
                     ? 'text-primary' 
-                    : 'text-foreground hover:scale-105'
+                    : isNearFooter 
+                      ? 'text-gray-900 hover:text-primary' 
+                      : 'text-foreground hover:scale-105'
                 }`}>
                   <span>Health Tools</span>
                   <ChevronDown className="h-3 w-3 xl:h-4 xl:w-4 group-hover:rotate-180 transition-transform duration-300" />
@@ -206,7 +259,9 @@ export function Header() {
                 className={`text-sm xl:text-base font-medium transition-all duration-300 hover:text-primary relative px-1 xl:px-2 py-1 whitespace-nowrap ${
                   isActivePath('/careers') 
                     ? 'text-primary' 
-                    : 'text-foreground hover:scale-105'
+                    : isNearFooter 
+                      ? 'text-gray-900 hover:text-primary' 
+                      : 'text-foreground hover:scale-105'
                 }`}
               >
                 Careers
@@ -226,9 +281,9 @@ export function Header() {
                 className="h-9 w-9 p-0 hover:bg-muted/50"
               >
                 {theme === "dark" ? (
-                  <Sun className="h-4 w-4 text-foreground" />
+                  <Sun className={`h-4 w-4 ${isNearFooter ? 'text-gray-900' : 'text-foreground'}`} />
                 ) : (
-                  <Moon className="h-4 w-4 text-foreground" />
+                  <Moon className={`h-4 w-4 ${isNearFooter ? 'text-gray-900' : 'text-foreground'}`} />
                 )}
               </Button>
 
@@ -253,118 +308,161 @@ export function Header() {
 
               {/* Mobile Menu Button - Only show on smaller screens */}
               <button
-                className="lg:hidden p-2 hover:bg-muted/50 rounded-lg transition-colors"
+                className="lg:hidden p-2 hover:bg-muted/50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={mobileMenuOpen}
               >
-                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {mobileMenuOpen ? (
+                  <X className={`h-6 w-6 ${isNearFooter ? 'text-gray-900' : 'text-foreground'}`} />
+                ) : (
+                  <Menu className={`h-6 w-6 ${isNearFooter ? 'text-gray-900' : 'text-foreground'}`} />
+                )}
               </button>
             </div>
           </div>
+        </div>
+      </header>
 
-          {/* Mobile Navigation */}
-          {mobileMenuOpen && (
-            <div className="lg:hidden py-4 border-t border-border bg-background/98 backdrop-blur-sm">
-              <nav className="flex flex-col space-y-4">
-                {/* Home Link */}
-                <Link
-                  to="/"
+      {/* Mobile Navigation Overlay */}
+      {mobileMenuOpen && (
+        <>
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          
+          {/* Mobile Sidebar */}
+          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-background border-l border-border shadow-2xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out">
+            <div className="flex flex-col h-full">
+              {/* Header */}
+              <div className="flex items-center justify-between p-6 border-b border-border">
+                <div className="flex items-center space-x-3">
+                  <img 
+                    src={gonepLogo} 
+                    alt="GONEP Logo" 
+                    className="h-8 w-auto"
+                  />
+                  <span className="text-lg font-semibold text-foreground">Menu</span>
+                </div>
+                <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`text-left text-base font-medium transition-colors px-4 py-2 rounded-lg ${
-                    isActivePath('/') 
-                      ? 'text-primary bg-primary/10' 
-                      : 'text-foreground hover:text-primary hover:bg-muted/50'
-                  }`}
+                  className="p-2 hover:bg-muted/50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  aria-label="Close menu"
                 >
-                  Home
-                </Link>
-                
-                {/* Mobile About */}
-                <div className="px-4">
-                  <div className="text-sm font-medium text-muted-foreground mb-2">About</div>
-                  {aboutItems.map((item) => (
+                  <X className="h-5 w-5 text-foreground" />
+                </button>
+              </div>
+
+              {/* Navigation Content */}
+              <div className="flex-1 overflow-y-auto py-6">
+                <nav className="flex flex-col space-y-2 px-4">
+                  {/* Home Link */}
+                  <Link
+                    to="/"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
+                      isActivePath('/') 
+                        ? 'text-primary bg-primary/10 border border-primary/20' 
+                        : 'text-foreground hover:text-primary hover:bg-muted/50'
+                    }`}
+                  >
+                    Home
+                  </Link>
+                  
+                  {/* About Section */}
+                  <div className="space-y-2">
+                    <div className="px-4 py-2 text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+                      About
+                    </div>
+                    {aboutItems.map((item) => (
+                      <Link
+                        key={item.id}
+                        to={item.path}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block px-4 py-3 rounded-lg hover:bg-muted/50 transition-all duration-200"
+                      >
+                        <div className="text-foreground font-medium">{item.label}</div>
+                        <div className="text-sm text-muted-foreground mt-1">{item.description}</div>
+                      </Link>
+                    ))}
+                  </div>
+
+                  {/* Main Navigation Items */}
+                  {navigationItems.map((item) => (
                     <Link
                       key={item.id}
                       to={item.path}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="block px-4 py-2 rounded-lg hover:bg-primary/10 w-full text-left"
+                      className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
+                        isActivePath(item.path) 
+                          ? 'text-primary bg-primary/10 border border-primary/20' 
+                          : 'text-foreground hover:text-primary hover:bg-muted/50'
+                      }`}
                     >
-                      <div className="text-foreground font-medium">{item.label}</div>
-                      <div className="text-sm text-muted-foreground">{item.description}</div>
+                      {item.label}
                     </Link>
                   ))}
-                </div>
+                  
+                  {/* Health Tools Section */}
+                  <div className="space-y-2">
+                    <div className="px-4 py-2 text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+                      Health Tools
+                    </div>
+                    {healthToolsItems.map((tool) => {
+                      const IconComponent = tool.icon;
+                      return (
+                        <Link
+                          key={tool.id}
+                          to={tool.path}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-muted/50 transition-all duration-200"
+                        >
+                          <IconComponent className="h-5 w-5 text-primary flex-shrink-0" />
+                          <span className="text-foreground font-medium">{tool.label}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
 
-                {/* Other Navigation Items */}
-                {navigationItems.map((item) => (
+                  {/* Careers Link */}
                   <Link
-                    key={item.id}
-                    to={item.path}
+                    to="/careers"
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`text-left text-base font-medium transition-colors px-4 py-2 rounded-lg ${
-                      isActivePath(item.path) 
-                        ? 'text-primary bg-primary/10' 
+                    className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
+                      isActivePath('/careers') 
+                        ? 'text-primary bg-primary/10 border border-primary/20' 
                         : 'text-foreground hover:text-primary hover:bg-muted/50'
                     }`}
                   >
-                    {item.label}
+                    Careers
                   </Link>
-                ))}
-                
-                {/* Mobile Health Tools */}
-                <div className="px-4">
-                  <div className="text-sm font-medium text-muted-foreground mb-2">Health Tools</div>
-                  {healthToolsItems.map((tool) => {
-                    const IconComponent = tool.icon;
-                    return (
-                      <Link
-                        key={tool.id}
-                        to={tool.path}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-primary/10 w-full text-left"
-                      >
-                        <IconComponent className="h-4 w-4 text-primary" />
-                        <span className="text-foreground">{tool.label}</span>
-                      </Link>
-                    );
-                  })}
-                </div>
+                </nav>
+              </div>
 
-                {/* Mobile Careers Link */}
-                <Link
-                  to="/careers"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`text-left text-base font-medium transition-colors px-4 py-2 rounded-lg ${
-                    isActivePath('/careers') 
-                      ? 'text-primary bg-primary/10' 
-                      : 'text-foreground hover:text-primary hover:bg-muted/50'
-                  }`}
+              {/* Action Buttons */}
+              <div className="p-4 border-t border-border space-y-3">
+                <Button 
+                  variant="outline" 
+                  onClick={handleDemoClick}
+                  className="w-full text-primary border-2 border-primary hover:bg-primary hover:text-white font-semibold transition-all duration-200"
                 >
-                  Careers
-                </Link>
-
-                {/* Mobile Action Buttons */}
-                <div className="flex flex-col space-y-3 pt-4 border-t border-border px-4">
-                  <Button 
-                    variant="outline" 
-                    onClick={handleDemoClick}
-                    className="text-primary border-2 border-primary hover:bg-primary hover:text-white font-semibold w-full"
-                  >
-                    <Phone className="mr-2 h-4 w-4" />
-                    Request Demo
-                  </Button>
-                  <Button 
-                    onClick={handleContactClick}
-                    className="bg-secondary hover:bg-secondary/90 text-black font-semibold w-full"
-                  >
-                    <Mail className="mr-2 h-4 w-4" />
-                    Contact Us
-                  </Button>
-                </div>
-              </nav>
+                  <Phone className="mr-2 h-4 w-4" />
+                  Request Demo
+                </Button>
+                <Button 
+                  onClick={handleContactClick}
+                  className="w-full bg-secondary hover:bg-secondary/90 text-black font-semibold transition-all duration-200"
+                >
+                  <Mail className="mr-2 h-4 w-4" />
+                  Contact Us
+                </Button>
+              </div>
             </div>
-          )}
-        </div>
-      </header>
+          </div>
+        </>
+      )}
 
       {/* Modals */}
       <DemoRequestModal 
