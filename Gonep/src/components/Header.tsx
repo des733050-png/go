@@ -329,12 +329,12 @@ export function Header() {
         <>
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+            className="fixed inset-0 mobile-sidebar-backdrop z-40 lg:hidden"
             onClick={() => setMobileMenuOpen(false)}
           />
           
           {/* Mobile Sidebar */}
-          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-background border-l border-border shadow-2xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out">
+          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] mobile-sidebar shadow-2xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out">
             <div className="flex flex-col h-full">
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-border">
@@ -362,9 +362,9 @@ export function Header() {
                   <Link
                     to="/"
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
+                    className={`mobile-sidebar-item flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
                       isActivePath('/') 
-                        ? 'text-primary bg-primary/10 border border-primary/20' 
+                        ? 'text-primary bg-primary/10 border border-primary/20 active' 
                         : 'text-foreground hover:text-primary hover:bg-muted/50'
                     }`}
                   >
@@ -381,7 +381,7 @@ export function Header() {
                         key={item.id}
                         to={item.path}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-4 py-3 rounded-lg hover:bg-muted/50 transition-all duration-200"
+                        className="mobile-sidebar-item block px-4 py-3 rounded-lg hover:bg-muted/50 transition-all duration-200"
                       >
                         <div className="text-foreground font-medium">{item.label}</div>
                         <div className="text-sm text-muted-foreground mt-1">{item.description}</div>
@@ -395,9 +395,9 @@ export function Header() {
                       key={item.id}
                       to={item.path}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
+                      className={`mobile-sidebar-item flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
                         isActivePath(item.path) 
-                          ? 'text-primary bg-primary/10 border border-primary/20' 
+                          ? 'text-primary bg-primary/10 border border-primary/20 active' 
                           : 'text-foreground hover:text-primary hover:bg-muted/50'
                       }`}
                     >
@@ -417,7 +417,7 @@ export function Header() {
                           key={tool.id}
                           to={tool.path}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-muted/50 transition-all duration-200"
+                          className="mobile-sidebar-item flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-muted/50 transition-all duration-200"
                         >
                           <IconComponent className="h-5 w-5 text-primary flex-shrink-0" />
                           <span className="text-foreground font-medium">{tool.label}</span>
@@ -430,9 +430,9 @@ export function Header() {
                   <Link
                     to="/careers"
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
+                    className={`mobile-sidebar-item flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
                       isActivePath('/careers') 
-                        ? 'text-primary bg-primary/10 border border-primary/20' 
+                        ? 'text-primary bg-primary/10 border border-primary/20 active' 
                         : 'text-foreground hover:text-primary hover:bg-muted/50'
                     }`}
                   >

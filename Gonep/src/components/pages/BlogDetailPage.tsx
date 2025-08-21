@@ -1,22 +1,28 @@
-import { useParams, Link } from "react-router-dom";
-import { Button } from "../ui/button";
-import { Badge } from "../ui/badge";
-import { Card, CardContent } from "../ui/card";
+import React, { useState, useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { 
+  ArrowLeft, 
   Calendar, 
-  User, 
   Clock, 
+  User, 
   Eye, 
   MessageCircle, 
-  ArrowLeft, 
   Share2, 
-  Bookmark,
-  Facebook,
-  Twitter,
+  Facebook, 
+  Twitter, 
   Linkedin,
+  BookOpen,
+  Tag,
+  ExternalLink,
+  Bookmark,
   Mail
-} from "lucide-react";
-import { useState, useEffect } from "react";
+} from 'lucide-react';
+import { Button } from '../ui/button';
+import { Badge } from '../ui/badge';
+import { Card, CardContent } from '../ui/card';
+import { Separator } from '../ui/separator';
+import { sanitizeHTML } from '../../utils/sanitizeHTML';
 
 export function BlogDetailPage() {
   const { blogId } = useParams();
@@ -439,7 +445,7 @@ export function BlogDetailPage() {
             {/* Main Content */}
             <article className="prose prose-lg max-w-none lg:col-span-3">
               <div 
-                dangerouslySetInnerHTML={{ __html: currentPost.content }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHTML(currentPost.content) }}
                 className="text-foreground leading-relaxed"
               />
             </article>
