@@ -224,7 +224,7 @@ export function HistoryPage() {
       </section>
 
       {/* Enhanced Animated Milestones & Recognition */}
-      <section className="section-padding bg-muted/30">
+      {/* <section className="section-padding bg-muted/30">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -248,7 +248,7 @@ export function HistoryPage() {
 
           <AnimatedTimeline items={milestones} />
         </div>
-      </section>
+      </section> */}
 
       {/* Impact Statistics */}
       <section className="section-padding">
