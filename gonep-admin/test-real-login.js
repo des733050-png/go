@@ -7,7 +7,7 @@
 
 const https = require('https');
 
-const BACKEND_URL = 'https://gonepbackend.vercel.app';
+const BACKEND_URL = 'http://localhost:8000';
 
 async function testRealLogin(email, password) {
   return new Promise((resolve) => {

@@ -95,8 +95,7 @@ jspm_packages/
 tmp/
 temp/
 
-# Vercel
-.vercel
+
 
 # Netlify
 .netlify

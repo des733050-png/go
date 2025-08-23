@@ -106,8 +106,7 @@ ehthumbs.db
 uploads/
 public/uploads/
 
-# Vercel
-.vercel
+
 
 # Netlify
 .netlify

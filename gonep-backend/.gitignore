@@ -113,11 +113,7 @@ public/uploads/
 test-*.js
 test-*.ts
 
-# Railway specific
-.railway/
 
-# Vercel
-.vercel
 
 # Netlify
 .netlify
