@@ -1,0 +1,1 @@
+{"version":3,"file":"newsletter.d.ts","sourceRoot":"","sources":["../../../src/controllers/newsletter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,QAAQ,EAAE,MAAM,SAAS,CAAC;AAM5C,qBAAa,oBAAoB;IAE/B,MAAM,CAAC,SAAS,8EA+Bb;IAGH,MAAM,CAAC,WAAW,8EA6Bf;IAGH,MAAM,CAAC,cAAc,8EAqBlB;IAGH,MAAM,CAAC,gBAAgB,8EAgDpB;IAGH,MAAM,CAAC,gBAAgB,8EAiCpB;CACJ"}

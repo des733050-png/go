@@ -1,0 +1,28 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const blog_1 = require("../controllers/blog");
+const auth_1 = require("../middleware/auth");
+const router = (0, express_1.Router)();
+router.get('/posts', auth_1.optionalAuth, blog_1.BlogController.getPosts);
+router.get('/posts/:slug', auth_1.optionalAuth, blog_1.BlogController.getPostBySlug);
+router.get('/categories', blog_1.BlogController.getCategories);
+router.get('/categories/admin', auth_1.authenticateToken, blog_1.BlogController.getCategoriesForAdmin);
+router.post('/categories', auth_1.authenticateToken, blog_1.BlogController.createCategory);
+router.put('/categories/:id', auth_1.authenticateToken, blog_1.BlogController.updateCategory);
+router.delete('/categories/:id', auth_1.authenticateToken, blog_1.BlogController.deleteCategory);
+router.get('/authors', blog_1.BlogController.getAuthors);
+router.post('/authors', auth_1.authenticateToken, blog_1.BlogController.createAuthor);
+router.put('/authors/:id', auth_1.authenticateToken, blog_1.BlogController.updateAuthor);
+router.delete('/authors/:id', auth_1.authenticateToken, blog_1.BlogController.deleteAuthor);
+router.get('/featured', blog_1.BlogController.getFeaturedPosts);
+router.post('/posts/:id/view', blog_1.BlogController.incrementViewCount);
+router.get('/posts/:id/comments', blog_1.BlogController.getComments);
+router.post('/posts/:id/comments', auth_1.optionalAuth, blog_1.BlogController.addComment);
+router.post('/posts', auth_1.authenticateToken, blog_1.BlogController.createPost);
+router.put('/posts/:id', auth_1.authenticateToken, blog_1.BlogController.updatePost);
+router.delete('/posts/:id', auth_1.authenticateToken, blog_1.BlogController.deletePost);
+router.put('/comments/:id/approve', auth_1.authenticateToken, auth_1.requireModerator, blog_1.BlogController.approveComment);
+router.delete('/comments/:id', auth_1.authenticateToken, auth_1.requireModerator, blog_1.BlogController.deleteComment);
+exports.default = router;
+//# sourceMappingURL=blog.js.map

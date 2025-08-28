@@ -1,0 +1,32 @@
+export declare const config: {
+    NODE_ENV: string;
+    PORT: number;
+    JWT_SECRET: string;
+    JWT_EXPIRES_IN: string;
+    DATABASE_URL: string;
+    DB_HOST: string;
+    DB_PORT: number;
+    DB_USERNAME: string;
+    DB_PASSWORD: string;
+    DB_NAME: string;
+    SMTP_HOST: string;
+    SMTP_PORT: number;
+    SMTP_USER: string;
+    SMTP_PASS: string;
+    SMTP_FROM: string;
+    EMAIL_FROM: string;
+    UPLOAD_PATH: string;
+    MAX_FILE_SIZE: number;
+    ALLOWED_FILE_TYPES: string[];
+    RATE_LIMIT_MAX: number;
+    CLOUDINARY_CLOUD_NAME: string;
+    CLOUDINARY_API_KEY: string;
+    CLOUDINARY_API_SECRET: string;
+    FRONTEND_URL: string;
+    ADMIN_URL: string;
+    CORS_ORIGIN: string;
+    API_BASE_URL: string;
+    REFRESH_TOKEN_SECRET: string;
+    REFRESH_TOKEN_EXPIRES_IN: string;
+};
+//# sourceMappingURL=index.d.ts.map
