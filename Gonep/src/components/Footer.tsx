@@ -31,8 +31,8 @@ export function Footer() {
     { label: "Blogs", path: "/blogs" },
     { label: "Contact", path: "/contact" },
     { label: "Careers", path: "/careers" },
+    { label: "Support", path: "/support", isNew: true },
     { label: "Media", path: "/media", comingSoon: true },
-    { label: "Support", path: "/support", comingSoon: true },
   ];
 
   const services = [
@@ -65,17 +65,16 @@ export function Footer() {
                 <div className="flex items-center space-x-3 mb-2">
                   <img 
                     src={logoWithoutTagline} 
-                    alt="GONEP Pharmaceuticals Logo" 
+                    alt="GONEP Healthcare Logo" 
                     className="h-12 w-auto"
                   />
                   <div>
                     <div className="text-3xl font-bold text-white">GONEP</div>
-                    <div className="text-white font-medium">Pharmaceuticals</div>
+                    <div className="text-white font-medium">Healthcare</div>
                   </div>
                 </div>
                 <p className="mt-4 leading-relaxed text-white/90">
-                  Transforming African healthcare through innovative diagnostic solutions. 
-                  Bringing quality healthcare to every community across the continent.
+                  <strong>Transforming African healthcare</strong> through affordable, portable diagnostic solutions. <strong>Clinic at Hand</strong> brings lab-grade testing to rural communities - <strong>50,000+ patients served</strong> across <strong>12 African countries</strong>. <strong>Winner of Presidential Innovation Award</strong>.
                 </p>
               </div>
               
@@ -108,6 +107,7 @@ export function Footer() {
               </div>
             </div>
 
+
             {/* Quick Links */}
             <div>
               <h4 className="text-lg font-semibold mb-6 text-white">Quick Links</h4>
@@ -124,6 +124,11 @@ export function Footer() {
                     {link.comingSoon && (
                       <span className="text-xs bg-green-500 text-white px-2 py-1 rounded-full font-medium animate-pulse">
                         Coming Soon
+                      </span>
+                    )}
+                    {link.isNew && (
+                      <span className="text-xs bg-gradient-to-r from-primary to-secondary text-white px-2 py-1 rounded-full font-bold animate-pulse">
+                        🎉 NEW!!
                       </span>
                     )}
                   </li>
@@ -226,16 +231,35 @@ export function Footer() {
               Developed with ❤️ by <span className="font-medium">GONEP Development Team</span>
             </div>
             
-            <div className="flex space-x-6 text-sm">
-              <button className="text-white/90 hover:text-white transition-colors">
+            <div className="flex flex-wrap gap-4 text-sm">
+              <Link 
+                to="/privacy-policy"
+                onClick={() => handleLinkClick("/privacy-policy")}
+                className="text-white/90 hover:text-white transition-colors"
+              >
                 Privacy Policy
-              </button>
-              <button className="text-white/90 hover:text-white transition-colors">
+              </Link>
+              <Link 
+                to="/terms-of-service"
+                onClick={() => handleLinkClick("/terms-of-service")}
+                className="text-white/90 hover:text-white transition-colors"
+              >
                 Terms of Service
-              </button>
-              <button className="text-white/90 hover:text-white transition-colors">
+              </Link>
+              <Link 
+                to="/cookie-policy"
+                onClick={() => handleLinkClick("/cookie-policy")}
+                className="text-white/90 hover:text-white transition-colors"
+              >
                 Cookie Policy
-              </button>
+              </Link>
+              <Link 
+                to="/sitemap"
+                onClick={() => handleLinkClick("/sitemap")}
+                className="text-white/90 hover:text-white transition-colors"
+              >
+                Sitemap
+              </Link>
             </div>
           </div>
         </div>

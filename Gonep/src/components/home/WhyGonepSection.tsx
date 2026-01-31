@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 import gonepCheque from "../../assets/gonepcheque.jpeg";
 
 const benefits = [
-  "Groundbreaking innovation closing Africa's diagnostic gap",
-  "Designed for underserved communities",
-  "Portable, all-in-one diagnostic solution for remote areas",
-  "Immediate 15-minute results with clinical-grade accuracy",
-  "Low maintenance, durable design for harsh environments"
+  "<strong>Award-Winning Innovation</strong> - Presidential Innovation Award winner",
+  "<strong>Affordable for Africa</strong> - designed for resource-limited healthcare",
+  "<strong>Portable 3-in-1 Solution</strong> - blood, urine, vitals in one device",
+  "<strong>15-Minute Lab Results</strong> - 95% accuracy offline, no internet needed",
+  "<strong>50,000+ Patients Served</strong> - proven impact across 12 African countries"
 ];
 
 export function WhyGonepSection() {
@@ -25,11 +25,10 @@ export function WhyGonepSection() {
             className="space-y-6"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Why Gonep?
+              Why Choose <span className="text-primary">GONEP Healthcare</span>?
             </h2>
             <p className="text-lg text-muted-foreground">
-              Our innovative approach combines cutting-edge technology with deep understanding 
-              of African healthcare challenges to deliver practical, impactful solutions.
+              <strong>GONEP Clinic at Hand</strong> is the affordable, proven solution transforming healthcare across Africa. Trusted by 50,000+ patients and recognized with the Presidential Innovation Award, it's designed specifically for African healthcare realities.
             </p>
             
             <ul className="space-y-4 mb-8">
@@ -43,7 +42,7 @@ export function WhyGonepSection() {
                   className="flex items-start space-x-3"
                 >
                   <CheckCircle className="h-6 w-6 text-secondary flex-shrink-0 mt-1" />
-                  <span className="text-foreground">{benefit}</span>
+                  <span className="text-foreground" dangerouslySetInnerHTML={{ __html: benefit }}></span>
                 </motion.li>
               ))}
             </ul>

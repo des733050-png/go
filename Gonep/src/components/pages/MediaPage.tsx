@@ -5,6 +5,7 @@ import { FileText, Video, Image as ImageIcon, Download, ExternalLink, Sparkles, 
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { NewsletterSubscription } from "../NewsletterSubscription";
+import { SEOHead } from "../SEOHead";
 
 export function MediaPage() {
   const [isNewsletterPopupOpen, setIsNewsletterPopupOpen] = useState(false);
@@ -12,8 +13,22 @@ export function MediaPage() {
   const handleNewsletterOpen = () => {
     setIsNewsletterPopupOpen(true);
   };
+  const seoData = {
+    title: "Media & Resources - GONEP Healthcare Press Kit & Downloads",
+    description: "Access GONEP Healthcare media resources, press releases, product images, videos, and downloadable materials. Find everything you need for media coverage and partnerships.",
+    keywords: [
+      "GONEP Healthcare media",
+      "healthcare press kit",
+      "medical device resources",
+      "healthcare technology media",
+      "GONEP downloads"
+    ],
+    canonical: "/media"
+  };
+
   return (
     <div className="bg-background min-h-screen">
+      <SEOHead seo={seoData} />
       {/* Hero Section with Animations */}
       <section className="bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 section-padding relative overflow-hidden">
         {/* Animated Background Elements */}

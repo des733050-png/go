@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { videoAPI } from "../../services/api";
 import { Link } from "react-router-dom";
+import { SEOHead } from "../SEOHead";
 
 // Use public URL for assets
 import { getImage } from "../../utils/imageUtils";
@@ -126,8 +127,22 @@ export function HistoryPage() {
     }
   ];
 
+  const seoData = {
+    title: "GONEP Healthcare History - Our Journey & Milestones",
+    description: "Explore GONEP Healthcare's journey from 2022 to today. Learn about our founding story, key milestones, clinical trials, regulatory approvals, and impact across 12 African countries serving 50,000+ patients.",
+    keywords: [
+      "GONEP Healthcare history",
+      "healthcare startup story",
+      "African healthcare innovation",
+      "medical device company history",
+      "healthcare technology milestones"
+    ],
+    canonical: "/about/history"
+  };
+
   return (
     <div className="bg-background">
+      <SEOHead seo={seoData} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/5 to-secondary/5 section-padding">
         <div className="container">
@@ -211,8 +226,11 @@ export function HistoryPage() {
                     ) : (
                       <ImageWithFallback
                         src={story.image}
-                        alt={story.title}
+                        alt={`${story.title} - GONEP Healthcare history and milestones`}
                         className="w-full h-auto rounded-2xl shadow-lg"
+                        loading="lazy"
+                        width="600"
+                        height="400"
                       />
                     )}
                   </div>

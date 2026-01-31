@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { DemoRequestModal } from "../DemoRequestModal";
 import { NewsletterSubscription } from "../NewsletterSubscription";
+import { SEOHead } from "../SEOHead";
 import {
   HeroSection,
   StatisticsSection,
@@ -39,8 +40,30 @@ export function HomePage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [hasShownNewsletter]);
 
+  const seoData = {
+    title: "GONEP Healthcare - Portable Diagnostic Device & Point of Care Testing Solutions",
+    description: "Africa's first transformative healthcare solution. GONEP's Clinic at Hand is a 3-in-1 portable diagnostic device delivering blood tests, urine analysis, and vital signs monitoring in 15 minutes. IoT healthcare solutions for rural communities across Africa.",
+    keywords: [
+      "portable diagnostic device",
+      "point of care testing device",
+      "rural healthcare solutions",
+      "IoT healthcare device",
+      "portable medical diagnostics",
+      "Africa healthcare technology",
+      "Clinic at Hand",
+      "portable blood test device",
+      "mobile health device",
+      "point of care diagnostics",
+      "healthcare IoT solutions",
+      "medical device Kenya",
+      "African healthcare innovation"
+    ],
+    canonical: "/"
+  };
+
   return (
     <div className="bg-background">
+      <SEOHead seo={seoData} />
       <HeroSection onDemoRequest={handleDemoRequest} />
       <StatisticsSection />
       <IoTFeaturesSection />

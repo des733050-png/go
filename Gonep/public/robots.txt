@@ -2,24 +2,28 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://gonepharm-pearl.vercel.app/sitemap.xml
+Sitemap: https://gonepharm.com//sitemap.xml
 
-# Crawl-delay
-Crawl-delay: 1
+# Crawl-delay (optional, remove if not needed)
+# Crawl-delay: 1
 
-# Disallow admin areas
+# Disallow admin areas and API endpoints
 Disallow: /admin/
 Disallow: /api/
 Disallow: /_next/
 Disallow: /static/
 
-# Allow important pages
+# Allow all public pages
 Allow: /
-Allow: /about
-Allow: /products
+Allow: /clinic-at-hand
 Allow: /solutions
-Allow: /team
+Allow: /about
+Allow: /about/*
+Allow: /blogs
+Allow: /blogs/*
 Allow: /careers
-Allow: /blog
+Allow: /careers/*
 Allow: /contact
 Allow: /support
+Allow: /media
+Allow: /health-tools/*

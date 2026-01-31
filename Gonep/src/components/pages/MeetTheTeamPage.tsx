@@ -5,6 +5,7 @@ import { Linkedin, Twitter, Mail, Users, Award, Heart, Loader2, RefreshCw, Phone
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { motion } from "framer-motion";
 import { teamAPI } from "../../services/api";
+import { SEOHead } from "../SEOHead";
 import works from "../../assets/Works.jpg";
 import { Link } from "react-router-dom";
 
@@ -94,8 +95,22 @@ export function MeetTheTeamPage() {
 
 
 
+  const seoData = {
+    title: "Meet the Team - GONEP Healthcare Leadership & Experts",
+    description: "Meet the diverse leadership team and experts driving GONEP Healthcare's mission. Learn about the expertise, passion, and commitment that transforms healthcare access across Africa.",
+    keywords: [
+      "GONEP Healthcare team",
+      "healthcare leadership",
+      "medical device team",
+      "healthcare technology experts",
+      "African healthcare leaders"
+    ],
+    canonical: "/about/meet-the-team"
+  };
+
   return (
     <div className="bg-background">
+      <SEOHead seo={seoData} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/5 to-secondary/5 section-padding">
         <div className="container">
@@ -416,8 +431,11 @@ export function MeetTheTeamPage() {
                     <div className="relative h-64">
                       <ImageWithFallback
                         src={leader.image}
-                        alt={leader.name}
+                        alt={`${leader.name} - ${leader.role} at GONEP Healthcare leadership team`}
                         className="w-full h-full object-cover"
+                        loading="lazy"
+                        width="300"
+                        height="300"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       <div className="absolute bottom-4 left-4 text-white">
@@ -596,8 +614,11 @@ export function MeetTheTeamPage() {
             >
               <ImageWithFallback
                 src={works}
-                alt="GONEP team collaboration"
+                alt="GONEP Healthcare team members collaborating on healthcare innovation projects and medical device development"
                 className="w-full h-auto rounded-2xl shadow-lg"
+                loading="lazy"
+                width="1000"
+                height="600"
               />
             </motion.div>
           </div>

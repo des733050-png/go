@@ -4,6 +4,7 @@ import { Building2, Heart, Users, Package, ArrowRight, Calculator, MapPin, Flask
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { Link } from "react-router-dom";
 import { ContactModal } from "../ContactModal";
+import { SEOHead } from "../SEOHead";
 import { useState } from "react";
 
 export function SolutionsPage() {
@@ -13,18 +14,38 @@ export function SolutionsPage() {
     setIsContactModalOpen(true);
   };
 
+  const seoData = {
+    title: "Healthcare Solutions for Clinics, NGOs & Governments | GONEP",
+    description: "Tailored healthcare solutions for clinics, hospitals, NGOs, mobile health programs, and government health initiatives. GONEP's Clinic at Hand addresses specific challenges across the healthcare ecosystem in Africa.",
+    keywords: [
+      "healthcare solutions for clinics",
+      "rural healthcare technology",
+      "mobile health programs",
+      "NGO healthcare solutions",
+      "government health programs",
+      "healthcare IoT solutions",
+      "clinic diagnostic solutions",
+      "mobile health units",
+      "healthcare solutions Africa",
+      "rural clinic technology",
+      "healthcare partnerships",
+      "R&D healthcare services"
+    ],
+    canonical: "/solutions"
+  };
+
   return (
     <div className="bg-background">
+      <SEOHead seo={seoData} />
       {/* Hero Section */}
       <section className="bg-muted/30 section-padding">
         <div className="container">
           <div className="text-center space-y-6 max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-              Tailored Solutions for Every Healthcare Partner
+              Healthcare Solutions Built for Africa
             </h1>
             <p className="text-lg text-muted-foreground">
-              GONEP's Clinic at Hand addresses specific challenges across the healthcare ecosystem, 
-              delivering value to every stakeholder in the African healthcare landscape.
+              Every healthcare organization faces unique challenges, whether you're running a small rural clinic, coordinating mobile health programs across vast regions, or managing national health initiatives. Our solutions adapt to meet these diverse needs, providing the same powerful diagnostic capabilities while fitting seamlessly into different operational contexts. From individual practitioners to large-scale government programs, we design our technology to scale with your mission.
             </p>
           </div>
         </div>
@@ -35,11 +56,10 @@ export function SolutionsPage() {
         <div className="container">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Tailored Solutions for Every Healthcare Partner
+              Solutions for Every Healthcare Partner
             </h2>
             <p className="text-lg text-muted-foreground">
-              GONEP's Clinic at Hand addresses specific challenges across the healthcare ecosystem, 
-              delivering value to every stakeholder in the African healthcare landscape.
+              We understand that different organizations face different challenges. That's why we've designed flexible solutions that adapt to your specific context, whether you're operating a small rural clinic, coordinating mobile health programs, managing a national health initiative, or looking to invest in healthcare innovation.
             </p>
           </div>
 
@@ -48,14 +68,14 @@ export function SolutionsPage() {
               <div className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
                 <Building2 className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">Clinics & Hospitals</h3>
-              <p className="text-muted-foreground mb-4">
-                Reduce diagnostic backlogs, support frontline staff
+              <h3 className="text-xl font-bold text-foreground mb-3">Rural Clinics & Health Centers</h3>
+              <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                Stop sending patients hours away to distant laboratories. Clinic at Hand brings comprehensive diagnostic testing directly to your clinic with lab-grade accuracy. The device works completely offline, so you can diagnose and treat patients during the same visit.
               </p>
               <div className="text-sm text-muted-foreground">
-                <p>• Streamlined patient flow</p>
-                <p>• Enhanced diagnostic capacity</p>
-                <p>• Reduced wait times</p>
+                <p>• <strong>15-minute results</strong> - diagnose & treat same day</p>
+                <p>• <strong>Offline operation</strong> - works everywhere</p>
+                <p>• <strong>Affordable</strong> - designed for resource-limited settings</p>
               </div>
             </Card>
 
@@ -64,13 +84,13 @@ export function SolutionsPage() {
                 <Heart className="h-8 w-8 text-secondary" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3">NGOs & Mobile Health Programs</h3>
-              <p className="text-muted-foreground mb-4">
-                Rapid deployment, ideal for outreach & emergencies
+              <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                Deploy comprehensive diagnostic services anywhere with our completely portable device. Clinic at Hand requires no permanent installation, no internet connection, and minimal training. Set up in community centers, schools, or mobile health camps to expand your program's reach.
               </p>
               <div className="text-sm text-muted-foreground">
-                <p>• Mobile health camps</p>
-                <p>• Home Based Care</p>
-                <p>• Community outreach</p>
+                <p>• <strong>Rapid deployment</strong> to remote areas</p>
+                <p>• <strong>Mobile health camps</strong> made efficient</p>
+                <p>• <strong>Scale healthcare impact</strong> affordably</p>
               </div>
             </Card>
 
@@ -79,13 +99,13 @@ export function SolutionsPage() {
                 <Users className="h-8 w-8 text-accent" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3">Governments & Ministries of Health</h3>
-              <p className="text-muted-foreground mb-4">
-                Scalable tool for achieving Universal Health Coverage
+              <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                Scale diagnostic capabilities across all government health centers with a standardized, cost-effective solution. Clinic at Hand integrates with existing health information systems for comprehensive data collection. Support evidence-based policy decisions and progress toward universal health coverage.
               </p>
               <div className="text-sm text-muted-foreground">
-                <p>• National health programs</p>
-                <p>• Rural health initiatives</p>
-                <p>• Policy implementation</p>
+                <p>• <strong>Scale nationally</strong> - proven deployment model</p>
+                <p>• <strong>Budget-friendly</strong> - affordable for all regions</p>
+                <p>• <strong>Data integration</strong> - AI-powered health analytics</p>
               </div>
             </Card>
 
@@ -93,14 +113,14 @@ export function SolutionsPage() {
               <div className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
                 <Package className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">Distributors / Procurement Agents</h3>
-              <p className="text-muted-foreground mb-4">
-                High-demand, scalable, ready-to-sell solution
+              <h3 className="text-xl font-bold text-foreground mb-3">Investors & Partners</h3>
+              <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                Join a transformative movement in African healthcare. Our platform has already served tens of thousands of patients across multiple countries, proving technology can bridge the diagnostic gap. Partner with us to make quality healthcare accessible to everyone.
               </p>
               <div className="text-sm text-muted-foreground">
-                <p>• Proven market demand</p>
-                <p>• Comprehensive support</p>
-                <p>• Training programs</p>
+                <p>• <strong>Presidential Innovation Award</strong> winner</p>
+                <p>• <strong>$5M Series A</strong> funded round</p>
+                <p>• <strong>Proven market demand</strong> & high ROI</p>
               </div>
             </Card>
           </div>
@@ -112,11 +132,10 @@ export function SolutionsPage() {
         <div className="container">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              R&D as a Service
+              Healthcare Innovation & R&D as a Service
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              At Gonep Pharmaceuticals, we believe healthcare innovation should be accessible, affordable, and locally relevant. 
-              Beyond developing our own products, we work with organizations, healthcare providers, and innovators to turn ideas into impactful medical solutions.
+              Beyond <strong>Clinic at Hand</strong>, GONEP Healthcare partners with organizations to develop <strong>custom healthcare solutions</strong> tailored to African healthcare challenges. Whether you need <strong>medical device customization</strong>, <strong>diagnostic innovation</strong>, or <strong>healthcare technology development</strong> - we turn your healthcare challenges into impactful, affordable solutions.
             </p>
           </div>
 

@@ -45,12 +45,12 @@ The "This page is dangerous" warning persists because:
 
 1. **Visit Google Safe Browsing Diagnostic Tool**:
    ```
-   https://transparencyreport.google.com/safe-browsing/search?url=https://gonepharm-pearl.vercel.app
+   https://transparencyreport.google.com/safe-browsing/search?url=https://gonepharm.com/
    ```
 
 2. **Submit Review Request**:
    - Go to: https://safebrowsing.google.com/safebrowsing/report_error/
-   - Enter your URL: `https://gonepharm-pearl.vercel.app`
+   - Enter your URL: `https://gonepharm.com/`
    - Select "This site contains malware" or "This site is a phishing site"
    - Choose "I believe this is a false positive"
    - Provide details about your legitimate business
@@ -73,14 +73,14 @@ git push origin main
 
 2. **Test Security Headers**:
    ```bash
-   curl -I https://gonepharm-pearl.vercel.app
+   curl -I https://gonepharm.com/
    ```
 
 ### Step 4: Submit to Google Search Console
 
 1. **Add Property to Search Console**:
    - Go to: https://search.google.com/search-console
-   - Add `https://gonepharm-pearl.vercel.app`
+   - Add `https://gonepharm.com/`
    - Verify ownership
 
 2. **Request Indexing**:
@@ -120,7 +120,7 @@ git push origin main
 
 ### Security Headers Check
 ```bash
-curl -I https://gonepharm-pearl.vercel.app
+curl -I https://gonepharm.com/
 ```
 
 ### SSL/TLS Check
@@ -132,7 +132,7 @@ curl -I https://gonepharm-pearl.vercel.app
 - Look for "Mixed Content" warnings
 
 ### Google Safe Browsing Status
-- Visit: https://transparencyreport.google.com/safe-browsing/search?url=https://gonepharm-pearl.vercel.app
+- Visit: https://transparencyreport.google.com/safe-browsing/search?url=https://gonepharm.com/
 
 ## 📞 **Support Resources**
 

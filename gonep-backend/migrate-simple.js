@@ -6,30 +6,81 @@ const path = require('path');
 
 console.log('🚀 Starting Simple Railway Database Migration...');
 
-async function runMigrations() {
-  try {
-    // Load environment variables
-    require('dotenv').config();
+function getDatabaseConfig() {
+  // Load environment variables
+  require('dotenv').config();
 
-    // Validate DATABASE_URL is set
-    if (!process.env.DATABASE_URL) {
-      throw new Error('DATABASE_URL environment variable is required');
+  let connectionConfig;
+
+  if (process.env.DATABASE_URL) {
+    // Use DATABASE_URL if available
+    console.log('✅ Using DATABASE_URL for connection');
+    console.log('📊 Database URL:', process.env.DATABASE_URL.replace(/:[^:@]*@/, ':****@'));
+    connectionConfig = process.env.DATABASE_URL;
+  } else {
+    // Fallback to individual environment variables
+    const requiredEnvVars = ['DB_HOST', 'DB_PORT', 'DB_USERNAME', 'DB_NAME'];
+    const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
+    
+    // DB_PASSWORD is optional (can be empty for local MySQL)
+    if (missingVars.length > 0) {
+      throw new Error(`Missing required environment variables: ${missingVars.join(', ')}. Please provide either DATABASE_URL or individual DB_* variables.`);
     }
 
+    console.log('✅ Using individual DB_* environment variables for connection');
+    console.log('📊 Database Host:', process.env.DB_HOST);
+    console.log('📊 Database Port:', process.env.DB_PORT);
+    console.log('📊 Database Name:', process.env.DB_NAME);
+    console.log('📊 Database User:', process.env.DB_USERNAME);
+
+    connectionConfig = {
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT, 10),
+      user: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD || '', // Allow empty password
+      database: process.env.DB_NAME,
+      connectTimeout: 30000,
+      acquireTimeout: 30000,
+      timeout: 30000,
+      multipleStatements: true,
+      charset: 'utf8mb4',
+      ssl: false // Disable SSL for cPanel connections
+    };
+  }
+
+  return connectionConfig;
+}
+
+async function runMigrations() {
+  try {
     console.log('✅ Environment variables loaded');
-    console.log('📊 Database URL:', process.env.DATABASE_URL.replace(/:[^:@]*@/, ':****@'));
+
+    // Get database configuration with fallback
+    const dbConfig = getDatabaseConfig();
 
     // Create database connection
-    const connection = await mysql.createConnection(process.env.DATABASE_URL);
+    const connection = await mysql.createConnection(dbConfig);
     console.log('✅ Database connected successfully');
 
     // Read migration files
     const migrationsDir = path.join(__dirname, 'src', 'database', 'migrations');
+    
+    // Check if migrations directory exists
+    if (!fs.existsSync(migrationsDir)) {
+      throw new Error(`Migrations directory not found: ${migrationsDir}`);
+    }
+
     const migrationFiles = fs.readdirSync(migrationsDir)
       .filter(file => file.endsWith('.sql'))
       .sort();
 
     console.log(`📁 Found ${migrationFiles.length} migration files`);
+
+    if (migrationFiles.length === 0) {
+      console.log('⚠️  No migration files found. Exiting.');
+      await connection.end();
+      return;
+    }
 
     // Create migrations table if it doesn't exist
     await connection.execute(`

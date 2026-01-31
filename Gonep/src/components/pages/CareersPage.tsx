@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { videoAPI } from "../../services/api";
+import { SEOHead } from "../SEOHead";
 import everyoneImage from "../../assets/everyone.jpg";
 
 interface JobOpening {
@@ -238,8 +239,23 @@ export function CareersPage() {
     window.location.reload();
   };
 
+  const seoData = {
+    title: "Careers at GONEP Healthcare - Join Our Mission",
+    description: "Join GONEP Healthcare and help transform African healthcare. We're hiring passionate professionals in healthcare technology, engineering, sales, and operations. Make an impact with innovative IoT healthcare solutions.",
+    keywords: [
+      "GONEP Healthcare careers",
+      "healthcare technology jobs",
+      "medical device jobs Kenya",
+      "healthcare startup careers",
+      "IoT healthcare jobs",
+      "healthcare innovation careers"
+    ],
+    canonical: "/careers"
+  };
+
   return (
     <div className="bg-background">
+      <SEOHead seo={seoData} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/5 to-secondary/5 section-padding">
         <div className="container">
@@ -253,13 +269,13 @@ export function CareersPage() {
               Careers & Opportunities at GONEP
             </h1>
             <p className="text-lg text-muted-foreground">
-              Join Us in Building Africa's Future of Healthcare
+              Join Us in Building Africa's Future of Healthcare Technology
             </p>
             <p className="text-muted-foreground">
-              At GONEP, we're not just creating medical devices we're transforming access to healthcare across underserved communities. Whether you're looking to build, learn, partner, or test, there's a place for you in our mission.
+              At GONEP Healthcare, we believe that meaningful work comes from solving real problems that affect real people. Every day, our team wakes up knowing that their efforts directly impact whether a mother in a remote village can get her child tested for malaria, whether a clinic can diagnose diabetes before complications arise, and whether communities can access quality healthcare without traveling for days. This isn't just a job - it's a mission to ensure that geography and income don't determine health outcomes.
             </p>
             <p className="text-muted-foreground">
-              Our flagship product, Clinic at Hand, is Africa's first 3-in-1 portable diagnostic lab - and we need passionate minds and hands to help it reach every corner of the continent.
+              We're building something unprecedented: an integrated healthcare operating system that connects patients with providers, enables rapid diagnostics in the most remote locations, and creates economic opportunities for healthcare professionals across Kenya and beyond. If you're driven by purpose, excited by innovation, and committed to making healthcare accessible to everyone, we'd love to have you join us.
             </p>
             <Button 
               onClick={() => document.getElementById('job-openings')?.scrollIntoView({ behavior: 'smooth' })}
@@ -323,8 +339,11 @@ export function CareersPage() {
               ) : (
                 <ImageWithFallback
                   src={everyoneImage}
-                  alt="GONEP team collaboration"
+                  alt="Diverse GONEP Healthcare team members working together on innovative healthcare technology solutions"
                   className="w-full h-auto rounded-2xl shadow-lg"
+                  loading="lazy"
+                  width="1000"
+                  height="600"
                 />
               )}
             </motion.div>
@@ -587,13 +606,17 @@ export function CareersPage() {
                 <p className="text-sm text-muted-foreground">Be the first to purchase or pilot our next-gen diagnostic device.</p>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                Send Your Resume
-              </Button>
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold">
-                Contact HR Team
-              </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center" onClick={() => window.location.href = 'mailto:info@gonepharm.com'}>
+              <a  target="_blank" href="mailto:info@gonepharm.com">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                  Send Your Resume
+                </Button>
+              </a>
+              <a target="_blank" href="mailto:info@gonepharm.com">
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold">
+                  Contact HR Team
+                </Button>
+              </a>
             </div>
             <div className="text-sm text-muted-foreground mt-4">
               <p><strong>Headquarters:</strong> 2nd Floor, Chandaria Innovation Centre Building, Kenya</p>

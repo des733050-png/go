@@ -5,6 +5,8 @@ import { Textarea } from "../ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Mail, Phone, MapPin, Clock, ArrowRight, Upload } from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { SEOHead } from "../SEOHead";
+import { SchemaMarkup } from "../SchemaMarkup";
 
 export function ContactPage() {
   const contactMethods = [
@@ -37,8 +39,25 @@ export function ContactPage() {
     }
   ];
 
+  const seoData = {
+    title: "Contact GONEP Healthcare - Get Involved & Request Demo",
+    description: "Contact GONEP Healthcare for partnerships, demo requests, sales inquiries, or support. Located in Kenya at Chandaria Innovation Centre. Phone: +254 707 231 654 | Email: info@gonepharm.com",
+    keywords: [
+      "contact GONEP Healthcare",
+      "GONEP Healthcare contact",
+      "request demo Clinic at Hand",
+      "healthcare partnership",
+      "medical device sales",
+      "GONEP Healthcare Kenya",
+      "healthcare technology contact"
+    ],
+    canonical: "/contact"
+  };
+
   return (
     <div className="bg-background">
+      <SEOHead seo={seoData} />
+      <SchemaMarkup type="localBusiness" />
       {/* Hero Section */}
       <section className="bg-muted/30 section-padding">
         <div className="container">
@@ -47,7 +66,7 @@ export function ContactPage() {
               Contact / Get Involved
             </h1>
             <p className="text-lg text-muted-foreground">
-              Open communication channels for collaboration and conversion. Whether you're a healthcare provider, investor, partner, or someone passionate about 
+              Connect with <strong>GONEP Healthcare</strong> for <strong>healthcare partnerships</strong>, <strong>demo requests</strong>, <strong>medical device inquiries</strong>, and <strong>healthcare technology collaborations</strong>. Whether you're a <strong>healthcare provider</strong>, <strong>investor</strong>, <strong>NGO partner</strong>, or someone passionate about 
               improving African healthcare, we'd love to hear from you.
             </p>
           </div>

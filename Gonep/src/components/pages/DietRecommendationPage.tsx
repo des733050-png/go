@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Badge } from "../ui/badge";
 import { Apple, Heart, TrendingUp, CheckCircle, AlertTriangle, Calculator, Target } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SEOHead } from "../SEOHead";
 
 export function DietRecommendationPage() {
   const [age, setAge] = useState("");
@@ -165,8 +166,23 @@ export function DietRecommendationPage() {
     return baseSupplements;
   };
 
+  const seoData = {
+    title: "Diet Recommendation Tool - Personalized Nutrition Plan | GONEP Healthcare",
+    description: "Get personalized diet recommendations based on your age, gender, activity level, health goals, and dietary restrictions. Free nutrition planning tool from GONEP Healthcare.",
+    keywords: [
+      "diet recommendation",
+      "nutrition plan",
+      "personalized diet",
+      "meal planning",
+      "health diet calculator",
+      "nutrition recommendations"
+    ],
+    canonical: "/health-tools/diet-recommendation"
+  };
+
   return (
     <div className="bg-background min-h-screen">
+      <SEOHead seo={seoData} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-secondary/5 to-primary/5 section-padding">
         <div className="container">

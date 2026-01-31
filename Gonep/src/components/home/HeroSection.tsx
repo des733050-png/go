@@ -92,7 +92,7 @@ export function HeroSection({ onDemoRequest }: HeroSectionProps) {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden py-4 lg:py-0">
       {/* Enhanced Background with Kenya Map and IoT Elements */}
       <div className="absolute inset-0 bg-muted">
         {/* Kenya Map SVG */}
@@ -175,16 +175,16 @@ export function HeroSection({ onDemoRequest }: HeroSectionProps) {
         />
       </div>
 
-      <div className="container relative z-10 section-padding">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+      <div className="container relative z-10 py-8 lg:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-4 xl:gap-6 items-center">
           {/* Left Content */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="lg:col-span-3 space-y-8 text-center lg:text-left"
+            className="lg:col-span-3 space-y-4 lg:space-y-6 text-center lg:text-left"
           >
-            <div className="space-y-6">
+            <div className="space-y-4 lg:space-y-5">
               {/* Trust Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -203,13 +203,9 @@ export function HeroSection({ onDemoRequest }: HeroSectionProps) {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight"
+                className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight"
               >
-                Africa's First{" "}
-                <span className="text-primary">
-                  transformative
-                </span>{" "}
-                healthcare solution
+                <span className="text-primary">3-in-1 Portable Diagnostics</span> for <span className="text-secondary">Africa's Healthcare</span>
               </motion.h1>
               
               {/* Product Name */}
@@ -217,9 +213,9 @@ export function HeroSection({ onDemoRequest }: HeroSectionProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-3xl md:text-4xl text-secondary font-bold"
+                className="text-2xl md:text-3xl lg:text-3xl xl:text-4xl text-secondary font-bold"
               >
-                Clinic at Hand
+                <strong>Clinic at Hand</strong> - <span className="text-primary">15-Minute Lab Results</span>
               </motion.h2>
               
               {/* Description */}
@@ -229,10 +225,7 @@ export function HeroSection({ onDemoRequest }: HeroSectionProps) {
                 transition={{ delay: 0.5 }}
                 className="text-lg text-muted-foreground leading-relaxed max-w-2xl"
               >
-                When hospitals can't reach the people, our device does. 
-                Bridging the diagnostic gap in rural Africa with our revolutionary  Point-of -Care 3-in-1 portable diagnostic kit. 
-                Delivering healthcare solutions through AI-powered, offline-capable technology that provides results in just{" "}
-                <span className="font-bold text-secondary">15 minutes</span>.
+                Get comprehensive diagnostic results in 15 minutes with lab-grade accuracy. Clinic at Hand works completely offline, bringing quality healthcare to rural clinics and remote communities across Africa. Diagnose and treat patients during a single visit, eliminating long waits for lab results.
               </motion.p>
             </div>
 
@@ -294,8 +287,11 @@ export function HeroSection({ onDemoRequest }: HeroSectionProps) {
                 ) : (
                   <img
                     src={clinicAtHandDevice}
-                    alt="GONEP Clinic at Hand diagnostic device"
+                    alt="GONEP Clinic at Hand portable diagnostic device - 3-in-1 blood test, urine analysis, and vital signs monitoring device for rural healthcare"
                     className="w-full h-auto rounded-2xl shadow-2xl relative z-10"
+                    loading="eager"
+                    width="800"
+                    height="600"
                   />
                 )}
               </motion.div>

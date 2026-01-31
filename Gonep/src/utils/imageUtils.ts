@@ -5,6 +5,7 @@ import clinicAtHandClosedFrontLandscape from '../assets/clinic at hand closed fr
 import clinicAtHandClosedVerticalPortrait from '../assets/clinic at hand closed vertical portrait.jpeg';
 import logoWithoutTaglineBgWhite from '../assets/logo without tagline bg white.jpeg';
 import fullLogoWithTaglineBgWhite from '../assets/full logo with tagline bg white.jpeg';
+import logoWithoutTaglineBgRemoved from '../assets/flogo without tagline bg removed.png';
 
 // Image mapping object
 export const images = {
@@ -14,6 +15,7 @@ export const images = {
   clinicAtHandClosedVerticalPortrait,
   logoWithoutTaglineBgWhite,
   fullLogoWithTaglineBgWhite,
+  logoWithoutTaglineBgRemoved,
 };
 
 // Function to get image by name
@@ -39,6 +41,7 @@ export const imageMap: Record<string, string> = {
   '/assets/clinic at hand closed vertical portrait.jpeg': images.clinicAtHandClosedVerticalPortrait,
   '/assets/logo without tagline bg white.jpeg': images.logoWithoutTaglineBgWhite,
   '/assets/full logo with tagline bg white.jpeg': images.fullLogoWithTaglineBgWhite,
+  '/assets/flogo without tagline bg removed.png': images.logoWithoutTaglineBgRemoved,
 };
 
 // Function to convert legacy paths to imported images

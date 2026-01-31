@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Input } from "../ui/input";
+import { SEOHead } from "../SEOHead";
 
 export function BlogsPage() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -294,8 +295,27 @@ export function BlogsPage() {
 
   // Remove the full-page loading state - let the page render and show loading only for blogs section
 
+  const seoData = {
+    title: "GONEP Health Blog - Healthcare Innovation Insights & Stories",
+    description: "Discover insights, stories, and innovations from the frontlines of African healthcare transformation. Learn about portable diagnostics, rural healthcare solutions, IoT in healthcare, and success stories from GONEP Healthcare.",
+    keywords: [
+      "healthcare blog",
+      "healthcare innovation",
+      "rural healthcare",
+      "portable diagnostics",
+      "IoT healthcare",
+      "African healthcare",
+      "medical technology blog",
+      "healthcare technology insights",
+      "point of care diagnostics",
+      "healthcare transformation"
+    ],
+    canonical: "/blogs"
+  };
+
   return (
     <div className="bg-background min-h-screen">
+      <SEOHead seo={seoData} />
       {/* Hero Section */}
       <section className="bg-muted/30 py-8">
         <div className="container">
@@ -451,8 +471,11 @@ export function BlogsPage() {
                   <div className="relative h-64">
                     <img
                       src={post.image}
-                      alt={post.title}
+                      alt={`${post.title} - Featured GONEP Healthcare blog article`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                      width="600"
+                      height="400"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground border-0">
@@ -544,8 +567,11 @@ export function BlogsPage() {
                 <div className="relative h-48">
                   <img
                     src={post.image}
-                    alt={post.title}
+                    alt={`${post.title} - GONEP Healthcare blog article`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    width="400"
+                    height="250"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                   <Badge variant="outline" className="absolute top-4 left-4 text-white border-white/50 bg-black/20">

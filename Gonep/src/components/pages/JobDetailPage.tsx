@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
+import { SEOHead } from "../SEOHead";
 
 interface JobDetail {
   id: number;
@@ -257,8 +258,29 @@ export function JobDetailPage() {
     );
   }
 
+  // Dynamic SEO based on job
+  const seoData = jobDetail ? {
+    title: `${jobDetail.title} - Careers at GONEP Healthcare`,
+    description: `Apply for ${jobDetail.title} at GONEP Healthcare. ${jobDetail.department.name} position in ${jobDetail.location}. ${jobDetail.type} role. Join our mission to transform African healthcare.`,
+    keywords: [
+      jobDetail.title,
+      `GONEP Healthcare ${jobDetail.title}`,
+      `healthcare jobs ${jobDetail.location}`,
+      `medical device jobs`,
+      `healthcare technology careers`,
+      jobDetail.department.name
+    ],
+    canonical: `/careers/${jobDetail.id}`,
+    ogType: "article"
+  } : {
+    title: "Job Opening - GONEP Healthcare Careers",
+    description: "View job opening at GONEP Healthcare. Join our mission to transform African healthcare.",
+    canonical: `/careers/${jobId}`
+  };
+
   return (
     <div className="bg-background">
+      <SEOHead seo={seoData} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/5 to-secondary/5 section-padding">
         <div className="container">

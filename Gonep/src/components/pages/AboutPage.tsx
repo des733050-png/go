@@ -5,6 +5,7 @@ import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { AnimatedTimeline } from "../AnimatedTimeline";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { SEOHead } from "../SEOHead";
 import kusmile from "../../assets/kusmile.jpeg";
 import WhoWeAre from "../../assets/Grantedcert.jpeg";
 import works from "../../assets/Works.jpg";
@@ -38,8 +39,27 @@ export function AboutPage() {
     }
   ];
 
+  const seoData = {
+    title: "About GONEP Healthcare - African Healthcare Innovation Company",
+    description: "Learn about GONEP Healthcare, a mission-driven healthcare technology company transforming African healthcare through innovative IoT solutions. Founded in 2022, we're closing the diagnostic gap in rural communities across Africa.",
+    keywords: [
+      "GONEP Healthcare",
+      "African healthcare innovation",
+      "healthcare technology company Kenya",
+      "healthcare startup Africa",
+      "medical device company",
+      "healthcare IoT Africa",
+      "rural healthcare solutions",
+      "African healthcare technology",
+      "healthcare innovation Kenya",
+      "medical technology Africa"
+    ],
+    canonical: "/about"
+  };
+
   return (
     <div className="bg-background">
+      <SEOHead seo={seoData} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/5 to-secondary/5 section-padding">
         <div className="container">
@@ -50,10 +70,10 @@ export function AboutPage() {
             className="text-center space-y-6 max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-              About GONEP
+              About GONEP Healthcare
             </h1>
             <p className="text-lg text-muted-foreground">
-              At GONEP, we believe healthcare should never be a luxury of geography. In 2022, we set out to close the critical diagnostic gap that leaves millions across Africa undiagnosed, untreated, and unheard.
+              <strong>Founded in 2022.</strong> <strong>50,000+ patients served.</strong> <strong>12 African countries.</strong> <strong>Presidential Innovation Award winner.</strong> We're closing Africa's diagnostic gap with affordable, portable healthcare solutions.
             </p>
           </motion.div>
         </div>
@@ -69,11 +89,10 @@ export function AboutPage() {
             className="text-center space-y-4 mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Discover Our Story
+              Discover Our Impact & Story
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Explore the different aspects of GONEP Pharmaceuticals - from our founding vision to our 
-              dedicated team and remarkable journey of impact.
+              <strong>GONEP Healthcare</strong> is a <strong>mission-driven healthcare technology company</strong> bringing <strong>affordable diagnostic solutions</strong> to Africa. Explore our founding mission, the passionate team behind our innovation, and the impact we're creating across <strong>12 African countries</strong> with <strong>50,000+ patients served</strong>.
             </p>
           </motion.div>
 
@@ -93,8 +112,11 @@ export function AboutPage() {
                     <div className="relative h-48 overflow-hidden">
                       <ImageWithFallback
                         src={section.image}
-                        alt={section.title}
+                        alt={`${section.title} - GONEP Healthcare about section showcasing company ${section.title.toLowerCase()}`}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        loading="lazy"
+                        width="400"
+                        height="250"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       <div className="absolute top-4 right-4">

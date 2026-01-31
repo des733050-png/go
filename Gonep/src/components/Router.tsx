@@ -11,10 +11,14 @@ import {
   createContext,
   useContext,
 } from "react";
+import { HelmetProvider } from "react-helmet-async";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { PageTransition } from "./PageTransition";
 import { NewsletterPopup } from "./NewsletterPopup";
+import { SchemaMarkup } from "./SchemaMarkup";
+import { Breadcrumbs } from "./Breadcrumbs";
+import { NotificationBanner } from "./NotificationBanner";
 import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
 import { WhoWeArePage } from "./pages/WhoWeArePage";
@@ -31,6 +35,10 @@ import { ContactPage } from "./pages/ContactPage";
 import { SupportPage } from "./pages/SupportPage";
 import { CareersPage } from "./pages/CareersPage";
 import { JobDetailPage } from "./pages/JobDetailPage";
+import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
+import { TermsOfServicePage } from "./pages/TermsOfServicePage";
+import { CookiePolicyPage } from "./pages/CookiePolicyPage";
+import { SitemapPage } from "./pages/SitemapPage";
 
 // Theme Context
 type Theme = "light" | "dark";
@@ -104,83 +112,105 @@ function ScrollToTop() {
 
 export function Router() {
   return (
-    <ThemeProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <div className="min-h-screen bg-background">
-          <Header />
-          <main className="min-h-[calc(100vh-140px)]">
-            <PageTransition>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/about/who-we-are" element={<WhoWeArePage />} />
-                <Route path="/about/history" element={<HistoryPage />} />
-                <Route path="/about/meet-the-team" element={<MeetTheTeamPage />} />
-                <Route path="/careers" element={<CareersPage />} />
-                <Route path="/careers/:jobId" element={<JobDetailPage />} />
-                <Route
-                  path="/clinic-at-hand"
-                  element={<ProductPage />}
-                />
-                <Route
-                  path="/solutions"
-                  element={<SolutionsPage />}
-                />
-                <Route path="/blogs" element={<BlogsPage />} />
-                <Route path="/blogs/:blogId" element={<BlogDetailPage />} />
-                <Route
-                  path="/media"
-                  element={<MediaPage />}
-                />
-                <Route
-                  path="/health-tools/bmi-calculator"
-                  element={<BMICalculatorPage />}
-                />
-                <Route
-                  path="/health-tools/diet-recommendation"
-                  element={<DietRecommendationPage />}
-                />
-                <Route
-                  path="/contact"
-                  element={<ContactPage />}
-                />
-                <Route
-                  path="/support"
-                  element={<SupportPage />}
-                />
-                {/* Redirect old routes */}
-                <Route
-                  path="/product"
-                  element={
-                    <Navigate to="/clinic-at-hand" replace />
-                  }
-                />
-                <Route
-                  path="/health-tools"
-                  element={
-                    <Navigate
-                      to="/health-tools/bmi-calculator"
-                      replace
-                    />
-                  }
-                />
-                {/* Handle preview_page.html and other unknown routes */}
-                <Route
-                  path="/preview_page.html"
-                  element={<Navigate to="/" replace />}
-                />
-                <Route
-                  path="*"
-                  element={<Navigate to="/" replace />}
-                />
-              </Routes>
-            </PageTransition>
-          </main>
-          <Footer />
-          <NewsletterPopup />
-        </div>
-      </BrowserRouter>
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          {/* Global Organization Schema */}
+          <SchemaMarkup type="organization" />
+          <div className="min-h-screen bg-background">
+            <Header />
+            <NotificationBanner />
+            <Breadcrumbs />
+            <main className="min-h-[calc(100vh-140px)]">
+              <PageTransition>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/about/who-we-are" element={<WhoWeArePage />} />
+                  <Route path="/about/history" element={<HistoryPage />} />
+                  <Route path="/about/meet-the-team" element={<MeetTheTeamPage />} />
+                  <Route path="/careers" element={<CareersPage />} />
+                  <Route path="/careers/:jobId" element={<JobDetailPage />} />
+                  <Route
+                    path="/clinic-at-hand"
+                    element={<ProductPage />}
+                  />
+                  <Route
+                    path="/solutions"
+                    element={<SolutionsPage />}
+                  />
+                  <Route path="/blogs" element={<BlogsPage />} />
+                  <Route path="/blogs/:blogId" element={<BlogDetailPage />} />
+                  <Route
+                    path="/media"
+                    element={<MediaPage />}
+                  />
+                  <Route
+                    path="/health-tools/bmi-calculator"
+                    element={<BMICalculatorPage />}
+                  />
+                  <Route
+                    path="/health-tools/diet-recommendation"
+                    element={<DietRecommendationPage />}
+                  />
+                  <Route
+                    path="/contact"
+                    element={<ContactPage />}
+                  />
+                  <Route
+                    path="/support"
+                    element={<SupportPage />}
+                  />
+                  <Route
+                    path="/privacy-policy"
+                    element={<PrivacyPolicyPage />}
+                  />
+                  <Route
+                    path="/terms-of-service"
+                    element={<TermsOfServicePage />}
+                  />
+                  <Route
+                    path="/cookie-policy"
+                    element={<CookiePolicyPage />}
+                  />
+                  <Route
+                    path="/sitemap"
+                    element={<SitemapPage />}
+                  />
+                  {/* Redirect old routes */}
+                  <Route
+                    path="/product"
+                    element={
+                      <Navigate to="/clinic-at-hand" replace />
+                    }
+                  />
+                  <Route
+                    path="/health-tools"
+                    element={
+                      <Navigate
+                        to="/health-tools/bmi-calculator"
+                        replace
+                      />
+                    }
+                  />
+                  {/* Handle preview_page.html and other unknown routes */}
+                  <Route
+                    path="/preview_page.html"
+                    element={<Navigate to="/" replace />}
+                  />
+                  <Route
+                    path="*"
+                    element={<Navigate to="/" replace />}
+                  />
+                </Routes>
+              </PageTransition>
+            </main>
+            <Footer />
+            <NewsletterPopup />
+          </div>
+        </BrowserRouter>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }

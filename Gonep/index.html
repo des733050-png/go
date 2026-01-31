@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Security Meta Tags -->
@@ -14,29 +14,20 @@
     <!-- Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-src 'self' https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://vimeo.com https://www.dailymotion.com https://dailymotion.com https://www.facebook.com https://facebook.com https://www.instagram.com https://instagram.com https://www.tiktok.com https://tiktok.com; object-src 'none';">
     
-    <!-- SEO and Trust Meta Tags -->
-    <meta name="description" content="GONEP Healthcare - Innovative IoT healthcare solutions for rural communities. Clinic at Hand device transforming healthcare delivery.">
-    <meta name="keywords" content="healthcare, IoT, rural healthcare, Clinic at Hand, medical devices, Kenya healthcare">
+    <!-- SEO Meta Tags - Managed dynamically by React Helmet -->
+    <!-- Default fallback metadata (will be overridden by page-specific metadata) -->
     <meta name="author" content="GONEP Healthcare">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="GONEP Healthcare - Innovative Healthcare Solutions">
-    <meta property="og:description" content="Transforming rural healthcare with innovative IoT solutions and the Clinic at Hand device.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://gonepharm-pearl.vercel.app">
-    <meta property="og:image" content="https://gonepharm-pearl.vercel.app/og-image.jpg">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GONEP Healthcare - Innovative Healthcare Solutions">
-    <meta name="twitter:description" content="Transforming rural healthcare with innovative IoT solutions.">
-    <meta name="twitter:image" content="https://gonepharm-pearl.vercel.app/twitter-image.jpg">
-    
-    <title>Gonep - Healthcare Solutions</title>
+    <title>GONEP Healthcare - Innovative IoT Healthcare Solutions</title>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
+        <h1>GONEP Healthcare</h1>
+        <p>Please enable JavaScript to view this website.</p>
+        <p>GONEP Healthcare provides innovative IoT healthcare solutions including Clinic at Hand, a 3-in-1 portable diagnostic device for Africa.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -64,8 +64,7 @@ export function FinalCTASection({ onDemoRequest }: FinalCTASectionProps) {
                   Let's make healthcare truly universal. Partner with us today.
                 </h2>
                 <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                  Join us in revolutionizing healthcare across Africa through innovative technology. 
-                  Together, we can make quality healthcare accessible to every community.
+                  Join us in revolutionizing healthcare across Africa. Together, we can make quality healthcare accessible to every community.
                 </p>
               </div>
               

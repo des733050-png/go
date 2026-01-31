@@ -10,7 +10,7 @@ import { useTheme } from "./Router";
 // Use public URL for assets
 import { getImage } from "../utils/imageUtils";
 
-const gonepLogo = getImage("logoWithoutTaglineBgWhite");
+const gonepLogo = getImage("logoWithoutTaglineBgRemoved");
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -129,7 +129,7 @@ export function Header() {
 
   return (
     <>
-      <header className={`sticky top-0 z-50 backdrop-blur-md border-b border-border shadow-lg transition-all duration-300 ${
+      <header className={`sticky top-0 z-50 backdrop-blur-md border-b border-border shadow-lg transition-all duration-300 overflow-visible ${
         isNearFooter 
           ? 'bg-white/95 text-gray-900' 
           : 'bg-background/95'
@@ -137,11 +137,11 @@ export function Header() {
         <div className="container max-w-full px-4 lg:px-8">
           <div className="flex justify-between items-center py-4 gap-4">
             {/* Left: Logo */}
-            <Link to="/" className="flex items-center space-x-3 flex-shrink-0">
+            <Link to="/" className="flex items-center space-x-3 flex-shrink-0 overflow-visible">
               <img 
                 src={gonepLogo} 
                 alt="GONEP Logo" 
-                className="h-12 w-auto"
+                className="h-12 w-auto scale-[2] origin-left"
               />
             </Link>
 
@@ -338,11 +338,11 @@ export function Header() {
             <div className="flex flex-col h-full">
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-border">
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-3 overflow-visible">
                   <img 
                     src={gonepLogo} 
                     alt="GONEP Logo" 
-                    className="h-8 w-auto"
+                    className="h-8 w-auto scale-[2] origin-left"
                   />
                   <span className="text-lg font-semibold text-foreground">Menu</span>
                 </div>

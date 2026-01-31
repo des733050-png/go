@@ -7,10 +7,13 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 // Use public URL for assets
 import { getImage } from "../../utils/imageUtils";
-
-const clinicAtHandDevice = getImage("clinicAtHandOpenCrossview");
+import { SEOHead } from "../SEOHead";
+import { SchemaMarkup } from "../SchemaMarkup";
+import { generateCanonical, BASE_URL } from "../../utils/seo";
 import { DemoRequestModal } from "../DemoRequestModal";
 import { videoAPI } from "../../services/api";
+
+const clinicAtHandDevice = getImage("clinicAtHandOpenCrossview");
 
 export function ProductPage() {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
@@ -138,28 +141,65 @@ export function ProductPage() {
   const useCases = [
     {
       title: "Rural Health Clinics",
-      description: "Bringing comprehensive diagnostics to remote communities with limited healthcare infrastructure",
+      description: "<strong>Stop sending patients away</strong>. Clinic at Hand works <strong>completely offline</strong> - perfect for remote areas with no internet. Diagnose and treat same-day with <strong>lab-grade accuracy</strong>.",
       icon: "🏥"
     },
     {
       title: "Mobile Health Units",
-      description: "Portable solution for outreach programs and community health initiatives",
+      description: "Expand healthcare coverage to underserved communities with <strong>portable diagnostics</strong>. Deploy <strong>Clinic at Hand</strong> anywhere - no infrastructure needed. <strong>Light, durable, affordable</strong>.",
       icon: "🚐"
     },
     {
-      title: "Home Based Care",
-      description: "Comprehensive diagnostic testing for convenient at-home healthcare monitoring and management",
-      icon: "🚨"
+      title: "NGO Healthcare Programs",
+      description: "Maximize impact with <strong>AI-powered diagnostics</strong> deployed across multiple locations. <strong>50,000+ patients served</strong> prove our effectiveness.",
+      icon: "❤️"
     },
     {
-      title: "School Health Programs",
-      description: "Regular health screenings and monitoring for educational institutions",
-      icon: "🏫"
+      title: "Government Health Centers",
+      description: "Achieve <strong>Universal Health Coverage</strong> with scalable diagnostic solutions. <strong>Data integration</strong> supports national health program monitoring.",
+      icon: "🏛️"
     }
   ];
 
+  const seoData = {
+    title: "Clinic at Hand - 3-in-1 Portable Diagnostic Device | GONEP Healthcare",
+    description: "Clinic at Hand: Revolutionary 3-in-1 portable diagnostic device for blood analysis, urine testing, and vital signs monitoring. Get lab-grade results in 15 minutes with our point of care diagnostics device. Perfect for rural healthcare, mobile health units, and remote clinics.",
+    keywords: [
+      "Clinic at Hand",
+      "3-in-1 diagnostic device",
+      "portable blood test device",
+      "point of care diagnostics",
+      "portable urinalysis",
+      "mobile health device",
+      "portable medical diagnostics",
+      "point of care testing",
+      "portable diagnostic kit",
+      "rural healthcare device",
+      "portable vital signs monitor",
+      "AI-powered diagnostics",
+      "offline medical device"
+    ],
+    canonical: "/clinic-at-hand",
+    ogType: "product"
+  };
+
+  const productSchema = {
+    name: "Clinic at Hand",
+    description: "Revolutionary 3-in-1 portable diagnostic device for blood analysis, urine testing, and vital signs monitoring. Delivers lab-grade results in 15 minutes with AI-powered analysis and offline capability.",
+    image: `${generateCanonical("/")}/clinic-at-hand-device.jpg`,
+    brand: {
+      name: "GONEP Healthcare"
+    },
+    offers: {
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock"
+    }
+  };
+
   return (
     <div className="bg-background min-h-screen">
+      <SEOHead seo={seoData} />
+      <SchemaMarkup type="product" data={productSchema} />
       {/* Hero Section with Video Demo */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
         <div className="container relative z-10 section-padding">
@@ -178,23 +218,19 @@ export function ProductPage() {
                 </Badge>
                 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                  <span className="text-primary">
-                    Clinic at Hand
-                  </span>
+                  <span className="text-primary">Clinic at Hand</span> - <span className="text-secondary">3‑in‑1 Diagnostics for Africa</span>
                 </h1>
                 
                 <h2 className="text-2xl md:text-3xl text-black dark:text-white font-semibold">
-                  3-in-1 Portable Diagnostic Solution
+                  Lab results in 15 minutes · 95% accuracy
                 </h2>
                 
                 <p className="text-lg text-black dark:text-white leading-relaxed max-w-2xl">
-                  The Problem → Our Solution → Tangible Impact
+                  Comprehensive diagnostic testing in one portable device. Clinic at Hand combines blood analysis, urine testing, and vital signs monitoring, working completely offline in the most remote locations. Diagnose and treat patients during the same visit, eliminating days-long wait times.
                 </p>
                 
                 <p className="text-lg text-black dark:text-white leading-relaxed max-w-2xl">
-                  Transform healthcare delivery with our revolutionary  Point-of -Care diagnostic device. 
-                  Perform blood tests, urine analysis, and vital signs monitoring anywhere, anytime, 
-                  with results in just 15 minutes.
+                  Already transforming healthcare for over 50,000 patients across 12 African countries, proving quality diagnostics can reach underserved communities.
                 </p>
               </div>
 
@@ -204,7 +240,7 @@ export function ProductPage() {
                   onClick={() => setIsDemoModalOpen(true)}
                   className="bg-secondary hover:bg-secondary/90 text-secondary-foreground px-8 py-6 text-lg font-bold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
                 >
-                  Request Live Demo
+                  Request Demo
                   <ArrowRight className="ml-3 h-6 w-6" />
                 </Button>
               {/* <Button 
@@ -220,16 +256,16 @@ export function ProductPage() {
               {/* Key Stats */}
               <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border">
                 <div className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-primary">15min</div>
-                  <div className="text-xs text-muted-foreground">Test Results</div>
+                  <div className="text-2xl md:text-3xl font-bold text-primary">15 min</div>
+                  <div className="text-xs text-muted-foreground">Results</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-secondary">3-in-1</div>
-                  <div className="text-xs text-muted-foreground">Diagnostics</div>
+                  <div className="text-2xl md:text-3xl font-bold text-secondary">3‑in‑1</div>
+                  <div className="text-xs text-muted-foreground">Tests</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-primary">100%</div>
-                  <div className="text-xs text-muted-foreground">Offline Ready</div>
+                  <div className="text-2xl md:text-3xl font-bold text-primary">Offline</div>
+                  <div className="text-xs text-muted-foreground">Ready</div>
                 </div>
               </div>
             </motion.div>
@@ -273,8 +309,11 @@ export function ProductPage() {
                     ) : (
                       <img
                         src={clinicAtHandDevice}
-                        alt="GONEP Clinic at Hand diagnostic device"
+                        alt="GONEP Clinic at Hand 3-in-1 portable diagnostic device showing blood analysis, urine testing, and vital signs monitoring capabilities"
                         className="w-full h-auto rounded-2xl shadow-lg"
+                        loading="lazy"
+                        width="800"
+                        height="600"
                       />
                     )}
                   </div>
@@ -297,11 +336,10 @@ export function ProductPage() {
             className="text-center space-y-4 mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Comprehensive <span className="text-secondary">Diagnostic Capabilities</span>
+              Comprehensive <span className="text-secondary">Point of Care Diagnostic Capabilities</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Three essential healthcare tests integrated into one revolutionary device, 
-              delivering clinical-grade results in remote and resource-limited settings.
+              Three essential diagnostic capabilities in one device. Blood analysis, urine testing, and vital signs monitoring deliver clinical-grade accuracy in remote healthcare settings across Africa.
             </p>
           </motion.div>
 
@@ -365,11 +403,10 @@ export function ProductPage() {
             className="text-center space-y-4 mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Advanced <span className="text-primary">Technology Stack</span>
+              Advanced <span className="text-primary">IoT Healthcare Technology</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Built with cutting-edge IoT technology and AI algorithms to deliver 
-              reliable, accurate, and user-friendly healthcare diagnostics.
+              Advanced technology designed for challenging environments. Precision algorithms and intuitive interfaces enable confident operation with minimal training. Works completely independently, storing data locally and syncing when connectivity is available.
             </p>
           </motion.div>
 
@@ -419,8 +456,7 @@ export function ProductPage() {
               Real-World <span className="text-secondary">Applications</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Versatile healthcare solution designed for various environments and use cases 
-              across the African healthcare ecosystem.
+              Versatile healthcare technology for various environments across Africa. From rural clinics to mobile health units, enabling comprehensive diagnostics where laboratory infrastructure is unavailable. Learn more about our <Link to="/solutions" className="text-primary hover:underline font-semibold">tailored healthcare solutions</Link> for different sectors.
             </p>
           </motion.div>
 
@@ -440,7 +476,7 @@ export function ProductPage() {
                       <div className="text-4xl mb-2">{useCase.icon}</div>
                       <div className="flex-1">
                         <h3 className="text-xl font-bold text-foreground mb-3">{useCase.title}</h3>
-                        <p className="text-muted-foreground">{useCase.description}</p>
+                        <p className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: useCase.description }}></p>
                       </div>
                     </div>
                   </CardContent>
@@ -464,9 +500,7 @@ export function ProductPage() {
               Ready to Transform Healthcare Delivery?
             </h2>
             <p className="text-xl opacity-90">
-              Experience the future of healthcare diagnostics with Clinic at Hand. 
-              Request a demo and see how our IoT-powered solution can revolutionize 
-              healthcare access in your community.
+              Experience the future of healthcare diagnostics. Request a demo and see how our IoT-powered solution can revolutionize healthcare access in your community.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center">

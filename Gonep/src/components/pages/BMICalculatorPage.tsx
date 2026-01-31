@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Badge } from "../ui/badge";
 import { Calculator, Scale, Activity, TrendingUp, AlertTriangle, Apple } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SEOHead } from "../SEOHead";
 
 export function BMICalculatorPage() {
   const [height, setHeight] = useState("");
@@ -87,8 +88,23 @@ export function BMICalculatorPage() {
     });
   };
 
+  const seoData = {
+    title: "BMI Calculator - Free Body Mass Index Calculator | GONEP Healthcare",
+    description: "Calculate your Body Mass Index (BMI) instantly with our free BMI calculator. Get personalized health insights, weight category assessment, and recommendations for maintaining a healthy weight.",
+    keywords: [
+      "BMI calculator",
+      "body mass index calculator",
+      "BMI calculator free",
+      "calculate BMI",
+      "BMI health calculator",
+      "weight calculator"
+    ],
+    canonical: "/health-tools/bmi-calculator"
+  };
+
   return (
     <div className="bg-background min-h-screen">
+      <SEOHead seo={seoData} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/5 to-secondary/5 section-padding">
         <div className="container">

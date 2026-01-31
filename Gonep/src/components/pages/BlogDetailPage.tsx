@@ -22,6 +22,8 @@ import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
+import { SEOHead } from '../SEOHead';
+import { SchemaMarkup } from '../SchemaMarkup';
 import { sanitizeHTML } from '../../utils/sanitizeHTML';
 
 export function BlogDetailPage() {
@@ -297,8 +299,43 @@ export function BlogDetailPage() {
     }
   };
 
+  // Dynamic SEO based on blog post
+  const seoData = blogPost ? {
+    title: `${blogPost.title} | GONEP Healthcare Blog`,
+    description: blogPost.excerpt || blogPost.description || `Read about ${blogPost.title} on GONEP Healthcare's blog. Insights and innovations from the frontlines of African healthcare transformation.`,
+    keywords: [
+      ...(blogPost.tags || []),
+      "healthcare blog",
+      "healthcare innovation",
+      "African healthcare",
+      "medical technology"
+    ],
+    canonical: `/blogs/${blogPost.id}`,
+    ogType: "article",
+    ogImage: blogPost.image
+  } : {
+    title: "Blog Post | GONEP Healthcare",
+    description: "Read insights and innovations from GONEP Healthcare's blog.",
+    canonical: `/blogs/${blogId}`
+  };
+
+  // Article schema for blog posts
+  const articleSchema = blogPost ? {
+    headline: blogPost.title,
+    description: blogPost.excerpt || blogPost.description || "",
+    image: blogPost.image,
+    author: {
+      name: blogPost.author || "GONEP Healthcare",
+      url: blogPost.authorUrl
+    },
+    datePublished: blogPost.date || blogPost.createdAt,
+    dateModified: blogPost.updatedAt || blogPost.date || blogPost.createdAt
+  } : null;
+
   return (
     <div className="bg-background min-h-screen">
+      <SEOHead seo={seoData} />
+      {articleSchema && <SchemaMarkup type="article" data={articleSchema} />}
       {/* Reading Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-1 bg-muted z-50">
         <div 
@@ -339,8 +376,11 @@ export function BlogDetailPage() {
           <div className="relative h-[500px] mb-12 rounded-2xl overflow-hidden shadow-2xl">
             <img
               src={currentPost.image}
-              alt={currentPost.title}
+              alt={`${currentPost.title} - GONEP Healthcare blog article image`}
               className="w-full h-full object-cover"
+              loading="lazy"
+              width="1200"
+              height="500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
             <div className="absolute bottom-6 left-6 right-6">
@@ -550,8 +590,11 @@ export function BlogDetailPage() {
                 <div className="relative">
                   <img
                     src={currentPost.authorImage}
-                    alt={currentPost.author}
+                    alt={`${currentPost.author} - GONEP Healthcare blog author`}
                     className="w-20 h-20 rounded-full object-cover border-4 border-background shadow-lg"
+                    loading="lazy"
+                    width="80"
+                    height="80"
                   />
                   <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-primary rounded-full border-2 border-background"></div>
                 </div>
@@ -587,8 +630,11 @@ export function BlogDetailPage() {
                       <div className="relative h-56">
                         <img
                           src={post.image}
-                          alt={post.title}
+                          alt={`${post.title} - Related GONEP Healthcare blog article`}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                          width="400"
+                          height="250"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                         <Badge variant="outline" className="absolute top-4 left-4 text-white border-white/50 bg-black/20">

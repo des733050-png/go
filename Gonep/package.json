@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "dev:all": "concurrently \"npm run dev\" \"cd backend && npm run dev\" \"cd backend && npm run admin\"",
-    "build": "tsc && vite build",
+    "build": "npm run generate-sitemap && tsc && vite build && npm run prerender || echo 'Pre-rendering failed, but build completed successfully'",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "prerender": "node scripts/prerender.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
@@ -50,6 +52,7 @@
     "react": "^18.2.0",
     "react-day-picker": "^9.8.1",
     "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.5",
     "react-hook-form": "^7.62.0",
     "react-resizable-panels": "^3.0.4",
     "react-router-dom": "^6.20.1",
@@ -71,6 +74,7 @@
     "eslint-plugin-react-refresh": "^0.4.4",
     "gh-pages": "^6.1.0",
     "postcss": "^8.4.31",
+    "puppeteer": "^21.5.0",
     "tailwindcss": "^3.3.5",
     "typescript": "^5.2.2",
     "vite": "^7.1.3"

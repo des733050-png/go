@@ -9,8 +9,13 @@ async function checkDatabase() {
       host: process.env.DB_HOST,
       port: parseInt(process.env.DB_PORT),
       user: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
+      password: process.env.DB_PASSWORD || '',
       database: process.env.DB_NAME,
+      connectTimeout: 30000,
+      acquireTimeout: 30000,
+      timeout: 30000,
+      multipleStatements: true,
+      charset: 'utf8mb4'
     };
 
     connection = await mysql.createConnection(config);

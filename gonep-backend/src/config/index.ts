@@ -6,7 +6,10 @@ dotenv.config();
 const validateRequiredEnvVars = () => {
   const required = [
     'JWT_SECRET',
-    'DATABASE_URL'
+    'DB_HOST',
+    'DB_USERNAME',
+    'DB_PASSWORD',
+    'DB_NAME'
   ];
 
   const missing = required.filter(key => !process.env[key]);
