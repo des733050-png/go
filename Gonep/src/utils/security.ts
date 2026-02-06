@@ -45,8 +45,15 @@ export const validateEmail = (email: string): boolean => {
     return false;
   }
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+  // Trim whitespace before validation
+  const trimmedEmail = email.trim();
+  
+  // More robust email validation regex
+  // Allows: letters, numbers, dots, hyphens, underscores, plus signs before @
+  // Domain: letters, numbers, dots, hyphens
+  // TLD: at least 2 letters
+  const emailRegex = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(trimmedEmail);
 };
 
 /**
@@ -120,7 +127,7 @@ export const SECURITY_HEADERS = {
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
     "font-src 'self' data:",
-    "connect-src 'self' https:",
+    "connect-src 'self' https: http://localhost:* http://127.0.0.1:*",
     "frame-src 'self' https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://vimeo.com https://www.dailymotion.com https://dailymotion.com https://www.facebook.com https://facebook.com https://www.instagram.com https://instagram.com https://www.tiktok.com https://tiktok.com",
     "object-src 'none'"
   ].join('; ')

@@ -117,6 +117,8 @@ export class VideoController {
   // Get videos by placement
   static async getVideosByPlacement(req: Request, res: Response) {
     try {
+      console.log('🎬 getVideosByPlacement called with placement:', req.params.placement);
+      
       const { placement } = req.params;
       if (!placement) {
         return res.status(400).json({
@@ -125,7 +127,20 @@ export class VideoController {
         });
       }
 
-      const videos = await db
+      // Test database connection first
+      console.log('📊 Testing database connection...');
+      const { testConnection } = await import('../config/database');
+      const isConnected = await testConnection();
+      console.log('📊 Database connected:', isConnected);
+      
+      if (!isConnected) {
+        throw new Error('Database connection failed');
+      }
+
+      console.log('📊 Attempting to query demo_videos table with placement:', placement);
+      
+      // Add timeout to prevent hanging
+      const queryPromise = db
         .select()
         .from(demoVideos)
         .where(
@@ -135,17 +150,41 @@ export class VideoController {
           )
         )
         .orderBy(desc(demoVideos.sortOrder), desc(demoVideos.createdAt));
+      
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Database query timeout')), 8000);
+      });
+      
+      const videos = await Promise.race([queryPromise, timeoutPromise]) as any[];
 
+      console.log('✅ Videos query successful, count:', videos.length);
+
+      // Return empty array if no videos found (this is valid, not an error)
       res.json({
         success: true,
-        data: { videos },
-        message: 'Videos retrieved successfully'
+        data: { videos: videos || [] },
+        message: videos && videos.length > 0 ? 'Videos retrieved successfully' : 'No videos found for this placement'
       });
     } catch (error) {
-      console.error('Error fetching videos by placement:', error);
+      console.error('❌ Error fetching videos by placement:', error);
+      console.error('Error details:', error instanceof Error ? error.stack : error);
+      
+      // Check if it's a database schema error (column doesn't exist)
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      if (errorMessage.includes('placement') || errorMessage.includes('Unknown column')) {
+        console.error('⚠️ Possible database schema issue - placement column may not exist');
+        // Return empty array instead of error for better UX
+        return res.json({
+          success: true,
+          data: { videos: [] },
+          message: 'No videos found (database schema may need migration)'
+        });
+      }
+      
       res.status(500).json({
         success: false,
-        message: 'Failed to fetch videos'
+        message: 'Failed to fetch videos',
+        error: errorMessage
       });
     }
   }

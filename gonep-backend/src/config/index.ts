@@ -41,8 +41,16 @@ export const config = {
   SMTP_PORT: parseInt(process.env.SMTP_PORT || '587', 10),
   SMTP_USER: process.env.SMTP_USER,
   SMTP_PASS: process.env.SMTP_PASS,
-  SMTP_FROM: process.env.SMTP_FROM,
+  // Domain email used for sending all emails (confirmation emails to users)
+  // This is what users will see as the "from" address
   EMAIL_FROM: process.env.EMAIL_FROM || process.env.SMTP_FROM,
+  // Admin notification emails (comma-separated for multiple recipients)
+  // These emails will receive notifications for newsletter subscriptions and demo requests
+  ADMIN_NOTIFICATION_EMAILS: process.env.ADMIN_NOTIFICATION_EMAILS 
+    ? process.env.ADMIN_NOTIFICATION_EMAILS.split(',').map(email => email.trim()).filter(email => email)
+    : process.env.ADMIN_NOTIFICATION_EMAIL 
+      ? [process.env.ADMIN_NOTIFICATION_EMAIL.trim()]
+      : [],
   
   // File upload configuration
   UPLOAD_PATH: process.env.UPLOAD_PATH || 'uploads',

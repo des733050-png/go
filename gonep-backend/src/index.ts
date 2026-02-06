@@ -8,8 +8,8 @@ const PORT = config.PORT;
 const server = app.listen(PORT, '0.0.0.0', async () => {
   console.log(`🚀 GONEP API Server running on port ${PORT}`);
   console.log(`📊 Environment: ${config.NODE_ENV}`);
-  console.log(`🔗 Health check: bknd.gonepharm.com/health`);
-  console.log(`📚 API docs: bknd.gonepharm.com/api`);
+  console.log(`🔗 Health check: ${config.API_BASE_URL}/health`);
+  console.log(`📚 API docs: ${config.API_BASE_URL}/api`);
   
   // Test database connection
   try {

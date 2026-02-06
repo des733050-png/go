@@ -8,7 +8,7 @@ A robust Node.js/Express API server for the GONEP healthcare platform with TypeS
 npm install
 cp env.example .env
 # Edit .env with your database credentials
-npm run dev
+npm run startx
 ```
 
 ## 📡 API Endpoints

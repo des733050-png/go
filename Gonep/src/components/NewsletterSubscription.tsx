@@ -25,10 +25,19 @@ export function NewsletterSubscription({ variant = "default", onClose, onSuccess
     setMessage(""); // Clear any previous messages
     
     try {
+      // Trim email before submission
+      const trimmedEmail = email.trim();
+      
+      if (!trimmedEmail) {
+        setStatus("error");
+        setMessage("Please enter a valid email address.");
+        return;
+      }
+      
       // For popup variant, include name data
       const subscriptionData = variant === "popup" 
-        ? { email, firstName, lastName }
-        : { email };
+        ? { email: trimmedEmail, firstName: firstName.trim(), lastName: lastName.trim() }
+        : { email: trimmedEmail };
       
       console.log('Submitting newsletter subscription:', subscriptionData);
       
@@ -175,7 +184,8 @@ export function NewsletterSubscription({ variant = "default", onClose, onSuccess
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="flex-1 text-sm h-8 bg-white/10 backdrop-blur-sm text-white placeholder:text-white/60 border-white/20 focus:border-white/40 focus:bg-white/20"
+            className="flex-1 text-sm h-8 bg-white/20 backdrop-blur-sm text-white placeholder:text-white/70 border-white/30 focus:border-white/50 focus:bg-white/30 focus:text-white"
+            style={{ color: '#ffffff' }}
             required
           />
           <Button 

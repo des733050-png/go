@@ -3,11 +3,31 @@ import { db } from '../config/database';
 import { newsletterSubscribers } from '../database/schema';
 import { asyncHandler } from '../middleware/errorHandler';
 import { eq, desc } from 'drizzle-orm';
+import { EmailService } from '../services/email';
 
 export class NewsletterController {
   // Subscribe to newsletter
   static subscribe = asyncHandler(async (req: Request, res: Response) => {
-    const { email, firstName, lastName } = req.body;
+    const { email: rawEmail, firstName, lastName } = req.body;
+
+    // Trim and validate email
+    const email = rawEmail ? rawEmail.trim().toLowerCase() : '';
+    
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email is required'
+      });
+    }
+
+    // Basic email format validation
+    const emailRegex = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid email address format'
+      });
+    }
 
     // Check if already subscribed
     const existing = await db
@@ -31,6 +51,28 @@ export class NewsletterController {
         lastName,
         isActive: true
       });
+
+    // Send confirmation email to subscriber
+    try {
+      const emailService = new EmailService();
+      await emailService.sendNewsletterConfirmation(email, firstName);
+    } catch (error) {
+      console.error('Failed to send newsletter confirmation email:', error);
+      // Don't fail the request if email fails
+    }
+
+    // Send admin notification email
+    try {
+      const emailService = new EmailService();
+      await emailService.sendNewsletterAdminNotification({
+        email,
+        firstName,
+        lastName
+      });
+    } catch (error) {
+      console.error('Failed to send admin notification email:', error);
+      // Don't fail the request if admin notification fails
+    }
 
     res.status(201).json({
       success: true,

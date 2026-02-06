@@ -180,6 +180,147 @@ export class EmailService {
   }
 
   /**
+   * Send admin notification for demo request
+   */
+  async sendDemoRequestAdminNotification(demoData: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    organization: string;
+    title: string;
+    organizationType: string;
+    country: string;
+    interests?: string[];
+    message?: string;
+    demoType: string;
+    preferredDate?: Date | string | null;
+    attendeeCount?: string | null;
+  }): Promise<void> {
+    if (!config.ADMIN_NOTIFICATION_EMAILS || config.ADMIN_NOTIFICATION_EMAILS.length === 0) {
+      console.warn('ADMIN_NOTIFICATION_EMAILS not configured, skipping admin notification');
+      return;
+    }
+
+    const adminUrl = config.ADMIN_URL ? (config.ADMIN_URL.startsWith('http') ? config.ADMIN_URL : `https://${config.ADMIN_URL}`) : '#';
+    const fullName = `${demoData.firstName} ${demoData.lastName}`;
+    const preferredDateStr = demoData.preferredDate 
+      ? new Date(demoData.preferredDate).toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        })
+      : 'Not specified';
+    const interestsStr = demoData.interests && demoData.interests.length > 0 
+      ? demoData.interests.join(', ') 
+      : 'None specified';
+
+    const template: EmailTemplate = {
+      subject: `New Demo Request - ${fullName} from ${demoData.organization}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; text-align: center;">
+            <h1 style="color: white; margin: 0;">GONEP</h1>
+            <p style="color: white; margin: 10px 0 0 0;">Healthcare Technology</p>
+          </div>
+          
+          <div style="padding: 30px; background: #f9f9f9;">
+            <h2 style="color: #333; margin-bottom: 20px;">New Demo Request Received</h2>
+            
+            <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">
+              A new demo request has been submitted. Review the details below and manage the request in the admin panel.
+            </p>
+            
+            <div style="background: white; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #667eea;">
+              <h3 style="color: #333; margin-top: 0;">Contact Information:</h3>
+              <p style="margin: 10px 0;"><strong>Name:</strong> ${fullName}</p>
+              <p style="margin: 10px 0;"><strong>Email:</strong> <a href="mailto:${demoData.email}" style="color: #667eea;">${demoData.email}</a></p>
+              <p style="margin: 10px 0;"><strong>Phone:</strong> ${demoData.phone}</p>
+              <p style="margin: 10px 0;"><strong>Title:</strong> ${demoData.title}</p>
+              
+              <h3 style="color: #333; margin-top: 25px;">Organization Details:</h3>
+              <p style="margin: 10px 0;"><strong>Organization:</strong> ${demoData.organization}</p>
+              <p style="margin: 10px 0;"><strong>Type:</strong> ${demoData.organizationType}</p>
+              <p style="margin: 10px 0;"><strong>Country:</strong> ${demoData.country}</p>
+              
+              <h3 style="color: #333; margin-top: 25px;">Demo Details:</h3>
+              <p style="margin: 10px 0;"><strong>Demo Type:</strong> ${demoData.demoType}</p>
+              <p style="margin: 10px 0;"><strong>Preferred Date:</strong> ${preferredDateStr}</p>
+              <p style="margin: 10px 0;"><strong>Attendee Count:</strong> ${demoData.attendeeCount || 'Not specified'}</p>
+              <p style="margin: 10px 0;"><strong>Interests:</strong> ${interestsStr}</p>
+              ${demoData.message ? `<p style="margin: 10px 0;"><strong>Message:</strong><br><span style="color: #666; font-style: italic;">${demoData.message}</span></p>` : ''}
+              
+              <p style="margin: 20px 0 10px 0;"><strong>Submitted At:</strong> ${new Date().toLocaleString()}</p>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="${adminUrl}" 
+                 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                        color: white; 
+                        padding: 15px 30px; 
+                        text-decoration: none; 
+                        border-radius: 5px; 
+                        display: inline-block;
+                        font-weight: bold;">
+                View in Admin Panel
+              </a>
+            </div>
+            
+            <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 14px;">
+              Click the button above to login to the admin panel and manage this demo request.
+            </p>
+            
+            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+            
+            <p style="color: #999; font-size: 12px; text-align: center;">
+              © 2024 GONEP. All rights reserved.<br>
+              This is an automated notification email.
+            </p>
+          </div>
+        </div>
+      `,
+      text: `
+        New Demo Request Received - GONEP
+        
+        A new demo request has been submitted. Review the details below and manage the request in the admin panel.
+        
+        Contact Information:
+        - Name: ${fullName}
+        - Email: ${demoData.email}
+        - Phone: ${demoData.phone}
+        - Title: ${demoData.title}
+        
+        Organization Details:
+        - Organization: ${demoData.organization}
+        - Type: ${demoData.organizationType}
+        - Country: ${demoData.country}
+        
+        Demo Details:
+        - Demo Type: ${demoData.demoType}
+        - Preferred Date: ${preferredDateStr}
+        - Attendee Count: ${demoData.attendeeCount || 'Not specified'}
+        - Interests: ${interestsStr}
+        ${demoData.message ? `- Message: ${demoData.message}` : ''}
+        
+        Submitted At: ${new Date().toLocaleString()}
+        
+        View in Admin Panel: ${adminUrl}
+        
+        © 2024 GONEP. All rights reserved.
+      `
+    };
+
+    // Send to all notification email addresses
+    const recipients = config.ADMIN_NOTIFICATION_EMAILS.join(', ');
+    await this.sendEmail({
+      to: recipients,
+      subject: template.subject,
+      html: template.html,
+      text: template.text,
+    });
+  }
+
+  /**
    * Send demo request confirmation
    */
   async sendDemoRequestConfirmation(email: string, demoData: any): Promise<void> {
@@ -308,6 +449,95 @@ export class EmailService {
 
     await this.sendEmail({
       to: email,
+      subject: template.subject,
+      html: template.html,
+      text: template.text,
+    });
+  }
+
+  /**
+   * Send admin notification for newsletter subscription
+   */
+  async sendNewsletterAdminNotification(subscriberData: { email: string; firstName?: string; lastName?: string }): Promise<void> {
+    if (!config.ADMIN_NOTIFICATION_EMAILS || config.ADMIN_NOTIFICATION_EMAILS.length === 0) {
+      console.warn('ADMIN_NOTIFICATION_EMAILS not configured, skipping admin notification');
+      return;
+    }
+
+    const adminUrl = config.ADMIN_URL ? (config.ADMIN_URL.startsWith('http') ? config.ADMIN_URL : `https://${config.ADMIN_URL}`) : '#';
+    const subscriberName = subscriberData.firstName || subscriberData.lastName 
+      ? `${subscriberData.firstName || ''} ${subscriberData.lastName || ''}`.trim() 
+      : 'N/A';
+
+    const template: EmailTemplate = {
+      subject: 'New Newsletter Subscription - GONEP',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; text-align: center;">
+            <h1 style="color: white; margin: 0;">GONEP</h1>
+            <p style="color: white; margin: 10px 0 0 0;">Healthcare Technology</p>
+          </div>
+          
+          <div style="padding: 30px; background: #f9f9f9;">
+            <h2 style="color: #333; margin-bottom: 20px;">New Newsletter Subscription</h2>
+            
+            <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">
+              A new user has subscribed to the GONEP newsletter. Review the details below and manage subscriptions in the admin panel.
+            </p>
+            
+            <div style="background: white; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #667eea;">
+              <h3 style="color: #333; margin-top: 0;">Subscriber Details:</h3>
+              <p style="margin: 10px 0;"><strong>Name:</strong> ${subscriberName}</p>
+              <p style="margin: 10px 0;"><strong>Email:</strong> ${subscriberData.email}</p>
+              <p style="margin: 10px 0;"><strong>Subscribed At:</strong> ${new Date().toLocaleString()}</p>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="${adminUrl}" 
+                 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                        color: white; 
+                        padding: 15px 30px; 
+                        text-decoration: none; 
+                        border-radius: 5px; 
+                        display: inline-block;
+                        font-weight: bold;">
+                View in Admin Panel
+              </a>
+            </div>
+            
+            <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 14px;">
+              Click the button above to login to the admin panel and manage newsletter subscriptions.
+            </p>
+            
+            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+            
+            <p style="color: #999; font-size: 12px; text-align: center;">
+              © 2024 GONEP. All rights reserved.<br>
+              This is an automated notification email.
+            </p>
+          </div>
+        </div>
+      `,
+      text: `
+        New Newsletter Subscription - GONEP
+        
+        A new user has subscribed to the GONEP newsletter.
+        
+        Subscriber Details:
+        - Name: ${subscriberName}
+        - Email: ${subscriberData.email}
+        - Subscribed At: ${new Date().toLocaleString()}
+        
+        View in Admin Panel: ${adminUrl}
+        
+        © 2024 GONEP. All rights reserved.
+      `
+    };
+
+    // Send to all notification email addresses
+    const recipients = config.ADMIN_NOTIFICATION_EMAILS.join(', ');
+    await this.sendEmail({
+      to: recipients,
       subject: template.subject,
       html: template.html,
       text: template.text,

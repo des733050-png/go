@@ -3,6 +3,7 @@ import { db } from '../config/database';
 import { demoRequests, calendarAvailability } from '../database/schema';
 import { asyncHandler } from '../middleware/errorHandler';
 import { eq, desc, and, gte } from 'drizzle-orm';
+import { EmailService } from '../services/email';
 
 export class DemoController {
   // Submit demo request
@@ -89,6 +90,44 @@ export class DemoController {
         attendeeCount: attendeeCount || null,
         status: 'pending'
       });
+
+    // Send confirmation email to user
+    try {
+      const emailService = new EmailService();
+      await emailService.sendDemoRequestConfirmation(email, {
+        firstName,
+        lastName,
+        organization,
+        demoType,
+        interests: interests || []
+      });
+    } catch (error) {
+      console.error('Failed to send demo request confirmation email:', error);
+      // Don't fail the request if email fails
+    }
+
+    // Send admin notification email
+    try {
+      const emailService = new EmailService();
+      await emailService.sendDemoRequestAdminNotification({
+        firstName,
+        lastName,
+        email,
+        phone,
+        organization,
+        title,
+        organizationType,
+        country,
+        interests: interests || [],
+        message: message || '',
+        demoType,
+        preferredDate: preferredDate ? new Date(preferredDate) : null,
+        attendeeCount: attendeeCount || null
+      });
+    } catch (error) {
+      console.error('Failed to send admin notification email:', error);
+      // Don't fail the request if admin notification fails
+    }
 
     res.status(201).json({
       success: true,

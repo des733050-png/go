@@ -1,5 +1,5 @@
 const API_BASE_URL = import.meta.env.PROD 
-  ? 'https://gonepbackend.vercel.app/api' 
+  ? 'https://bknd.gonepharm.com/api' 
   : 'http://localhost:8000/api';
 
 // Base API class for making HTTP requests

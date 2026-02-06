@@ -3,25 +3,28 @@ NODE_ENV=production
 PORT=8000
 
 # JWT Configuration
-JWT_SECRET=4LhVheHZuEvCdbcC0kiwXMQhAZLhHBvZT6j3aktuad16lvK65ueyvawc3LGYv89S
+JWT_SECRET= 4LhVheHZuEvCdbcC0kiwXMQhAZLhHBvZT6j3aktuad16lvK65ueyvawc3LGYv89S
 JWT_EXPIRES_IN=7d
-REFRESH_TOKEN_SECRET=wIIQW8eu4JjCEgMAV65vUvRXGQ60tBpolHL8G3DED0jsYLXs2VVGCXT1VPVabD1A
+REFRESH_TOKEN_SECRET= wIIQW8eu4JjCEgMAV65vUvRXGQ60tBpolHL8G3DED0jsYLXs2VVGCXT1VPVabD1A
 REFRESH_TOKEN_EXPIRES_IN=30d
 
-# Database Configuration (cPanel MySQL)
-DB_HOST=bknd.gonepharm.com
-DB_PORT=3306
-DB_USERNAME=gonephar_dev
-DB_PASSWORD=6+Dvi057ua^3EL^I
-DB_NAME=gonephar_gonep
+# Database Configuration (Railway MySQL)
+DATABASE_URL=mysql://root:GbZsViVkSvXIvcZAzRsiKdrqvgWTOYmv@:/railway
+
+#DB_HOST=root
+#DB_PORT=3306
+#DB_USERNAME=root
+#DB_PASSWORD=GbZsViVkSvXIvcZAzRsiKdrqvgWTOYmv
+#DB_NAME=railway
+
 
 # Email Configuration
 # ===================
 # SMTP Server Settings (for sending emails)
-SMTP_HOST=smtp.gmail.com
+SMTP_HOST=smtp-relay.brevo.com
 SMTP_PORT=587
-SMTP_USER=your-smtp-username
-SMTP_PASS=your-smtp-password
+SMTP_USER=a176bb001@smtp-brevo.com
+SMTP_PASS=xE8OskaryTgFd9nz
 
 # Domain Email (used as "from" address for all emails sent to users)
 # This is what users will see as the sender of confirmation emails
@@ -50,8 +53,9 @@ CLOUDINARY_API_SECRET=your-api-secret
 
 # Frontend URLs for CORS
 FRONTEND_URL=https://your-frontend-domain.vercel.app
-ADMIN_URL=gonep.admin/
+ADMIN_URL=https://your-admin-domain.vercel.app
 CORS_ORIGIN=https://your-frontend-domain.vercel.app
 
-# NOTE: Database now configured for cPanel MySQL
-# Railway configuration has been removed
+
+
+help setup the backend such that i can get notificationss ent to my email when user enters newsletter submit trigger and it relfects ...also when user input demo request details and send ...i want to be able to receive the email notifications for that@gonep-backend @d:\asid\Gonep Website\ @Gonep 

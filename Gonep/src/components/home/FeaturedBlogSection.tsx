@@ -18,7 +18,7 @@ export function FeaturedBlogSection() {
         setLoadingBlogs(true);
         
         // First try to get featured blogs
-        const featuredResponse = await fetch(`${import.meta.env.PROD ? 'https://gonepbackend.vercel.app/api' : 'http://localhost:8000/api'}/blog/posts?featured=true&limit=2`);
+        const featuredResponse = await fetch(`${import.meta.env.PROD ? 'https://bknd.gonepharm.com/api' : 'https://bknd.gonepharm.com/api'}/blog/posts?featured=true&limit=2`);
         
         if (featuredResponse.ok) {
           const featuredData = await featuredResponse.json();

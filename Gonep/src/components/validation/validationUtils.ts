@@ -1,6 +1,17 @@
 export const validateEmail = (email: string): boolean => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+  if (!email || typeof email !== 'string') {
+    return false;
+  }
+  
+  // Trim whitespace before validation
+  const trimmedEmail = email.trim();
+  
+  // More robust email validation regex
+  // Allows: letters, numbers, dots, hyphens, underscores, plus signs before @
+  // Domain: letters, numbers, dots, hyphens
+  // TLD: at least 2 letters
+  const emailRegex = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(trimmedEmail);
 };
 
 export const validatePhone = (phone: string): boolean => {
