@@ -297,7 +297,8 @@ export function BlogsPage() {
 
   const seoData = {
     title: "GONEP Health Blog - Healthcare Innovation Insights & Stories",
-    description: "Discover insights, stories, and innovations from the frontlines of African healthcare transformation. Learn about portable diagnostics, rural healthcare solutions, IoT in healthcare, and success stories from GONEP Healthcare.",
+    description:
+      "Discover insights, stories, and innovations from the frontlines of African healthcare transformation. Learn about portable diagnostics, rural healthcare solutions, IoT in healthcare, and success stories from GONEP.",
     keywords: [
       "healthcare blog",
       "healthcare innovation",
@@ -469,9 +470,9 @@ export function BlogsPage() {
                 <Link key={post.id} to={`/blogs/${post.id}`} className="block">
                   <Card className="overflow-hidden hover:shadow-lg transition-shadow group border-2 border-border hover:border-primary/20">
                   <div className="relative h-64">
-                    <img
+                      <img
                       src={post.image}
-                      alt={`${post.title} - Featured GONEP Healthcare blog article`}
+                      alt={`${post.title} - Featured GONEP blog article`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
                       width="600"
@@ -567,7 +568,7 @@ export function BlogsPage() {
                 <div className="relative h-48">
                   <img
                     src={post.image}
-                    alt={`${post.title} - GONEP Healthcare blog article`}
+                    alt={`${post.title} - GONEP blog article`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                     width="400"

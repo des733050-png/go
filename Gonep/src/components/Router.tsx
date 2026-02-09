@@ -26,6 +26,7 @@ import { HistoryPage } from "./pages/HistoryPage";
 import { MeetTheTeamPage } from "./pages/MeetTheTeamPage";
 import { ProductPage } from "./pages/ProductPage";
 import { SolutionsPage } from "./pages/SolutionsPage";
+import { RAndDPage } from "./pages/RAndDPage";
 import { MediaPage } from "./pages/MediaPage";
 import { BlogsPage } from "./pages/BlogsPage";
 import { BlogDetailPage } from "./pages/BlogDetailPage";
@@ -139,6 +140,10 @@ export function Router() {
                   <Route
                     path="/solutions"
                     element={<SolutionsPage />}
+                  />
+                  <Route
+                    path="/solutions/r-and-d"
+                    element={<RAndDPage />}
                   />
                   <Route path="/blogs" element={<BlogsPage />} />
                   <Route path="/blogs/:blogId" element={<BlogDetailPage />} />

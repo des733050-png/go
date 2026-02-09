@@ -7,10 +7,11 @@ import { generateSitemapUrl } from "../../utils/sitemapGenerator";
 
 export function SitemapPage() {
   const seoData = {
-    title: "Sitemap - GONEP Healthcare Website Structure & Navigation",
-    description: "Complete sitemap of GONEP Healthcare website. Find all pages, resources, and navigation links organized by category. Easy access to all our healthcare technology content.",
+    title: "Sitemap - GONEP Website Structure & Navigation",
+    description:
+      "Complete sitemap of the GONEP website. Find all pages, resources, and navigation links organized by category. Easy access to all our healthcare technology content.",
     keywords: [
-      "GONEP Healthcare sitemap",
+      "GONEP sitemap",
       "website navigation",
       "site structure",
       "page index"
@@ -23,17 +24,18 @@ export function SitemapPage() {
       category: "Main Pages",
       icon: Home,
       pages: [
-        { path: "/", title: "Home", description: "GONEP Healthcare homepage - Portable diagnostic devices and IoT healthcare solutions" },
+        { path: "/", title: "Home", description: "GONEP homepage - Portable diagnostic devices and healthcare technology solutions" },
         { path: "/clinic-at-hand", title: "Clinic at Hand", description: "3-in-1 portable diagnostic device for blood analysis, urine testing, and vital signs monitoring" },
         { path: "/solutions", title: "Solutions", description: "Tailored healthcare solutions for clinics, NGOs, governments, and mobile health programs" },
-        { path: "/contact", title: "Contact Us", description: "Get in touch with GONEP Healthcare for partnerships, demos, and inquiries" },
+        { path: "/solutions/r-and-d", title: "R&D Services", description: "Strategic healthcare R&D partner turning complex challenges into market-ready products and devices" },
+        { path: "/contact", title: "Contact Us", description: "Get in touch with GONEP for partnerships, demos, and inquiries" },
       ]
     },
     {
       category: "About",
       icon: Building2,
       pages: [
-        { path: "/about", title: "About GONEP", description: "Learn about GONEP Healthcare's mission, vision, and commitment to transforming African healthcare" },
+        { path: "/about", title: "About GONEP", description: "Learn about GONEP's mission, vision, and commitment to transforming African healthcare" },
         { path: "/about/who-we-are", title: "Who We Are", description: "Our vision, mission, values, and guiding principles driving healthcare innovation" },
         { path: "/about/history", title: "History", description: "Our journey from 2022 to today - milestones, achievements, and impact across Africa" },
         { path: "/about/meet-the-team", title: "Meet the Team", description: "Meet our diverse leadership team and experts transforming healthcare delivery" },
@@ -43,7 +45,7 @@ export function SitemapPage() {
       category: "Resources",
       icon: BookOpen,
       pages: [
-        { path: "/blogs", title: "Blog", description: "Healthcare innovation insights, success stories, and industry insights from GONEP Healthcare" },
+        { path: "/blogs", title: "Blog", description: "Healthcare innovation insights, success stories, and industry insights from GONEP" },
         { path: "/media", title: "Media & Resources", description: "Press kit, downloadable resources, images, and media materials" },
         { path: "/support", title: "Support & FAQs", description: "Customer support, frequently asked questions, and technical assistance" },
       ]
@@ -60,15 +62,15 @@ export function SitemapPage() {
       category: "Careers",
       icon: Briefcase,
       pages: [
-        { path: "/careers", title: "Careers", description: "Join GONEP Healthcare - Open positions in healthcare technology, engineering, and operations" },
+        { path: "/careers", title: "Careers", description: "Join GONEP - Open positions in healthcare technology, engineering, and operations" },
       ]
     },
     {
       category: "Legal & Policies",
       icon: Shield,
       pages: [
-        { path: "/privacy-policy", title: "Privacy Policy", description: "How GONEP Healthcare collects, uses, and protects your personal information" },
-        { path: "/terms-of-service", title: "Terms of Service", description: "Terms and conditions for using GONEP Healthcare website and services" },
+        { path: "/privacy-policy", title: "Privacy Policy", description: "How GONEP collects, uses, and protects your personal information" },
+        { path: "/terms-of-service", title: "Terms of Service", description: "Terms and conditions for using GONEP website and services" },
         { path: "/cookie-policy", title: "Cookie Policy", description: "Information about how we use cookies and similar tracking technologies" },
         { path: "/sitemap", title: "Sitemap", description: "Complete website structure and navigation guide" },
       ]
@@ -97,7 +99,7 @@ export function SitemapPage() {
               Sitemap
             </h1>
             <p className="text-lg text-muted-foreground">
-              Complete navigation guide to all pages and resources on the GONEP Healthcare website.
+              Complete navigation guide to all pages and resources on the GONEP website.
             </p>
             <p className="text-sm text-muted-foreground">
               Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}

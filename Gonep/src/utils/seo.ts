@@ -27,7 +27,7 @@ const DEFAULT_TWITTER_IMAGE = `${BASE_URL}/twitter-image.jpg`;
  * Generate full page title with brand name
  */
 export function generateTitle(pageTitle: string): string {
-  const brandName = 'GONEP Healthcare';
+  const brandName = 'GONEP';
   if (pageTitle.includes(brandName)) {
     return pageTitle;
   }
@@ -92,11 +92,13 @@ export function generateRobots(noindex?: boolean, nofollow?: boolean): string {
  * Default SEO data for fallback
  */
 export const defaultSEO: SEOData = {
-  title: 'GONEP Healthcare - Innovative IoT Healthcare Solutions for Rural Communities',
-  description: 'GONEP Healthcare provides innovative IoT healthcare solutions for rural communities. Our Clinic at Hand device transforms healthcare delivery with portable diagnostics, blood testing, and vital signs monitoring.',
+  title: 'GONEP - Innovative Healthcare Technology for Rural Communities',
+  description:
+    'GONEP provides innovative healthcare technology for rural communities. Our Clinic at Hand device transforms care delivery with portable diagnostics, blood testing, and vital signs monitoring. Learn more via gonepharm.com.',
   keywords: [
-    'healthcare',
-    'IoT',
+    'GONEP',
+    'gonepharm.com',
+    'healthcare innovation',
     'rural healthcare',
     'Clinic at Hand',
     'medical devices',

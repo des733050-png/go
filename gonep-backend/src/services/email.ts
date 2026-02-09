@@ -22,56 +22,110 @@ export class EmailService {
    */
   async sendVerificationEmail(email: string, token: string): Promise<void> {
     const verificationUrl = `${config.CORS_ORIGIN}/verify-email?token=${token}`;
-    
+
     const template: EmailTemplate = {
       subject: 'Verify Your Email - GONEP',
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">GONEP</h1>
-            <p style="color: white; margin: 10px 0 0 0;">Healthcare Technology</p>
-          </div>
-          
-          <div style="padding: 30px; background: #f9f9f9;">
-            <h2 style="color: #333; margin-bottom: 20px;">Verify Your Email Address</h2>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">
-              Thank you for registering with GONEP! To complete your registration and access your account, 
-              please verify your email address by clicking the button below.
-            </p>
-            
-            <div style="text-align: center; margin: 30px 0;">
-              <a href="${verificationUrl}" 
-                 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                        color: white; 
-                        padding: 15px 30px; 
-                        text-decoration: none; 
-                        border-radius: 5px; 
-                        display: inline-block;
-                        font-weight: bold;">
-                Verify Email Address
-              </a>
+        <div style="font-family: 'Inter', Arial, sans-serif; max-width: 640px; margin: 0 auto; background-color: #E8F1F2; padding: 24px;">
+          <style>
+            @media (prefers-color-scheme: dark) {
+              .gonep-email-wrapper { background-color: #1D1D1D !important; }
+              .gonep-email-card { background-color: #1D1D1D !important; color: #E8F1F2 !important; }
+              .gonep-email-header { background-color: #010097 !important; }
+              .gonep-email-footer { background-color: #1D1D1D !important; color: #9CA3AF !important; }
+              .gonep-email-link { color: #007EFF !important; }
+              .gonep-email-button { background-color: #010097 !important; color: #E8F1F2 !important; }
+            }
+          </style>
+          <div class="gonep-email-wrapper" style="background-color: #E8F1F2; padding: 8px;">
+            <div class="gonep-email-card" style="background-color: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #D1D5DB;">
+              <div class="gonep-email-header" style="background-color: #010097; padding: 20px 24px; text-align: center;">
+                <img 
+                  src="${config.CORS_ORIGIN}/GONEP Logo.png" 
+                  alt="GONEP logo" 
+                  style="height: 40px; margin-bottom: 8px;"
+                />
+                <h1 style="color: #E8F1F2; margin: 0; font-size: 20px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">
+                  GONEP
+                </h1>
+                <p style="color: #E8F1F2; margin: 4px 0 0 0; font-size: 13px;">
+                  Your partner in smarter, more accessible healthcare.
+                </p>
+              </div>
+
+              <div style="padding: 24px 24px 8px 24px;">
+                <h2 style="color: #1D1D1D; margin: 0 0 12px 0; font-size: 22px; font-weight: 700;">
+                  Verify your email address
+                </h2>
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 16px 0; font-size: 15px;">
+                  Thank you for registering with <strong style="color: #010097;">GONEP</strong>. 
+                  Confirm your email to activate your account and access your personalized healthcare tools.
+                </p>
+
+                <div style="text-align: center; margin: 24px 0;">
+                  <a
+                    href="${verificationUrl}"
+                    class="gonep-email-button"
+                    style="
+                      background-color: #010097;
+                      color: #E8F1F2;
+                      padding: 12px 28px;
+                      text-decoration: none;
+                      border-radius: 999px;
+                      display: inline-block;
+                      font-weight: 600;
+                      font-size: 15px;
+                      letter-spacing: 0.02em;
+                    "
+                  >
+                    Verify Email
+                  </a>
+                </div>
+
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 8px 0; font-size: 13px;">
+                  If the button doesn’t work, paste this secure link into your browser:
+                </p>
+                <p style="color: #007EFF; word-break: break-all; margin: 0 0 16px 0; font-size: 13px;" class="gonep-email-link">
+                  ${verificationUrl}
+                </p>
+
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 16px 0; font-size: 13px;">
+                  This verification link will expire in 24 hours. If you didn’t create an account with GONEP,
+                  you can safely ignore this email.
+                </p>
+              </div>
+
+              <div style="padding: 0 24px 20px 24px;">
+                <div style="margin-top: 12px; padding: 12px 16px; background-color: #F5F6FA; border-radius: 10px; border: 1px solid #D1D5DB;">
+                  <h3 style="margin: 0 0 8px 0; font-size: 14px; color: #1D1D1D; font-weight: 600;">
+                    Clinic at Hand – by GONEP
+                  </h3>
+                  <div style="display: flex; gap: 12px; align-items: center;">
+                    <img 
+                      src="${config.CORS_ORIGIN}/clinic-at-hand-device.jpg"
+                      alt="GONEP Clinic at Hand portable diagnostic device"
+                      style="width: 96px; height: 72px; object-fit: cover; border-radius: 8px; border: 1px solid #D1D5DB;"
+                    />
+                    <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #6B7280;">
+                      Discover our 3-in-1 portable diagnostic device for blood analysis, urinalysis, 
+                      and vital signs—built for clinics, outreach programs, and mobile care.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="gonep-email-footer" style="padding: 16px 24px 20px 24px; background-color: #E8F1F2; border-top: 1px solid #D1D5DB; text-align: left;">
+                <p style="color: #6B7280; font-size: 12px; margin: 0 0 6px 0;">
+                  <strong style="color: #1D1D1D;">Contact GONEP</strong><br/>
+                  Email: <a href="mailto:info@gonepharm.com" class="gonep-email-link" style="color: #007EFF; text-decoration: none;">info@gonepharm.com</a><br/>
+                  Phone: <a href="tel:+254707231654" class="gonep-email-link" style="color: #007EFF; text-decoration: none;">+254 707 231 654</a><br/>
+                  2nd Floor, Chandaria Innovation Centre Building, Kenya
+                </p>
+                <p style="color: #9CA3AF; font-size: 11px; margin: 6px 0 0 0;">
+                  © ${new Date().getFullYear()} GONEP. All rights reserved. This email was sent to ${email}.
+                </p>
+              </div>
             </div>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">
-              If the button doesn't work, you can copy and paste this link into your browser:
-            </p>
-            
-            <p style="color: #667eea; word-break: break-all; margin-bottom: 25px;">
-              ${verificationUrl}
-            </p>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">
-              This verification link will expire in 24 hours. If you didn't create an account with GONEP, 
-              you can safely ignore this email.
-            </p>
-            
-            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-            
-            <p style="color: #999; font-size: 12px; text-align: center;">
-              © 2024 GONEP. All rights reserved.<br>
-              This email was sent to ${email}
-            </p>
           </div>
         </div>
       `,
@@ -86,7 +140,7 @@ export class EmailService {
         This verification link will expire in 24 hours. If you didn't create an account with GONEP, 
         you can safely ignore this email.
         
-        © 2024 GONEP. All rights reserved.
+        © ${new Date().getFullYear()} GONEP. All rights reserved.
       `
     };
 
@@ -103,56 +157,90 @@ export class EmailService {
    */
   async sendPasswordResetEmail(email: string, token: string): Promise<void> {
     const resetUrl = `${config.CORS_ORIGIN}/reset-password?token=${token}`;
-    
+
     const template: EmailTemplate = {
       subject: 'Reset Your Password - GONEP',
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">GONEP</h1>
-            <p style="color: white; margin: 10px 0 0 0;">Healthcare Technology</p>
-          </div>
-          
-          <div style="padding: 30px; background: #f9f9f9;">
-            <h2 style="color: #333; margin-bottom: 20px;">Reset Your Password</h2>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">
-              We received a request to reset your password for your GONEP account. 
-              Click the button below to create a new password.
-            </p>
-            
-            <div style="text-align: center; margin: 30px 0;">
-              <a href="${resetUrl}" 
-                 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                        color: white; 
-                        padding: 15px 30px; 
-                        text-decoration: none; 
-                        border-radius: 5px; 
-                        display: inline-block;
-                        font-weight: bold;">
-                Reset Password
-              </a>
+        <div style="font-family: 'Inter', Arial, sans-serif; max-width: 640px; margin: 0 auto; background-color: #E8F1F2; padding: 24px;">
+          <style>
+            @media (prefers-color-scheme: dark) {
+              .gonep-email-wrapper { background-color: #1D1D1D !important; }
+              .gonep-email-card { background-color: #1D1D1D !important; color: #E8F1F2 !important; }
+              .gonep-email-header { background-color: #010097 !important; }
+              .gonep-email-footer { background-color: #1D1D1D !important; color: #9CA3AF !important; }
+              .gonep-email-link { color: #007EFF !important; }
+              .gonep-email-button { background-color: #010097 !important; color: #E8F1F2 !important; }
+            }
+          </style>
+          <div class="gonep-email-wrapper" style="background-color: #E8F1F2; padding: 8px;">
+            <div class="gonep-email-card" style="background-color: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #D1D5DB;">
+              <div class="gonep-email-header" style="background-color: #010097; padding: 20px 24px; text-align: center;">
+                <img 
+                  src="${config.CORS_ORIGIN}/GONEP Logo.png" 
+                  alt="GONEP logo" 
+                  style="height: 40px; margin-bottom: 8px;"
+                />
+                <h1 style="color: #E8F1F2; margin: 0; font-size: 20px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">
+                  GONEP
+                </h1>
+                <p style="color: #E8F1F2; margin: 4px 0 0 0; font-size: 13px;">
+                  Secure access to your healthcare tools.
+                </p>
+              </div>
+
+              <div style="padding: 24px 24px 16px 24px;">
+                <h2 style="color: #1D1D1D; margin: 0 0 12px 0; font-size: 22px; font-weight: 700;">
+                  Reset your password
+                </h2>
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 16px 0; font-size: 15px;">
+                  We received a request to reset the password for your <strong style="color: #010097;">GONEP</strong> account.
+                  Click the button below to create a new password safely.
+                </p>
+
+                <div style="text-align: center; margin: 24px 0;">
+                  <a
+                    href="${resetUrl}"
+                    class="gonep-email-button"
+                    style="
+                      background-color: #010097;
+                      color: #E8F1F2;
+                      padding: 12px 28px;
+                      text-decoration: none;
+                      border-radius: 999px;
+                      display: inline-block;
+                      font-weight: 600;
+                      font-size: 15px;
+                      letter-spacing: 0.02em;
+                    "
+                  >
+                    Reset Password
+                  </a>
+                </div>
+
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 8px 0; font-size: 13px;">
+                  If the button doesn’t work, paste this secure link into your browser:
+                </p>
+                <p style="color: #007EFF; word-break: break-all; margin: 0 0 16px 0; font-size: 13px;" class="gonep-email-link">
+                  ${resetUrl}
+                </p>
+
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 8px 0; font-size: 13px;">
+                  This password reset link will expire in 1 hour. If you didn’t request this, you can safely ignore this email.
+                </p>
+              </div>
+
+              <div class="gonep-email-footer" style="padding: 16px 24px 20px 24px; background-color: #E8F1F2; border-top: 1px solid #D1D5DB; text-align: left;">
+                <p style="color: #6B7280; font-size: 12px; margin: 0 0 6px 0;">
+                  <strong style="color: #1D1D1D;">Contact GONEP</strong><br/>
+                  Email: <a href="mailto:info@gonepharm.com" class="gonep-email-link" style="color: #007EFF; text-decoration: none;">info@gonepharm.com</a><br/>
+                  Phone: <a href="tel:+254707231654" class="gonep-email-link" style="color: #007EFF; text-decoration: none;">+254 707 231 654</a><br/>
+                  2nd Floor, Chandaria Innovation Centre Building, Kenya
+                </p>
+                <p style="color: #9CA3AF; font-size: 11px; margin: 6px 0 0 0;">
+                  © ${new Date().getFullYear()} GONEP. All rights reserved. This email was sent to ${email}.
+                </p>
+              </div>
             </div>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">
-              If the button doesn't work, you can copy and paste this link into your browser:
-            </p>
-            
-            <p style="color: #667eea; word-break: break-all; margin-bottom: 25px;">
-              ${resetUrl}
-            </p>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">
-              This password reset link will expire in 1 hour. If you didn't request a password reset, 
-              you can safely ignore this email.
-            </p>
-            
-            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-            
-            <p style="color: #999; font-size: 12px; text-align: center;">
-              © 2024 GONEP. All rights reserved.<br>
-              This email was sent to ${email}
-            </p>
           </div>
         </div>
       `,
@@ -167,7 +255,7 @@ export class EmailService {
         This password reset link will expire in 1 hour. If you didn't request a password reset, 
         you can safely ignore this email.
         
-        © 2024 GONEP. All rights reserved.
+        © ${new Date().getFullYear()} GONEP. All rights reserved.
       `
     };
 
@@ -218,64 +306,111 @@ export class EmailService {
     const template: EmailTemplate = {
       subject: `New Demo Request - ${fullName} from ${demoData.organization}`,
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">GONEP</h1>
-            <p style="color: white; margin: 10px 0 0 0;">Healthcare Technology</p>
-          </div>
-          
-          <div style="padding: 30px; background: #f9f9f9;">
-            <h2 style="color: #333; margin-bottom: 20px;">New Demo Request Received</h2>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">
-              A new demo request has been submitted. Review the details below and manage the request in the admin panel.
-            </p>
-            
-            <div style="background: white; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #667eea;">
-              <h3 style="color: #333; margin-top: 0;">Contact Information:</h3>
-              <p style="margin: 10px 0;"><strong>Name:</strong> ${fullName}</p>
-              <p style="margin: 10px 0;"><strong>Email:</strong> <a href="mailto:${demoData.email}" style="color: #667eea;">${demoData.email}</a></p>
-              <p style="margin: 10px 0;"><strong>Phone:</strong> ${demoData.phone}</p>
-              <p style="margin: 10px 0;"><strong>Title:</strong> ${demoData.title}</p>
-              
-              <h3 style="color: #333; margin-top: 25px;">Organization Details:</h3>
-              <p style="margin: 10px 0;"><strong>Organization:</strong> ${demoData.organization}</p>
-              <p style="margin: 10px 0;"><strong>Type:</strong> ${demoData.organizationType}</p>
-              <p style="margin: 10px 0;"><strong>Country:</strong> ${demoData.country}</p>
-              
-              <h3 style="color: #333; margin-top: 25px;">Demo Details:</h3>
-              <p style="margin: 10px 0;"><strong>Demo Type:</strong> ${demoData.demoType}</p>
-              <p style="margin: 10px 0;"><strong>Preferred Date:</strong> ${preferredDateStr}</p>
-              <p style="margin: 10px 0;"><strong>Attendee Count:</strong> ${demoData.attendeeCount || 'Not specified'}</p>
-              <p style="margin: 10px 0;"><strong>Interests:</strong> ${interestsStr}</p>
-              ${demoData.message ? `<p style="margin: 10px 0;"><strong>Message:</strong><br><span style="color: #666; font-style: italic;">${demoData.message}</span></p>` : ''}
-              
-              <p style="margin: 20px 0 10px 0;"><strong>Submitted At:</strong> ${new Date().toLocaleString()}</p>
+        <div style="font-family: 'Inter', Arial, sans-serif; max-width: 640px; margin: 0 auto; background-color: #E8F1F2; padding: 24px;">
+          <style>
+            @media (prefers-color-scheme: dark) {
+              .gonep-email-wrapper { background-color: #1D1D1D !important; }
+              .gonep-email-card { background-color: #1D1D1D !important; color: #E8F1F2 !important; }
+              .gonep-email-header { background-color: #010097 !important; }
+              .gonep-email-footer { background-color: #1D1D1D !important; color: #9CA3AF !important; }
+              .gonep-email-link { color: #007EFF !important; }
+              .gonep-email-button { background-color: #010097 !important; color: #E8F1F2 !important; }
+            }
+          </style>
+          <div class="gonep-email-wrapper" style="background-color: #E8F1F2; padding: 8px;">
+            <div class="gonep-email-card" style="background-color: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #D1D5DB;">
+              <div class="gonep-email-header" style="background-color: #010097; padding: 20px 24px; text-align: center;">
+                <img 
+                  src="${config.CORS_ORIGIN}/GONEP Logo.png" 
+                  alt="GONEP logo" 
+                  style="height: 40px; margin-bottom: 8px;"
+                />
+                <h1 style="color: #E8F1F2; margin: 0; font-size: 20px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">
+                  GONEP
+                </h1>
+                <p style="color: #E8F1F2; margin: 4px 0 0 0; font-size: 13px;">
+                  New demo request for Clinic at Hand.
+                </p>
+              </div>
+
+              <div style="padding: 24px 24px 8px 24px;">
+                <h2 style="color: #1D1D1D; margin: 0 0 12px 0; font-size: 20px; font-weight: 700;">
+                  New demo request received
+                </h2>
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 16px 0; font-size: 14px;">
+                  A new demo request has been submitted. Review the details below and manage the request in the admin panel.
+                </p>
+
+                <div style="background: #FFFFFF; padding: 18px 18px 16px 18px; border-radius: 10px; margin: 12px 0 16px 0; border-left: 4px solid #010097;">
+                  <h3 style="color: #1D1D1D; margin: 0 0 8px 0; font-size: 15px; font-weight: 600;">Contact information</h3>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Name:</strong> ${fullName}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;">
+                    <strong>Email:</strong> 
+                    <a href="mailto:${demoData.email}" class="gonep-email-link" style="color: #007EFF; text-decoration: none;">${demoData.email}</a>
+                  </p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Phone:</strong> ${demoData.phone}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Title:</strong> ${demoData.title}</p>
+
+                  <h3 style="color: #1D1D1D; margin: 14px 0 8px 0; font-size: 15px; font-weight: 600;">Organization details</h3>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Organization:</strong> ${demoData.organization}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Type:</strong> ${demoData.organizationType}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Country:</strong> ${demoData.country}</p>
+
+                  <h3 style="color: #1D1D1D; margin: 14px 0 8px 0; font-size: 15px; font-weight: 600;">Demo details</h3>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Demo type:</strong> ${demoData.demoType}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Preferred date:</strong> ${preferredDateStr}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Attendee count:</strong> ${demoData.attendeeCount || 'Not specified'}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Interests:</strong> ${interestsStr}</p>
+                  ${demoData.message ? `<p style="margin: 8px 0 0 0; font-size: 13px; color: #6B7280;"><strong>Message:</strong><br/><span style="font-style: italic;">${demoData.message}</span></p>` : ''}
+
+                  <p style="margin: 12px 0 0 0; font-size: 12px; color: #6B7280;">
+                    <strong>Submitted at:</strong> ${new Date().toLocaleString()}
+                  </p>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 12px; margin: 12px 0 20px 0;">
+                  <img 
+                    src="${config.CORS_ORIGIN}/clinic-at-hand-device.jpg"
+                    alt="Clinic at Hand demo device"
+                    style="width: 96px; height: 72px; object-fit: cover; border-radius: 8px; border: 1px solid #D1D5DB;"
+                  />
+                  <p style="margin: 0; font-size: 13px; color: #6B7280; line-height: 1.5;">
+                    Clinic at Hand brings lab-grade diagnostics to the point of care—ideal for clinics, outreach, and 
+                    mobile health programs. This demo request is a strong opportunity for impact.
+                  </p>
+                </div>
+
+                <div style="text-align: center; margin: 12px 0 16px 0;">
+                  <a
+                    href="${adminUrl}"
+                    class="gonep-email-button"
+                    style="
+                      background-color: #010097;
+                      color: #E8F1F2;
+                      padding: 12px 28px;
+                      text-decoration: none;
+                      border-radius: 999px;
+                      display: inline-block;
+                      font-weight: 600;
+                      font-size: 15px;
+                      letter-spacing: 0.02em;
+                    "
+                  >
+                    View in admin panel
+                  </a>
+                </div>
+
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 8px 0; font-size: 13px;">
+                  Use the admin panel to assign an owner, schedule the session, and track follow-up.
+                </p>
+              </div>
+
+              <div class="gonep-email-footer" style="padding: 16px 24px 20px 24px; background-color: #E8F1F2; border-top: 1px solid #D1D5DB; text-align: left;">
+                <p style="color: #9CA3AF; font-size: 11px; margin: 0;">
+                  © ${new Date().getFullYear()} GONEP. Internal notification — do not forward outside your organization.
+                </p>
+              </div>
             </div>
-            
-            <div style="text-align: center; margin: 30px 0;">
-              <a href="${adminUrl}" 
-                 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                        color: white; 
-                        padding: 15px 30px; 
-                        text-decoration: none; 
-                        border-radius: 5px; 
-                        display: inline-block;
-                        font-weight: bold;">
-                View in Admin Panel
-              </a>
-            </div>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 14px;">
-              Click the button above to login to the admin panel and manage this demo request.
-            </p>
-            
-            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-            
-            <p style="color: #999; font-size: 12px; text-align: center;">
-              © 2024 GONEP. All rights reserved.<br>
-              This is an automated notification email.
-            </p>
           </div>
         </div>
       `,
@@ -306,7 +441,7 @@ export class EmailService {
         
         View in Admin Panel: ${adminUrl}
         
-        © 2024 GONEP. All rights reserved.
+        © ${new Date().getFullYear()} GONEP. All rights reserved.
       `
     };
 
@@ -327,39 +462,79 @@ export class EmailService {
     const template: EmailTemplate = {
       subject: 'Demo Request Received - GONEP',
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">GONEP</h1>
-            <p style="color: white; margin: 10px 0 0 0;">Healthcare Technology</p>
-          </div>
-          
-          <div style="padding: 30px; background: #f9f9f9;">
-            <h2 style="color: #333; margin-bottom: 20px;">Demo Request Received</h2>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">
-              Thank you for your interest in GONEP's Clinic at Hand device! We have received your demo request 
-              and our team will contact you within 24 hours to schedule your demonstration.
-            </p>
-            
-            <div style="background: white; padding: 20px; border-radius: 5px; margin: 20px 0;">
-              <h3 style="color: #333; margin-top: 0;">Request Details:</h3>
-              <p><strong>Name:</strong> ${demoData.firstName} ${demoData.lastName}</p>
-              <p><strong>Organization:</strong> ${demoData.organization}</p>
-              <p><strong>Demo Type:</strong> ${demoData.demoType}</p>
-              <p><strong>Interests:</strong> ${demoData.interests.join(', ')}</p>
+        <div style="font-family: 'Inter', Arial, sans-serif; max-width: 640px; margin: 0 auto; background-color: #E8F1F2; padding: 24px;">
+          <style>
+            @media (prefers-color-scheme: dark) {
+              .gonep-email-wrapper { background-color: #1D1D1D !important; }
+              .gonep-email-card { background-color: #1D1D1D !important; color: #E8F1F2 !important; }
+              .gonep-email-header { background-color: #010097 !important; }
+              .gonep-email-footer { background-color: #1D1D1D !important; color: #9CA3AF !important; }
+              .gonep-email-link { color: #007EFF !important; }
+              .gonep-email-button { background-color: #010097 !important; color: #E8F1F2 !important; }
+            }
+          </style>
+          <div class="gonep-email-wrapper" style="background-color: #E8F1F2; padding: 8px;">
+            <div class="gonep-email-card" style="background-color: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #D1D5DB;">
+              <div class="gonep-email-header" style="background-color: #010097; padding: 20px 24px; text-align: center;">
+                <img 
+                  src="${config.CORS_ORIGIN}/GONEP Logo.png" 
+                  alt="GONEP logo" 
+                  style="height: 40px; margin-bottom: 8px;"
+                />
+                <h1 style="color: #E8F1F2; margin: 0; font-size: 20px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">
+                  GONEP
+                </h1>
+                <p style="color: #E8F1F2; margin: 4px 0 0 0; font-size: 13px;">
+                  Thank you for your interest in Clinic at Hand.
+                </p>
+              </div>
+
+              <div style="padding: 24px 24px 8px 24px;">
+                <h2 style="color: #1D1D1D; margin: 0 0 12px 0; font-size: 22px; font-weight: 700;">
+                  We’ve received your demo request
+                </h2>
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 16px 0; font-size: 15px;">
+                  Thank you for your interest in <strong style="color: #010097;">GONEP’s Clinic at Hand</strong> device.
+                  Our team will contact you within 24 hours to schedule your demonstration and answer any questions.
+                </p>
+
+                <div style="display: flex; gap: 14px; align-items: center; margin: 8px 0 18px 0;">
+                  <img 
+                    src="${config.CORS_ORIGIN}/clinic-at-hand-device.jpg"
+                    alt="Clinic at Hand portable diagnostic device"
+                    style="width: 112px; height: 84px; object-fit: cover; border-radius: 10px; border: 1px solid #D1D5DB;"
+                  />
+                  <p style="margin: 0; font-size: 13px; color: #6B7280; line-height: 1.5;">
+                    Clinic at Hand is a 3-in-1 portable diagnostic device for blood analysis, urinalysis, and vital signs,
+                    designed for clinics, outreach teams, and mobile health programs.
+                  </p>
+                </div>
+
+                <div style="background: #F5F6FA; padding: 18px; border-radius: 10px; margin: 0 0 16px 0; border: 1px solid #D1D5DB;">
+                  <h3 style="color: #1D1D1D; margin: 0 0 8px 0; font-size: 15px; font-weight: 600;">Your request details</h3>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Name:</strong> ${demoData.firstName} ${demoData.lastName}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Organization:</strong> ${demoData.organization}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Demo type:</strong> ${demoData.demoType}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Interests:</strong> ${demoData.interests.join(', ')}</p>
+                </div>
+
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 16px 0; font-size: 13px;">
+                  In the meantime, you can explore more about Clinic at Hand and other GONEP solutions on our website.
+                </p>
+              </div>
+
+              <div class="gonep-email-footer" style="padding: 16px 24px 20px 24px; background-color: #E8F1F2; border-top: 1px solid #D1D5DB; text-align: left;">
+                <p style="color: #6B7280; font-size: 12px; margin: 0 0 6px 0;">
+                  <strong style="color: #1D1D1D;">Contact GONEP</strong><br/>
+                  Email: <a href="mailto:info@gonepharm.com" class="gonep-email-link" style="color: #007EFF; text-decoration: none;">info@gonepharm.com</a><br/>
+                  Phone: <a href="tel:+254707231654" class="gonep-email-link" style="color: #007EFF; text-decoration: none;">+254 707 231 654</a><br/>
+                  2nd Floor, Chandaria Innovation Centre Building, Kenya
+                </p>
+                <p style="color: #9CA3AF; font-size: 11px; margin: 6px 0 0 0;">
+                  © ${new Date().getFullYear()} GONEP. All rights reserved. This email was sent to ${email}.
+                </p>
+              </div>
             </div>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">
-              In the meantime, you can learn more about our technology by visiting our website or 
-              downloading our product brochure.
-            </p>
-            
-            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-            
-            <p style="color: #999; font-size: 12px; text-align: center;">
-              © 2024 GONEP. All rights reserved.<br>
-              This email was sent to ${email}
-            </p>
           </div>
         </div>
       `,
@@ -377,7 +552,7 @@ export class EmailService {
         
         In the meantime, you can learn more about our technology by visiting our website.
         
-        © 2024 GONEP. All rights reserved.
+        © ${new Date().getFullYear()} GONEP. All rights reserved.
       `
     };
 
@@ -396,37 +571,65 @@ export class EmailService {
     const template: EmailTemplate = {
       subject: 'Inquiry Received - GONEP',
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">GONEP</h1>
-            <p style="color: white; margin: 10px 0 0 0;">Healthcare Technology</p>
-          </div>
-          
-          <div style="padding: 30px; background: #f9f9f9;">
-            <h2 style="color: #333; margin-bottom: 20px;">Inquiry Received</h2>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">
-              Thank you for contacting GONEP! We have received your inquiry and our team will get back to you 
-              within 48 hours.
-            </p>
-            
-            <div style="background: white; padding: 20px; border-radius: 5px; margin: 20px 0;">
-              <h3 style="color: #333; margin-top: 0;">Inquiry Details:</h3>
-              <p><strong>Name:</strong> ${inquiryData.name}</p>
-              <p><strong>Category:</strong> ${inquiryData.category}</p>
-              <p><strong>Message:</strong> ${inquiryData.message}</p>
+        <div style="font-family: 'Inter', Arial, sans-serif; max-width: 640px; margin: 0 auto; background-color: #E8F1F2; padding: 24px;">
+          <style>
+            @media (prefers-color-scheme: dark) {
+              .gonep-email-wrapper { background-color: #1D1D1D !important; }
+              .gonep-email-card { background-color: #1D1D1D !important; color: #E8F1F2 !important; }
+              .gonep-email-header { background-color: #010097 !important; }
+              .gonep-email-footer { background-color: #1D1D1D !important; color: #9CA3AF !important; }
+              .gonep-email-link { color: #007EFF !important; }
+            }
+          </style>
+          <div class="gonep-email-wrapper" style="background-color: #E8F1F2; padding: 8px;">
+            <div class="gonep-email-card" style="background-color: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #D1D5DB;">
+              <div class="gonep-email-header" style="background-color: #010097; padding: 20px 24px; text-align: center;">
+                <img 
+                  src="${config.CORS_ORIGIN}/GONEP Logo.png" 
+                  alt="GONEP logo" 
+                  style="height: 40px; margin-bottom: 8px;"
+                />
+                <h1 style="color: #E8F1F2; margin: 0; font-size: 20px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">
+                  GONEP
+                </h1>
+                <p style="color: #E8F1F2; margin: 4px 0 0 0; font-size: 13px;">
+                  We’ve received your message.
+                </p>
+              </div>
+
+              <div style="padding: 24px 24px 8px 24px;">
+                <h2 style="color: #1D1D1D; margin: 0 0 12px 0; font-size: 22px; font-weight: 700;">
+                  Thank you for reaching out to GONEP
+                </h2>
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 16px 0; font-size: 15px;">
+                  We’ve received your inquiry and our team will get back to you within 48 hours with a clear, 
+                  helpful response.
+                </p>
+
+                <div style="background: #F5F6FA; padding: 18px; border-radius: 10px; margin: 0 0 16px 0; border: 1px solid #D1D5DB;">
+                  <h3 style="color: #1D1D1D; margin: 0 0 8px 0; font-size: 15px; font-weight: 600;">Your inquiry</h3>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Name:</strong> ${inquiryData.name}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Category:</strong> ${inquiryData.category}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #6B7280;"><strong>Message:</strong> ${inquiryData.message}</p>
+                </div>
+
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 16px 0; font-size: 13px;">
+                  If your question is urgent, you can also reach us directly using the contact details below.
+                </p>
+              </div>
+
+              <div class="gonep-email-footer" style="padding: 16px 24px 20px 24px; background-color: #E8F1F2; border-top: 1px solid #D1D5DB; text-align: left;">
+                <p style="color: #6B7280; font-size: 12px; margin: 0 0 6px 0;">
+                  <strong style="color: #1D1D1D;">Contact GONEP</strong><br/>
+                  Email: <a href="mailto:info@gonepharm.com" class="gonep-email-link" style="color: #007EFF; text-decoration: none;">info@gonepharm.com</a><br/>
+                  Phone: <a href="tel:+254707231654" class="gonep-email-link" style="color: #007EFF; text-decoration: none;">+254 707 231 654</a><br/>
+                  2nd Floor, Chandaria Innovation Centre Building, Kenya
+                </p>
+                <p style="color: #9CA3AF; font-size: 11px; margin: 6px 0 0 0;">
+                  © ${new Date().getFullYear()} GONEP. All rights reserved. This email was sent to ${email}.
+                </p>
+              </div>
             </div>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">
-              If you have any urgent questions, please don't hesitate to call us directly.
-            </p>
-            
-            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-            
-            <p style="color: #999; font-size: 12px; text-align: center;">
-              © 2024 GONEP. All rights reserved.<br>
-              This email was sent to ${email}
-            </p>
           </div>
         </div>
       `,
@@ -443,7 +646,7 @@ export class EmailService {
         
         If you have any urgent questions, please don't hesitate to call us directly.
         
-        © 2024 GONEP. All rights reserved.
+        © ${new Date().getFullYear()} GONEP. All rights reserved.
       `
     };
 
@@ -472,49 +675,76 @@ export class EmailService {
     const template: EmailTemplate = {
       subject: 'New Newsletter Subscription - GONEP',
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">GONEP</h1>
-            <p style="color: white; margin: 10px 0 0 0;">Healthcare Technology</p>
-          </div>
-          
-          <div style="padding: 30px; background: #f9f9f9;">
-            <h2 style="color: #333; margin-bottom: 20px;">New Newsletter Subscription</h2>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">
-              A new user has subscribed to the GONEP newsletter. Review the details below and manage subscriptions in the admin panel.
-            </p>
-            
-            <div style="background: white; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #667eea;">
-              <h3 style="color: #333; margin-top: 0;">Subscriber Details:</h3>
-              <p style="margin: 10px 0;"><strong>Name:</strong> ${subscriberName}</p>
-              <p style="margin: 10px 0;"><strong>Email:</strong> ${subscriberData.email}</p>
-              <p style="margin: 10px 0;"><strong>Subscribed At:</strong> ${new Date().toLocaleString()}</p>
+        <div style="font-family: 'Inter', Arial, sans-serif; max-width: 640px; margin: 0 auto; background-color: #E8F1F2; padding: 24px;">
+          <style>
+            @media (prefers-color-scheme: dark) {
+              .gonep-email-wrapper { background-color: #1D1D1D !important; }
+              .gonep-email-card { background-color: #1D1D1D !important; color: #E8F1F2 !important; }
+              .gonep-email-header { background-color: #010097 !important; }
+              .gonep-email-footer { background-color: #1D1D1D !important; color: #9CA3AF !important; }
+              .gonep-email-link { color: #007EFF !important; }
+              .gonep-email-button { background-color: #010097 !important; color: #E8F1F2 !important; }
+            }
+          </style>
+          <div class="gonep-email-wrapper" style="background-color: #E8F1F2; padding: 8px;">
+            <div class="gonep-email-card" style="background-color: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #D1D5DB;">
+              <div class="gonep-email-header" style="background-color: #010097; padding: 20px 24px; text-align: center;">
+                <img 
+                  src="${config.CORS_ORIGIN}/GONEP Logo.png" 
+                  alt="GONEP logo" 
+                  style="height: 40px; margin-bottom: 8px;"
+                />
+                <h1 style="color: #E8F1F2; margin: 0; font-size: 20px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">
+                  GONEP
+                </h1>
+                <p style="color: #E8F1F2; margin: 4px 0 0 0; font-size: 13px;">
+                  New newsletter subscription.
+                </p>
+              </div>
+
+              <div style="padding: 24px 24px 8px 24px;">
+                <h2 style="color: #1D1D1D; margin: 0 0 12px 0; font-size: 20px; font-weight: 700;">
+                  A new subscriber joined GONEP updates
+                </h2>
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 16px 0; font-size: 14px;">
+                  Someone has subscribed to receive news and insights from GONEP. Review the details below and manage
+                  this subscription in the admin panel.
+                </p>
+
+                <div style="background: #F5F6FA; padding: 18px; border-radius: 10px; margin: 0 0 16px 0; border: 1px solid #D1D5DB;">
+                  <h3 style="color: #1D1D1D; margin: 0 0 8px 0; font-size: 15px; font-weight: 600;">Subscriber details</h3>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Name:</strong> ${subscriberName}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #1D1D1D;"><strong>Email:</strong> ${subscriberData.email}</p>
+                  <p style="margin: 6px 0; font-size: 13px; color: #6B7280;"><strong>Subscribed at:</strong> ${new Date().toLocaleString()}</p>
+                </div>
+
+                <div style="text-align: center; margin: 12px 0 16px 0;">
+                  <a
+                    href="${adminUrl}"
+                    class="gonep-email-button"
+                    style="
+                      background-color: #010097;
+                      color: #E8F1F2;
+                      padding: 12px 28px;
+                      text-decoration: none;
+                      border-radius: 999px;
+                      display: inline-block;
+                      font-weight: 600;
+                      font-size: 15px;
+                      letter-spacing: 0.02em;
+                    "
+                  >
+                    View in admin panel
+                  </a>
+                </div>
+              </div>
+
+              <div class="gonep-email-footer" style="padding: 16px 24px 20px 24px; background-color: #E8F1F2; border-top: 1px solid #D1D5DB; text-align: left;">
+                <p style="color: #9CA3AF; font-size: 11px; margin: 0;">
+                  © ${new Date().getFullYear()} GONEP. Internal notification — do not forward outside your organization.
+                </p>
+              </div>
             </div>
-            
-            <div style="text-align: center; margin: 30px 0;">
-              <a href="${adminUrl}" 
-                 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                        color: white; 
-                        padding: 15px 30px; 
-                        text-decoration: none; 
-                        border-radius: 5px; 
-                        display: inline-block;
-                        font-weight: bold;">
-                View in Admin Panel
-              </a>
-            </div>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 14px;">
-              Click the button above to login to the admin panel and manage newsletter subscriptions.
-            </p>
-            
-            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-            
-            <p style="color: #999; font-size: 12px; text-align: center;">
-              © 2024 GONEP. All rights reserved.<br>
-              This is an automated notification email.
-            </p>
           </div>
         </div>
       `,
@@ -530,7 +760,7 @@ export class EmailService {
         
         View in Admin Panel: ${adminUrl}
         
-        © 2024 GONEP. All rights reserved.
+        © ${new Date().getFullYear()} GONEP. All rights reserved.
       `
     };
 
@@ -551,31 +781,71 @@ export class EmailService {
     const template: EmailTemplate = {
       subject: 'Newsletter Subscription Confirmed - GONEP',
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">GONEP</h1>
-            <p style="color: white; margin: 10px 0 0 0;">Healthcare Technology</p>
-          </div>
-          
-          <div style="padding: 30px; background: #f9f9f9;">
-            <h2 style="color: #333; margin-bottom: 20px;">Welcome to GONEP Newsletter!</h2>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">
-              ${firstName ? `Hi ${firstName},` : 'Hi there,'} thank you for subscribing to our newsletter! 
-              You'll now receive the latest updates about our healthcare technology innovations, 
-              industry insights, and company news.
-            </p>
-            
-            <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">
-              You can unsubscribe at any time by clicking the unsubscribe link at the bottom of our emails.
-            </p>
-            
-            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-            
-            <p style="color: #999; font-size: 12px; text-align: center;">
-              © 2024 GONEP. All rights reserved.<br>
-              This email was sent to ${email}
-            </p>
+        <div style="font-family: 'Inter', Arial, sans-serif; max-width: 640px; margin: 0 auto; background-color: #E8F1F2; padding: 24px;">
+          <style>
+            @media (prefers-color-scheme: dark) {
+              .gonep-email-wrapper { background-color: #1D1D1D !important; }
+              .gonep-email-card { background-color: #1D1D1D !important; color: #E8F1F2 !important; }
+              .gonep-email-header { background-color: #010097 !important; }
+              .gonep-email-footer { background-color: #1D1D1D !important; color: #9CA3AF !important; }
+              .gonep-email-link { color: #007EFF !important; }
+            }
+          </style>
+          <div class="gonep-email-wrapper" style="background-color: #E8F1F2; padding: 8px;">
+            <div class="gonep-email-card" style="background-color: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #D1D5DB;">
+              <div class="gonep-email-header" style="background-color: #010097; padding: 20px 24px; text-align: center;">
+                <img 
+                  src="${config.CORS_ORIGIN}/GONEP Logo.png" 
+                  alt="GONEP logo" 
+                  style="height: 40px; margin-bottom: 8px;"
+                />
+                <h1 style="color: #E8F1F2; margin: 0; font-size: 20px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">
+                  GONEP
+                </h1>
+                <p style="color: #E8F1F2; margin: 4px 0 0 0; font-size: 13px;">
+                  You’re now subscribed to GONEP insights.
+                </p>
+              </div>
+
+              <div style="padding: 24px 24px 8px 24px;">
+                <h2 style="color: #1D1D1D; margin: 0 0 12px 0; font-size: 22px; font-weight: 700;">
+                  Welcome to the GONEP newsletter!
+                </h2>
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 16px 0; font-size: 15px;">
+                  ${firstName ? `Hi ${firstName},` : 'Hi there,'} thank you for subscribing. 
+                  You’ll now receive curated updates on our healthcare innovations, Clinic at Hand, and 
+                  practical stories from the field.
+                </p>
+
+                <div style="display: flex; gap: 14px; align-items: center; margin: 8px 0 18px 0;">
+                  <img 
+                    src="${config.CORS_ORIGIN}/clinic-at-hand-device.jpg"
+                    alt="Clinic at Hand portable diagnostic device"
+                    style="width: 112px; height: 84px; object-fit: cover; border-radius: 10px; border: 1px solid #D1D5DB;"
+                  />
+                  <p style="margin: 0; font-size: 13px; color: #6B7280; line-height: 1.5;">
+                    Expect real-world use cases, product tips, and new features that make Clinic at Hand and other GONEP
+                    solutions even more valuable in everyday care.
+                  </p>
+                </div>
+
+                <p style="color: #6B7280; line-height: 1.6; margin: 0 0 16px 0; font-size: 13px;">
+                  You can unsubscribe at any time using the link at the bottom of our emails—no hard feelings.
+                </p>
+              </div>
+
+              <div class="gonep-email-footer" style="padding: 16px 24px 20px 24px; background-color: #E8F1F2; border-top: 1px solid #D1D5DB; text-align: left;">
+                <p style="color: #6B7280; font-size: 12px; margin: 0 0 6px 0;">
+                  <strong style="color: #1D1D1D;">Contact GONEP</strong><br/>
+                  Email: <a href="mailto:info@gonepharm.com" class="gonep-email-link" style="color: #007EFF; text-decoration: none;">info@gonepharm.com</a><br/>
+                  Phone: <a href="tel:+254707231654" class="gonep-email-link" style="color: #007EFF; text-decoration: none;">+254 707 231 654</a><br/>
+                  2nd Floor, Chandaria Innovation Centre Building, Kenya
+                </p>
+                <p style="color: #9CA3AF; font-size: 11px; margin: 6px 0 0 0;">
+                  © ${new Date().getFullYear()} GONEP. All rights reserved. This email was sent to ${email}.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       `,
@@ -588,7 +858,7 @@ export class EmailService {
         
         You can unsubscribe at any time by clicking the unsubscribe link at the bottom of our emails.
         
-        © 2024 GONEP. All rights reserved.
+        © ${new Date().getFullYear()} GONEP. All rights reserved.
       `
     };
 

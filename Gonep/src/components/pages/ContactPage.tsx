@@ -40,15 +40,17 @@ export function ContactPage() {
   ];
 
   const seoData = {
-    title: "Contact GONEP Healthcare - Get Involved & Request Demo",
-    description: "Contact GONEP Healthcare for partnerships, demo requests, sales inquiries, or support. Located in Kenya at Chandaria Innovation Centre. Phone: +254 707 231 654 | Email: info@gonepharm.com",
+    title: "Contact GONEP - Get Involved & Request Demo",
+    description:
+      "Contact GONEP for partnerships, demo requests, sales inquiries, or support. Located in Kenya at Chandaria Innovation Centre. Phone: +254 707 231 654 | Email: info@gonepharm.com",
     keywords: [
-      "contact GONEP Healthcare",
-      "GONEP Healthcare contact",
+      "contact GONEP",
+      "GONEP contact",
+      "gonepharm.com contact",
       "request demo Clinic at Hand",
       "healthcare partnership",
       "medical device sales",
-      "GONEP Healthcare Kenya",
+      "GONEP Kenya",
       "healthcare technology contact"
     ],
     canonical: "/contact"
@@ -66,8 +68,14 @@ export function ContactPage() {
               Contact / Get Involved
             </h1>
             <p className="text-lg text-muted-foreground">
-              Connect with <strong>GONEP Healthcare</strong> for <strong>healthcare partnerships</strong>, <strong>demo requests</strong>, <strong>medical device inquiries</strong>, and <strong>healthcare technology collaborations</strong>. Whether you're a <strong>healthcare provider</strong>, <strong>investor</strong>, <strong>NGO partner</strong>, or someone passionate about 
-              improving African healthcare, we'd love to hear from you.
+              Connect with <strong>GONEP</strong> for{" "}
+              <strong>healthcare partnerships</strong>,{" "}
+              <strong>demo requests</strong>,{" "}
+              <strong>medical device inquiries</strong>, and{" "}
+              <strong>healthcare technology collaborations</strong>. Whether you're a{" "}
+              <strong>healthcare provider</strong>, <strong>investor</strong>,{" "}
+              <strong>NGO partner</strong>, or someone passionate about improving African
+              healthcare, we'd love to hear from you.
             </p>
           </div>
         </div>
@@ -222,7 +230,7 @@ export function ContactPage() {
                     <div className="flex items-start space-x-3">
                       <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                       <div>
-                        <p className="font-medium text-foreground">GONEP Pharmaceuticals HQ</p>
+                        <p className="font-medium text-foreground">GONEP HQ</p>
                         <p className="text-muted-foreground">2nd Floor, Chandaria Innovation Centre Building</p>
                         <p className="text-muted-foreground">Kenya</p>
                       </div>

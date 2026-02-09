@@ -35,7 +35,7 @@ export function SEOHead({ seo }: SEOHeadProps) {
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="GONEP Healthcare" />
+      <meta property="og:site_name" content="GONEP" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

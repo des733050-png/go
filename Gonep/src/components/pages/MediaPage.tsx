@@ -14,14 +14,16 @@ export function MediaPage() {
     setIsNewsletterPopupOpen(true);
   };
   const seoData = {
-    title: "Media & Resources - GONEP Healthcare Press Kit & Downloads",
-    description: "Access GONEP Healthcare media resources, press releases, product images, videos, and downloadable materials. Find everything you need for media coverage and partnerships.",
+    title: "Media & Resources - GONEP Press Kit & Downloads",
+    description:
+      "Access GONEP media resources, press releases, product images, videos, and downloadable materials. Find everything you need for media coverage and partnerships.",
     keywords: [
-      "GONEP Healthcare media",
+      "GONEP media",
       "healthcare press kit",
       "medical device resources",
       "healthcare technology media",
-      "GONEP downloads"
+      "GONEP downloads",
+      "gonepharm.com"
     ],
     canonical: "/media"
   };

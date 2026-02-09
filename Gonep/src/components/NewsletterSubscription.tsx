@@ -110,6 +110,7 @@ export function NewsletterSubscription({ variant = "default", onClose, onSuccess
                   placeholder="First name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
+                  className="bg-background text-foreground border-input dark:bg-muted dark:text-foreground"
                   required
                 />
               </div>
@@ -120,6 +121,7 @@ export function NewsletterSubscription({ variant = "default", onClose, onSuccess
                   placeholder="Last name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
+                  className="bg-background text-foreground border-input dark:bg-muted dark:text-foreground"
                   required
                 />
               </div>
@@ -132,6 +134,7 @@ export function NewsletterSubscription({ variant = "default", onClose, onSuccess
                 placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="bg-background text-foreground border-input dark:bg-muted dark:text-foreground"
                 required
               />
             </div>
@@ -149,8 +152,8 @@ export function NewsletterSubscription({ variant = "default", onClose, onSuccess
           {message && (
             <div className={`mt-4 p-3 rounded-lg text-sm ${
               status === "success" 
-                ? "bg-green-50 text-green-800 border border-green-200" 
-                : "bg-red-50 text-red-800 border border-red-200"
+                ? "bg-green-50 dark:bg-green-900/30 text-green-800 dark:text-green-200 border border-green-200 dark:border-green-800" 
+                : "bg-red-50 dark:bg-red-900/30 text-red-800 dark:text-red-200 border border-red-200 dark:border-red-800"
             }`}>
               {message}
             </div>
@@ -222,7 +225,7 @@ export function NewsletterSubscription({ variant = "default", onClose, onSuccess
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="flex-1"
+          className="flex-1 bg-background text-foreground border-input dark:bg-muted dark:text-foreground"
           required
         />
         <Button 

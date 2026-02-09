@@ -4,7 +4,6 @@ import { Separator } from "./ui/separator";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Instagram, ArrowRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { NewsletterSubscription } from "./NewsletterSubscription";
-import logoWithoutTagline from "../assets/logo without tagline bg white.jpeg";
 
 export function Footer() {
   const location = useLocation();
@@ -63,18 +62,25 @@ export function Footer() {
             <div className="space-y-6">
               <div>
                 <div className="flex items-center space-x-3 mb-2">
-                  <img 
-                    src={logoWithoutTagline} 
-                    alt="GONEP Healthcare Logo" 
-                    className="h-12 w-auto"
-                  />
+                  <div className="bg-white rounded-md p-1">
+                    <img
+                      src="/GONEP Logo.png"
+                      alt="GONEP Logo"
+                      className="h-10 w-auto"
+                    />
+                  </div>
                   <div>
                     <div className="text-3xl font-bold text-white">GONEP</div>
-                    <div className="text-white font-medium">Healthcare</div>
+        
                   </div>
                 </div>
                 <p className="mt-4 leading-relaxed text-white/90">
-                  <strong>Transforming African healthcare</strong> through affordable, portable diagnostic solutions. <strong>Clinic at Hand</strong> brings lab-grade testing to rural communities - <strong>50,000+ patients served</strong> across <strong>12 African countries</strong>. <strong>Winner of Presidential Innovation Award</strong>.
+                  <strong>GONEP</strong> is transforming African healthcare
+                  through affordable, portable diagnostic solutions.{" "}
+                  <strong>Clinic at Hand</strong> brings lab-grade testing to
+                  rural communities — <strong>50,000+ patients served</strong>{" "}
+                  across <strong>12 African countries</strong> and recognised
+                  with the <strong>Presidential Innovation Award</strong>.
                 </p>
               </div>
               
@@ -224,7 +230,7 @@ export function Footer() {
         <div className="py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-white/90">
-              © {new Date().getFullYear()} GONEP Pharmaceuticals. All rights reserved.
+              © {new Date().getFullYear()} GONEP. All rights reserved.
             </div>
             
             <div className="text-white/70 text-xs">

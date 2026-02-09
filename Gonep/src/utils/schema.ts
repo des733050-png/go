@@ -70,10 +70,10 @@ export function generateOrganizationSchema(data?: Partial<OrganizationSchema>) {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": data?.name || "GONEP Healthcare",
+    "name": data?.name || "GONEP",
     "url": data?.url || BASE_URL,
-    "logo": data?.logo || `${BASE_URL}/logo-without-tagline-bg-white.jpeg`,
-    "description": data?.description || "GONEP Healthcare provides innovative IoT healthcare solutions for rural communities. Our Clinic at Hand device transforms healthcare delivery with portable diagnostics.",
+    "logo": data?.logo || `${BASE_URL}/GONEP%20Logo.png`,
+    "description": data?.description || "GONEP provides innovative healthcare technology solutions for rural and underserved communities, including the Clinic at Hand diagnostic device.",
     "address": data?.address || {
       "@type": "PostalAddress",
       "streetAddress": "2nd Floor, Chandaria Innovation Centre Building",
@@ -106,11 +106,11 @@ export function generateProductSchema(data: ProductSchema) {
     "image": data.image || `${BASE_URL}/clinic-at-hand-device.jpg`,
     "brand": data.brand || {
       "@type": "Brand",
-      "name": "GONEP Healthcare"
+      "name": "GONEP"
     },
     "manufacturer": {
       "@type": "Organization",
-      "name": "GONEP Healthcare"
+      "name": "GONEP"
     },
     "offers": data.offers || {
       "@type": "Offer",
@@ -137,16 +137,16 @@ export function generateArticleSchema(data: ArticleSchema) {
       "url": data.author.url
     } : {
       "@type": "Organization",
-      "name": "GONEP Healthcare"
+      "name": "GONEP"
     },
     "datePublished": data.datePublished,
     "dateModified": data.dateModified || data.datePublished,
     "publisher": data.publisher || {
       "@type": "Organization",
-      "name": "GONEP Healthcare",
+      "name": "GONEP",
       "logo": {
         "@type": "ImageObject",
-        "url": `${BASE_URL}/logo-without-tagline-bg-white.jpeg`
+        "url": `${BASE_URL}/GONEP%20Logo.png`
       }
     }
   };
@@ -175,8 +175,8 @@ export function generateLocalBusinessSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "GONEP Healthcare",
-    "image": `${BASE_URL}/logo-without-tagline-bg-white.jpeg`,
+    "name": "GONEP",
+    "image": `${BASE_URL}/GONEP%20Logo.png`,
     "@id": BASE_URL,
     "url": BASE_URL,
     "telephone": "+254-707-231-654",

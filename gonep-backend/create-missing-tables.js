@@ -1,13 +1,45 @@
 import mysql from 'mysql2/promise';
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.join(__dirname, 'env') });
 
 async function createMissingTables() {
   try {
-    const connection = await mysql.createConnection({
-      host: '127.0.0.1',
-      user: 'root',
-      password: '',
-      database: 'gonep'
-    });
+    // Parse DATABASE_URL if provided, otherwise use individual env vars
+    let config = {};
+    
+    if (process.env.DATABASE_URL) {
+      // Parse DATABASE_URL format: mysql://user:password@host:port/database
+      const url = new URL(process.env.DATABASE_URL.replace(/^mysql:\/\//, 'http://'));
+      config = {
+        host: url.hostname,
+        port: parseInt(url.port) || 3306,
+        user: url.username,
+        password: url.password,
+        database: url.pathname.replace('/', ''),
+      };
+    } else {
+      config = {
+        host: process.env.DB_HOST || 'localhost',
+        port: parseInt(process.env.DB_PORT) || 3306,
+        user: process.env.DB_USERNAME || 'root',
+        password: process.env.DB_PASSWORD || '',
+        database: process.env.DB_NAME || 'gonep',
+      };
+    }
+
+    console.log('🔌 Connecting to database...');
+    console.log(`   Host: ${config.host}`);
+    console.log(`   Port: ${config.port}`);
+    console.log(`   Database: ${config.database}`);
+    console.log(`   User: ${config.user}`);
+    
+    const connection = await mysql.createConnection(config);
 
     console.log('✅ Connected to MySQL database');
 

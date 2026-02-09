@@ -6,10 +6,12 @@ import { BASE_URL } from "../../utils/config";
 
 export function CookiePolicyPage() {
   const seoData = {
-    title: "Cookie Policy - GONEP Healthcare Cookie Usage & Preferences",
-    description: "GONEP Healthcare Cookie Policy. Learn about how we use cookies and similar tracking technologies on our website. Manage your cookie preferences and understand your privacy options.",
+    title: "Cookie Policy - GONEP Cookie Usage & Preferences",
+    description:
+      "GONEP Cookie Policy. Learn about how we use cookies and similar tracking technologies on our website. Manage your cookie preferences and understand your privacy options.",
     keywords: [
-      "GONEP Healthcare cookie policy",
+      "GONEP cookie policy",
+      "gonepharm.com cookies",
       "cookie usage",
       "website cookies",
       "tracking technologies",
@@ -47,7 +49,8 @@ export function CookiePolicyPage() {
               Cookie Policy
             </h1>
             <p className="text-lg text-muted-foreground">
-              This policy explains how GONEP Healthcare uses cookies and similar technologies on our website.
+              This policy explains how GONEP uses cookies and similar technologies on
+              our website.
             </p>
             <p className="text-sm text-muted-foreground">
               Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}

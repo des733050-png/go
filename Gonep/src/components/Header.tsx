@@ -8,9 +8,8 @@ import { ContactModal } from "./ContactModal";
 import { useTheme } from "./Router";
 // GONEP Logo - using the proper GONEP logo
 // Use public URL for assets
-import { getImage } from "../utils/imageUtils";
-
-const gonepLogo = getImage("logoWithoutTaglineBgRemoved");
+// Use the public GONEP logo for consistent branding across the site
+const gonepLogo = "/GONEP Logo.png";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -62,8 +61,25 @@ export function Header() {
 
   const navigationItems = [
     { id: 'product', label: 'Clinic at Hand', path: '/clinic-at-hand' },
+    // Solutions is handled as a dedicated dropdown so users can access both
+    // the main Solutions page and the R&D page directly
     { id: 'solutions', label: 'Solutions', path: '/solutions' },
     { id: 'blogs', label: 'Blogs', path: '/blogs' },
+  ];
+
+  const solutionsItems = [
+    {
+      id: 'solutions-overview',
+      label: 'Solutions Overview',
+      path: '/solutions',
+      description: 'Explore how GONEP tailors Clinic at Hand and digital tools for clinics, NGOs, and governments.',
+    },
+    {
+      id: 'solutions-rnd',
+      label: 'R&D Services',
+      path: '/solutions/r-and-d',
+      description: 'Strategic healthcare R&D partnership from concept to market-ready products and devices.',
+    },
   ];
 
   const aboutItems = [
@@ -137,11 +153,11 @@ export function Header() {
         <div className="container max-w-full px-4 lg:px-8">
           <div className="flex justify-between items-center py-4 gap-4">
             {/* Left: Logo */}
-            <Link to="/" className="flex items-center space-x-3 flex-shrink-0 overflow-visible">
+            <Link to="/" className="flex items-center space-x-3 flex-shrink-0 overflow-visible mr-6">
               <img 
                 src={gonepLogo} 
                 alt="GONEP Logo" 
-                className="h-12 w-auto scale-[2] origin-left"
+                className="h-10 w-auto scale-[1.5] origin-left"
               />
             </Link>
 
@@ -164,22 +180,25 @@ export function Header() {
                 )}
               </Link>
               
-              {/* About Dropdown with Hover */}
+              {/* About Dropdown with Hover - main label is clickable */}
               <div className="relative group">
-                <button className={`text-sm xl:text-base font-medium transition-all duration-300 hover:text-primary relative px-1 xl:px-2 py-1 flex items-center space-x-1 whitespace-nowrap ${
-                  isAboutActive() 
-                    ? 'text-primary' 
-                    : isNearFooter 
-                      ? 'text-gray-900 hover:text-primary' 
-                      : 'text-foreground hover:scale-105'
-                }`}>
+                <Link
+                  to="/about"
+                  className={`text-sm xl:text-base font-medium transition-all duration-300 hover:text-primary relative px-1 xl:px-2 py-1 flex items-center space-x-1 whitespace-nowrap ${
+                    isAboutActive()
+                      ? 'text-primary'
+                      : isNearFooter
+                        ? 'text-gray-900 hover:text-primary'
+                        : 'text-foreground hover:scale-105'
+                  }`}
+                >
                   <span>About</span>
                   <ChevronDown className="h-3 w-3 xl:h-4 xl:w-4 group-hover:rotate-180 transition-transform duration-300" />
                   {isAboutActive() && (
                     <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-primary rounded-full" />
                   )}
-                </button>
-                
+                </Link>
+
                 {/* Dropdown Content */}
                 <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                   <div className="bg-background border border-border shadow-lg rounded-lg w-64 py-2">
@@ -197,25 +216,75 @@ export function Header() {
                 </div>
               </div>
 
-              {/* Other Navigation Items */}
-              {navigationItems.map((item) => (
+              {/* Clinic at Hand Link */}
+              <Link
+                to="/clinic-at-hand"
+                className={`text-sm xl:text-base font-medium transition-all duration-300 hover:text-primary relative px-1 xl:px-2 py-1 whitespace-nowrap ${
+                  isActivePath('/clinic-at-hand') 
+                    ? 'text-primary' 
+                    : isNearFooter 
+                      ? 'text-gray-900 hover:text-primary' 
+                      : 'text-foreground hover:scale-105'
+                }`}
+              >
+                Clinic at Hand
+                {isActivePath('/clinic-at-hand') && (
+                  <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                )}
+              </Link>
+
+              {/* Solutions Dropdown with R&D link and brief descriptions */}
+              <div className="relative group">
                 <Link
-                  key={item.id}
-                  to={item.path}
-                  className={`text-sm xl:text-base font-medium transition-all duration-300 hover:text-primary relative px-1 xl:px-2 py-1 whitespace-nowrap ${
-                    isActivePath(item.path) 
-                      ? 'text-primary' 
-                      : isNearFooter 
-                        ? 'text-gray-900 hover:text-primary' 
+                  to="/solutions"
+                  className={`text-sm xl:text-base font-medium transition-all duration-300 hover:text-primary relative px-1 xl:px-2 py-1 flex items-center space-x-1 whitespace-nowrap ${
+                    isActivePath('/solutions')
+                      ? 'text-primary'
+                      : isNearFooter
+                        ? 'text-gray-900 hover:text-primary'
                         : 'text-foreground hover:scale-105'
                   }`}
                 >
-                  {item.label}
-                  {isActivePath(item.path) && (
+                  <span>Solutions</span>
+                  <ChevronDown className="h-3 w-3 xl:h-4 xl:w-4 group-hover:rotate-180 transition-transform duration-300" />
+                  {isActivePath('/solutions') && (
                     <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-primary rounded-full" />
                   )}
                 </Link>
-              ))}
+
+                {/* Dropdown Content */}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                  <div className="bg-background border border-border shadow-lg rounded-lg w-72 py-2">
+                    {solutionsItems.map((item) => (
+                      <Link
+                        key={item.id}
+                        to={item.path}
+                        className="block px-4 py-3 hover:bg-primary/10 transition-colors duration-200"
+                      >
+                        <div className="text-foreground font-medium">{item.label}</div>
+                        <div className="text-sm text-muted-foreground">{item.description}</div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Blogs Link */}
+              <Link
+                to="/blogs"
+                className={`text-sm xl:text-base font-medium transition-all duration-300 hover:text-primary relative px-1 xl:px-2 py-1 whitespace-nowrap ${
+                  isActivePath('/blogs') 
+                    ? 'text-primary' 
+                    : isNearFooter 
+                      ? 'text-gray-900 hover:text-primary' 
+                      : 'text-foreground hover:scale-105'
+                }`}
+              >
+                Blogs
+                {isActivePath('/blogs') && (
+                  <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                )}
+              </Link>
               
               {/* Health Tools Dropdown with Hover */}
               <div className="relative group">
@@ -342,7 +411,7 @@ export function Header() {
                   <img 
                     src={gonepLogo} 
                     alt="GONEP Logo" 
-                    className="h-8 w-auto scale-[2] origin-left"
+                    className="h-7 w-auto origin-left"
                   />
                   <span className="text-lg font-semibold text-foreground">Menu</span>
                 </div>
@@ -389,21 +458,60 @@ export function Header() {
                     ))}
                   </div>
 
-                  {/* Main Navigation Items */}
-                  {navigationItems.map((item) => (
+                  {/* Clinic at Hand Link */}
+                  <Link
+                    to="/clinic-at-hand"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`mobile-sidebar-item flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
+                      isActivePath('/clinic-at-hand') 
+                        ? 'text-primary bg-primary/10 border border-primary/20 active' 
+                        : 'text-foreground hover:text-primary hover:bg-muted/50'
+                    }`}
+                  >
+                    Clinic at Hand
+                  </Link>
+
+                  {/* Solutions Section */}
+                  <div className="space-y-2">
+                    <div className="px-4 py-2 text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+                      Solutions
+                    </div>
                     <Link
-                      key={item.id}
-                      to={item.path}
+                      to="/solutions"
                       onClick={() => setMobileMenuOpen(false)}
                       className={`mobile-sidebar-item flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
-                        isActivePath(item.path) 
+                        isActivePath('/solutions') && !isActivePath('/solutions/r-and-d')
                           ? 'text-primary bg-primary/10 border border-primary/20 active' 
                           : 'text-foreground hover:text-primary hover:bg-muted/50'
                       }`}
                     >
-                      {item.label}
+                      Solutions Overview
                     </Link>
-                  ))}
+                    <Link
+                      to="/solutions/r-and-d"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`mobile-sidebar-item flex items-center px-8 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                        isActivePath('/solutions/r-and-d')
+                          ? 'text-primary bg-primary/10 border border-primary/20 active'
+                          : 'text-foreground/80 hover:text-primary hover:bg-muted/50'
+                      }`}
+                    >
+                      R&amp;D Services
+                    </Link>
+                  </div>
+
+                  {/* Blogs Link */}
+                  <Link
+                    to="/blogs"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`mobile-sidebar-item flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
+                      isActivePath('/blogs') 
+                        ? 'text-primary bg-primary/10 border border-primary/20 active' 
+                        : 'text-foreground hover:text-primary hover:bg-muted/50'
+                    }`}
+                  >
+                    Blogs
+                  </Link>
                   
                   {/* Health Tools Section */}
                   <div className="space-y-2">

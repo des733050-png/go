@@ -16,7 +16,8 @@ export function SolutionsPage() {
 
   const seoData = {
     title: "Healthcare Solutions for Clinics, NGOs & Governments | GONEP",
-    description: "Tailored healthcare solutions for clinics, hospitals, NGOs, mobile health programs, and government health initiatives. GONEP's Clinic at Hand addresses specific challenges across the healthcare ecosystem in Africa.",
+    description:
+      "Tailored healthcare solutions for clinics, hospitals, NGOs, mobile health programs, and government health initiatives. GONEP's Clinic at Hand and R&D services address specific challenges across the healthcare ecosystem in Africa.",
     keywords: [
       "healthcare solutions for clinics",
       "rural healthcare technology",
@@ -135,7 +136,13 @@ export function SolutionsPage() {
               Healthcare Innovation & R&D as a Service
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Beyond <strong>Clinic at Hand</strong>, GONEP Healthcare partners with organizations to develop <strong>custom healthcare solutions</strong> tailored to African healthcare challenges. Whether you need <strong>medical device customization</strong>, <strong>diagnostic innovation</strong>, or <strong>healthcare technology development</strong> - we turn your healthcare challenges into impactful, affordable solutions.
+              Beyond <strong>Clinic at Hand</strong>, GONEP partners with organizations
+              to develop <strong>custom healthcare solutions</strong> tailored to
+              African healthcare challenges. Whether you need{" "}
+              <strong>medical device customization</strong>,{" "}
+              <strong>diagnostic innovation</strong>, or{" "}
+              <strong>healthcare technology development</strong> — we turn your
+              healthcare challenges into impactful, affordable solutions.
             </p>
           </div>
 

@@ -240,10 +240,12 @@ export function CareersPage() {
   };
 
   const seoData = {
-    title: "Careers at GONEP Healthcare - Join Our Mission",
-    description: "Join GONEP Healthcare and help transform African healthcare. We're hiring passionate professionals in healthcare technology, engineering, sales, and operations. Make an impact with innovative IoT healthcare solutions.",
+    title: "Careers at GONEP - Join Our Mission",
+    description:
+      "Join GONEP and help transform African healthcare. We're hiring passionate professionals in healthcare technology, engineering, sales, and operations. Make an impact with innovative healthcare solutions.",
     keywords: [
-      "GONEP Healthcare careers",
+      "GONEP careers",
+      "GONEP jobs",
       "healthcare technology jobs",
       "medical device jobs Kenya",
       "healthcare startup careers",
@@ -272,7 +274,14 @@ export function CareersPage() {
               Join Us in Building Africa's Future of Healthcare Technology
             </p>
             <p className="text-muted-foreground">
-              At GONEP Healthcare, we believe that meaningful work comes from solving real problems that affect real people. Every day, our team wakes up knowing that their efforts directly impact whether a mother in a remote village can get her child tested for malaria, whether a clinic can diagnose diabetes before complications arise, and whether communities can access quality healthcare without traveling for days. This isn't just a job - it's a mission to ensure that geography and income don't determine health outcomes.
+              At GONEP, we believe that meaningful work comes from solving real
+              problems that affect real people. Every day, our team wakes up knowing
+              that their efforts directly impact whether a mother in a remote village
+              can get her child tested for malaria, whether a clinic can diagnose
+              diabetes before complications arise, and whether communities can access
+              quality healthcare without traveling for days. This isn't just a job -
+              it's a mission to ensure that geography and income don't determine health
+              outcomes.
             </p>
             <p className="text-muted-foreground">
               We're building something unprecedented: an integrated healthcare operating system that connects patients with providers, enables rapid diagnostics in the most remote locations, and creates economic opportunities for healthcare professionals across Kenya and beyond. If you're driven by purpose, excited by innovation, and committed to making healthcare accessible to everyone, we'd love to have you join us.
@@ -339,7 +348,7 @@ export function CareersPage() {
               ) : (
                 <ImageWithFallback
                   src={everyoneImage}
-                  alt="Diverse GONEP Healthcare team members working together on innovative healthcare technology solutions"
+                  alt="Diverse GONEP team members working together on innovative healthcare technology solutions"
                   className="w-full h-auto rounded-2xl shadow-lg"
                   loading="lazy"
                   width="1000"

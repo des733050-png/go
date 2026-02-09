@@ -82,11 +82,12 @@ export function WhoWeArePage() {
   ];
 
   const seoData = {
-    title: "Who We Are - GONEP Healthcare Vision, Mission & Values",
-    description: "Discover GONEP Healthcare's vision, mission, and core values. We're committed to eliminating healthcare disparities across Africa through innovative technology, community-focused solutions, and excellence in healthcare innovation.",
+    title: "Who We Are - GONEP Vision, Mission & Values",
+    description:
+      "Discover GONEP's vision, mission, and core values. We're committed to eliminating healthcare disparities across Africa through innovative technology, community-focused solutions, and excellence in healthcare innovation.",
     keywords: [
-      "GONEP Healthcare vision",
-      "GONEP Healthcare mission",
+      "GONEP vision",
+      "GONEP mission",
       "healthcare values",
       "African healthcare mission",
       "healthcare innovation values",
@@ -111,7 +112,13 @@ export function WhoWeArePage() {
               Who We Are
             </h1>
             <p className="text-lg text-muted-foreground">
-              GONEP Healthcare emerged from a simple yet profound realization: geography and income should never determine whether someone receives quality healthcare. We began as a vision to transform how healthcare reaches communities across Africa, particularly those in rural and underserved areas. Today, we're building an integrated healthcare ecosystem that connects patients with healthcare providers through intelligent technology, making quality care accessible regardless of location or economic status.
+              GONEP emerged from a simple yet profound realization: geography and income
+              should never determine whether someone receives quality healthcare. We
+              began as a vision to transform how healthcare reaches communities across
+              Africa, particularly those in rural and underserved areas. Today, we're
+              building an integrated healthcare ecosystem that connects patients with
+              healthcare providers through intelligent technology, making quality care
+              accessible regardless of location or economic status.
             </p>
           </motion.div>
         </div>
@@ -170,7 +177,7 @@ export function WhoWeArePage() {
               ) : (
                 <ImageWithFallback
                   src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="GONEP Healthcare vision for transforming African healthcare through innovative technology and accessible diagnostics"
+                  alt="GONEP vision for transforming African healthcare through innovative technology and accessible diagnostics"
                   className="w-full h-auto rounded-2xl shadow-lg"
                   loading="lazy"
                   width="800"
@@ -203,7 +210,7 @@ export function WhoWeArePage() {
               ) : (
                 <ImageWithFallback
                   src={WhoWeAre}
-                  alt="GONEP Healthcare team members providing healthcare services and training in African rural communities"
+                  alt="GONEP team members providing healthcare services and training in African rural communities"
                   className="w-full h-auto rounded-2xl shadow-lg"
                   loading="lazy"
                   width="800"

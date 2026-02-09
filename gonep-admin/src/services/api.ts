@@ -28,7 +28,7 @@ import {
 } from '../types';
 
 // API Configuration
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://gonepbackend.vercel.app/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
 // Create axios instance
 const apiClient: AxiosInstance = axios.create({

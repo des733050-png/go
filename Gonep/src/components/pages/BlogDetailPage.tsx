@@ -301,8 +301,8 @@ export function BlogDetailPage() {
 
   // Dynamic SEO based on blog post
   const seoData = blogPost ? {
-    title: `${blogPost.title} | GONEP Healthcare Blog`,
-    description: blogPost.excerpt || blogPost.description || `Read about ${blogPost.title} on GONEP Healthcare's blog. Insights and innovations from the frontlines of African healthcare transformation.`,
+    title: `${blogPost.title} | GONEP Blog`,
+    description: blogPost.excerpt || blogPost.description || `Read about ${blogPost.title} on GONEP's blog. Insights and innovations from the frontlines of African healthcare transformation.`,
     keywords: [
       ...(blogPost.tags || []),
       "healthcare blog",
@@ -314,8 +314,8 @@ export function BlogDetailPage() {
     ogType: "article",
     ogImage: blogPost.image
   } : {
-    title: "Blog Post | GONEP Healthcare",
-    description: "Read insights and innovations from GONEP Healthcare's blog.",
+    title: "Blog Post | GONEP",
+    description: "Read insights and innovations from GONEP's blog.",
     canonical: `/blogs/${blogId}`
   };
 
@@ -325,7 +325,7 @@ export function BlogDetailPage() {
     description: blogPost.excerpt || blogPost.description || "",
     image: blogPost.image,
     author: {
-      name: blogPost.author || "GONEP Healthcare",
+      name: blogPost.author || "GONEP",
       url: blogPost.authorUrl
     },
     datePublished: blogPost.date || blogPost.createdAt,
@@ -376,7 +376,7 @@ export function BlogDetailPage() {
           <div className="relative h-[500px] mb-12 rounded-2xl overflow-hidden shadow-2xl">
             <img
               src={currentPost.image}
-              alt={`${currentPost.title} - GONEP Healthcare blog article image`}
+              alt={`${currentPost.title} - GONEP blog article image`}
               className="w-full h-full object-cover"
               loading="lazy"
               width="1200"
@@ -590,7 +590,7 @@ export function BlogDetailPage() {
                 <div className="relative">
                   <img
                     src={currentPost.authorImage}
-                    alt={`${currentPost.author} - GONEP Healthcare blog author`}
+                    alt={`${currentPost.author} - GONEP blog author`}
                     className="w-20 h-20 rounded-full object-cover border-4 border-background shadow-lg"
                     loading="lazy"
                     width="80"
@@ -630,7 +630,7 @@ export function BlogDetailPage() {
                       <div className="relative h-56">
                         <img
                           src={post.image}
-                          alt={`${post.title} - Related GONEP Healthcare blog article`}
+                          alt={`${post.title} - Related GONEP blog article`}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           loading="lazy"
                           width="400"

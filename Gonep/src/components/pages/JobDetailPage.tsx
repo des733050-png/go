@@ -260,11 +260,11 @@ export function JobDetailPage() {
 
   // Dynamic SEO based on job
   const seoData = jobDetail ? {
-    title: `${jobDetail.title} - Careers at GONEP Healthcare`,
-    description: `Apply for ${jobDetail.title} at GONEP Healthcare. ${jobDetail.department.name} position in ${jobDetail.location}. ${jobDetail.type} role. Join our mission to transform African healthcare.`,
+    title: `${jobDetail.title} - Careers at GONEP`,
+    description: `Apply for ${jobDetail.title} at GONEP. ${jobDetail.department.name} position in ${jobDetail.location}. ${jobDetail.type} role. Join our mission to transform African healthcare.`,
     keywords: [
       jobDetail.title,
-      `GONEP Healthcare ${jobDetail.title}`,
+      `GONEP ${jobDetail.title}`,
       `healthcare jobs ${jobDetail.location}`,
       `medical device jobs`,
       `healthcare technology careers`,
@@ -273,8 +273,8 @@ export function JobDetailPage() {
     canonical: `/careers/${jobDetail.id}`,
     ogType: "article"
   } : {
-    title: "Job Opening - GONEP Healthcare Careers",
-    description: "View job opening at GONEP Healthcare. Join our mission to transform African healthcare.",
+    title: "Job Opening - GONEP Careers",
+    description: "View job opening at GONEP. Join our mission to transform African healthcare.",
     canonical: `/careers/${jobId}`
   };
 

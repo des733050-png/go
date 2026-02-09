@@ -41,8 +41,9 @@ export function HomePage() {
   }, [hasShownNewsletter]);
 
   const seoData = {
-    title: "GONEP Healthcare - Portable Diagnostic Device & Point of Care Testing Solutions",
-    description: "Africa's first transformative healthcare solution. GONEP's Clinic at Hand is a 3-in-1 portable diagnostic device delivering blood tests, urine analysis, and vital signs monitoring in 15 minutes. IoT healthcare solutions for rural communities across Africa.",
+    title: "GONEP - Portable Diagnostic Device & Point of Care Testing Solutions",
+    description:
+      "Africa's first transformative healthcare solution. GONEP's Clinic at Hand is a 3-in-1 portable diagnostic device delivering blood tests, urine analysis, and vital signs monitoring in 15 minutes. Healthcare technology solutions for rural communities across Africa.",
     keywords: [
       "portable diagnostic device",
       "point of care testing device",

@@ -89,8 +89,9 @@ export function BMICalculatorPage() {
   };
 
   const seoData = {
-    title: "BMI Calculator - Free Body Mass Index Calculator | GONEP Healthcare",
-    description: "Calculate your Body Mass Index (BMI) instantly with our free BMI calculator. Get personalized health insights, weight category assessment, and recommendations for maintaining a healthy weight.",
+    title: "BMI Calculator - Free Body Mass Index Calculator | GONEP",
+    description:
+      "Calculate your Body Mass Index (BMI) instantly with our free BMI calculator from GONEP. Get personalized health insights, weight category assessment, and recommendations for maintaining a healthy weight.",
     keywords: [
       "BMI calculator",
       "body mass index calculator",

@@ -87,7 +87,7 @@ export function HistoryPage() {
     { 
       year: "2021", 
       title: "Company Founded", 
-      description: "GONEP Pharmaceuticals established by healthcare professionals with a vision to transform African healthcare through innovative diagnostic solutions."
+      description: "GONEP established by healthcare professionals with a vision to transform African healthcare through innovative diagnostic solutions."
     },
     { 
       year: "2022", 
@@ -128,10 +128,11 @@ export function HistoryPage() {
   ];
 
   const seoData = {
-    title: "GONEP Healthcare History - Our Journey & Milestones",
-    description: "Explore GONEP Healthcare's journey from 2022 to today. Learn about our founding story, key milestones, clinical trials, regulatory approvals, and impact across 12 African countries serving 50,000+ patients.",
+    title: "GONEP History - Our Journey & Milestones",
+    description:
+      "Explore GONEP's journey from 2022 to today. Learn about our founding story, key milestones, clinical trials, regulatory approvals, and impact across 12 African countries serving 50,000+ patients.",
     keywords: [
-      "GONEP Healthcare history",
+      "GONEP history",
       "healthcare startup story",
       "African healthcare innovation",
       "medical device company history",
@@ -156,8 +157,9 @@ export function HistoryPage() {
               Our History
             </h1>
             <p className="text-lg text-muted-foreground">
-              From humble beginnings to transformative impact - discover the journey that brought GONEP 
-              Pharmaceuticals from vision to reality, and the milestones that mark our commitment to African healthcare.
+              From humble beginnings to transformative impact - discover the journey
+              that brought GONEP from vision to reality, and the milestones that mark
+              our commitment to African healthcare.
             </p>
           </motion.div>
         </div>
@@ -226,7 +228,7 @@ export function HistoryPage() {
                     ) : (
                       <ImageWithFallback
                         src={story.image}
-                        alt={`${story.title} - GONEP Healthcare history and milestones`}
+                        alt={`${story.title} - GONEP history and milestones`}
                         className="w-full h-auto rounded-2xl shadow-lg"
                         loading="lazy"
                         width="600"

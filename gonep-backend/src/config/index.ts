@@ -1,25 +1,54 @@
 import dotenv from 'dotenv';
-
 dotenv.config();
 
-// Validate required environment variables
-const validateRequiredEnvVars = () => {
-  const required = [
-    'JWT_SECRET',
-    'DB_HOST',
-    'DB_USERNAME',
-    'DB_PASSWORD',
-    'DB_NAME'
-  ];
-
-  const missing = required.filter(key => !process.env[key]);
-  
-  if (missing.length > 0) {
-    throw new Error(`Missing required environment variables: ${missing.join(', ')}. Please check your .env file.`);
+// Parse DATABASE_URL if provided (Railway style)
+const parseDatabaseUrl = (url: string) => {
+  try {
+    const dbUrl = new URL(url);
+    return {
+      DB_HOST: dbUrl.hostname,
+      DB_PORT: parseInt(dbUrl.port || '3306', 10),
+      DB_USERNAME: dbUrl.username,
+      DB_PASSWORD: dbUrl.password,
+      DB_NAME: dbUrl.pathname.replace('/', ''),
+    };
+  } catch (err) {
+    throw new Error(`Invalid DATABASE_URL format: ${err}`);
   }
 };
 
-// Validate environment variables
+// Fill DB config from DATABASE_URL if DB_HOST is missing
+const dbConfig = process.env.DATABASE_URL
+  ? parseDatabaseUrl(process.env.DATABASE_URL)
+  : {
+      DB_HOST: process.env.DB_HOST,
+      DB_PORT: parseInt(process.env.DB_PORT || '3306', 10),
+      DB_USERNAME: process.env.DB_USERNAME,
+      DB_PASSWORD: process.env.DB_PASSWORD,
+      DB_NAME: process.env.DB_NAME,
+    };
+
+// Validate required environment variables (use dbConfig for DB values)
+const validateRequiredEnvVars = () => {
+  const required = ['JWT_SECRET'];
+  const missing = [...required];
+
+  // Check DB vars from dbConfig
+  const dbVars = ['DB_HOST', 'DB_USERNAME', 'DB_PASSWORD', 'DB_NAME'] as const;
+  const missingDbVars = dbVars.filter(key => !dbConfig[key]);
+  
+  if (missingDbVars.length > 0) {
+    throw new Error(
+      `Missing required environment variables: ${missingDbVars.join(', ')}. Please check your .env file or DATABASE_URL.`
+    );
+  }
+
+  if (!process.env.JWT_SECRET) {
+    throw new Error('Missing required environment variable: JWT_SECRET');
+  }
+};
+
+// Run validation
 validateRequiredEnvVars();
 
 export const config = {
@@ -27,53 +56,44 @@ export const config = {
   PORT: parseInt(process.env.PORT || '8000', 10),
   JWT_SECRET: process.env.JWT_SECRET,
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '7d',
-  
-  // Database configuration
-  DATABASE_URL: process.env.DATABASE_URL,
-  DB_HOST: process.env.DB_HOST,
-  DB_PORT: parseInt(process.env.DB_PORT || '3306', 10),
-  DB_USERNAME: process.env.DB_USERNAME,
-  DB_PASSWORD: process.env.DB_PASSWORD,
-  DB_NAME: process.env.DB_NAME,
-  
+
+  // Database
+  ...dbConfig,
+
   // Email configuration (optional)
   SMTP_HOST: process.env.SMTP_HOST,
   SMTP_PORT: parseInt(process.env.SMTP_PORT || '587', 10),
   SMTP_USER: process.env.SMTP_USER,
   SMTP_PASS: process.env.SMTP_PASS,
-  // Domain email used for sending all emails (confirmation emails to users)
-  // This is what users will see as the "from" address
   EMAIL_FROM: process.env.EMAIL_FROM || process.env.SMTP_FROM,
-  // Admin notification emails (comma-separated for multiple recipients)
-  // These emails will receive notifications for newsletter subscriptions and demo requests
   ADMIN_NOTIFICATION_EMAILS: process.env.ADMIN_NOTIFICATION_EMAILS 
     ? process.env.ADMIN_NOTIFICATION_EMAILS.split(',').map(email => email.trim()).filter(email => email)
     : process.env.ADMIN_NOTIFICATION_EMAIL 
       ? [process.env.ADMIN_NOTIFICATION_EMAIL.trim()]
       : [],
-  
-  // File upload configuration
+
+  // File uploads
   UPLOAD_PATH: process.env.UPLOAD_PATH || 'uploads',
-  MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE || '10485760', 10), // 10MB
+  MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE || '10485760', 10),
   ALLOWED_FILE_TYPES: ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'application/pdf'],
-  
+
   // Rate limiting
   RATE_LIMIT_MAX: parseInt(process.env.RATE_LIMIT_MAX || '100', 10),
-  
-  // Cloudinary configuration (optional)
+
+  // Cloudinary
   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
-  
-  // Frontend URLs for CORS
+
+  // Frontend URLs
   FRONTEND_URL: process.env.FRONTEND_URL,
   ADMIN_URL: process.env.ADMIN_URL,
   CORS_ORIGIN: process.env.CORS_ORIGIN || process.env.FRONTEND_URL || 'http://localhost:3000',
-  
+
   // API Base URL
   API_BASE_URL: process.env.API_BASE_URL,
-  
-  // JWT Refresh Token configuration
+
+  // JWT Refresh Token
   REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET || process.env.JWT_SECRET,
   REFRESH_TOKEN_EXPIRES_IN: process.env.REFRESH_TOKEN_EXPIRES_IN || '30d',
 };

@@ -9,19 +9,19 @@ import { Mail, Phone, MessageCircle, Download, BookOpen, Users, ArrowRight } fro
 export function SupportPage() {
   const faqs = [
     {
-      category: "About GONEP Healthcare",
+      category: "About GONEP",
       items: [
         {
-          question: "What is GONEP Healthcare and what does it stand for?",
-          answer: "GONEP Healthcare is Kenya's first integrated healthcare operating system. The name GONEP stands for Global Nursing for Essential Protection, representing our commitment to creating a seamless, technologically advanced ecosystem that protects Kenyan families through intelligent, accessible, and immediate care. We are not merely digitizing existing problems but fundamentally reimagining healthcare delivery from the ground up."
+          question: "What is GONEP and what does it stand for?",
+          answer: "GONEP is Kenya's first integrated healthcare operating system. The name GONEP stands for Global Nursing for Essential Protection, representing our commitment to creating a seamless, technologically advanced ecosystem that protects Kenyan families through intelligent, accessible, and immediate care. We are not merely digitizing existing problems but fundamentally reimagining healthcare delivery from the ground up."
         },
         {
           question: "What is GONEP's business model?",
-          answer: "GONEP Healthcare operates as an enabler, not an employer. We provide the digital infrastructure that enables Kenya's independent healthcare providers to connect with patients efficiently while ensuring quality, accountability, and accessibility. We create a sophisticated platform where doctors, nurses, pharmacists, lab technicians, and community health workers can offer their services directly to patients through a coordinated, technology-enabled system."
+          answer: "GONEP operates as an enabler, not an employer. We provide the digital infrastructure that enables Kenya's independent healthcare providers to connect with patients efficiently while ensuring quality, accountability, and accessibility. We create a sophisticated platform where doctors, nurses, pharmacists, lab technicians, and community health workers can offer their services directly to patients through a coordinated, technology-enabled system."
         },
         {
-          question: "Where is GONEP Healthcare currently operating?",
-          answer: "GONEP Healthcare is launching with a pilot implementation in Utawala, Kenya. We deliberately constrain initial operations to a 3km radius from our GONEP Command Center in Utawala Central. This geographic limitation is strategic, allowing us to perfect logistics, response times, quality control, and operational protocols before expanding to other regions."
+          question: "Where is GONEP currently operating?",
+          answer: "GONEP is launching with a pilot implementation in Utawala, Kenya. We deliberately constrain initial operations to a 3km radius from our GONEP Command Center in Utawala Central. This geographic limitation is strategic, allowing us to perfect logistics, response times, quality control, and operational protocols before expanding to other regions."
         }
       ]
     },
@@ -54,8 +54,8 @@ export function SupportPage() {
       category: "Services & Operations",
       items: [
         {
-          question: "What services does GONEP Healthcare offer?",
-          answer: "GONEP Healthcare offers three core services: GONEP Express Consultations (home visits from verified healthcare providers), GONEP Pharmacy Hub (guaranteed 45-minute medication delivery), and Clinic-At-Hand Diagnostics (on-site testing at patients' homes). Our integrated model enables single-visit resolution where consultation, testing, prescription, and medication delivery often happen in one home visit."
+          question: "What services does GONEP offer?",
+          answer: "GONEP offers three core services: GONEP Express Consultations (home visits from verified healthcare providers), GONEP Pharmacy Hub (guaranteed 45-minute medication delivery), and Clinic-At-Hand Diagnostics (on-site testing at patients' homes). Our integrated model enables single-visit resolution where consultation, testing, prescription, and medication delivery often happen in one home visit."
         },
         {
           question: "How do GONEP Express Consultations work?",
@@ -97,15 +97,15 @@ export function SupportPage() {
         },
         {
           question: "What areas does GONEP currently serve?",
-          answer: "Currently, GONEP Healthcare is operating in Utawala, Kenya, within a 3km radius from our Command Center. This pilot phase allows us to perfect our operations before expanding to other regions. We are actively working toward expanding our service coverage to reach more communities across Kenya."
+          answer: "Currently, GONEP is operating in Utawala, Kenya, within a 3km radius from our Command Center. This pilot phase allows us to perfect our operations before expanding to other regions. We are actively working toward expanding our service coverage to reach more communities across Kenya."
         },
         {
           question: "How much do GONEP services cost?",
-          answer: "GONEP Healthcare is designed to be affordable and accessible. Our pricing model reduces healthcare costs by 30-40% through bulk purchasing and efficient operations. We offer various service packages and are developing corporate partnership programs and value-based pricing for chronic disease management. Contact us for specific pricing information tailored to your needs."
+          answer: "GONEP is designed to be affordable and accessible. Our pricing model reduces healthcare costs by 30-40% through bulk purchasing and efficient operations. We offer various service packages and are developing corporate partnership programs and value-based pricing for chronic disease management. Contact us for specific pricing information tailored to your needs."
         },
         {
           question: "Is my health information secure and private?",
-          answer: "Yes, patient privacy and data security are fundamental to GONEP Healthcare. All patient health records are stored securely in our integrated system with appropriate privacy protections. We comply with healthcare data protection regulations and use secure, encrypted systems to protect patient information. Your health data is only accessible to authorized healthcare providers involved in your care."
+          answer: "Yes, patient privacy and data security are fundamental to GONEP. All patient health records are stored securely in our integrated system with appropriate privacy protections. We comply with healthcare data protection regulations and use secure, encrypted systems to protect patient information. Your health data is only accessible to authorized healthcare providers involved in your care."
         }
       ]
     },
@@ -126,7 +126,7 @@ export function SupportPage() {
         },
         {
           question: "Where can I get consumable supplies for Clinic at Hand?",
-          answer: "Consumable supplies for Clinic at Hand are available through GONEP Healthcare. We maintain inventory of all necessary testing supplies and can coordinate delivery along with our medication delivery service. Contact our support team to order supplies or discuss supply management for your facility."
+          answer: "Consumable supplies for Clinic at Hand are available through GONEP. We maintain inventory of all necessary testing supplies and can coordinate delivery along with our medication delivery service. Contact our support team to order supplies or discuss supply management for your facility."
         }
       ]
     },
@@ -134,8 +134,8 @@ export function SupportPage() {
       category: "Partnerships & Collaboration",
       items: [
         {
-          question: "How can my organization partner with GONEP Healthcare?",
-          answer: "GONEP Healthcare welcomes partnerships with healthcare facilities, NGOs, government agencies, pharmacies, and other organizations. We offer corporate partnership programs, referral relationships, pharmacy partnerships, and collaboration opportunities for research and development. Contact us to discuss how we can work together to improve healthcare access in your community."
+          question: "How can my organization partner with GONEP?",
+          answer: "GONEP welcomes partnerships with healthcare facilities, NGOs, government agencies, pharmacies, and other organizations. We offer corporate partnership programs, referral relationships, pharmacy partnerships, and collaboration opportunities for research and development. Contact us to discuss how we can work together to improve healthcare access in your community."
         },
         {
           question: "Can pharmacies partner with GONEP?",
@@ -143,7 +143,7 @@ export function SupportPage() {
         },
         {
           question: "Does GONEP work with government health programs?",
-          answer: "Yes, GONEP Healthcare is designed to work strategically with county governments and national health programs to supplement and enhance public healthcare services. This could involve performance-based contracts, digitally managing community health worker programs, operating after-hours services for public facilities, or providing telemedicine support to remote health centers."
+          answer: "Yes, GONEP is designed to work strategically with county governments and national health programs to supplement and enhance public healthcare services. This could involve performance-based contracts, digitally managing community health worker programs, operating after-hours services for public facilities, or providing telemedicine support to remote health centers."
         }
       ]
     },
@@ -152,7 +152,7 @@ export function SupportPage() {
       items: [
         {
           question: "What are GONEP's plans for expansion?",
-          answer: "GONEP Healthcare is implementing a phased expansion strategy. Phase 1 focuses on perfecting operations in Utawala. Phase 2 will expand to additional Nairobi constituencies and introduce specialized programs. Phase 3 aims for national coverage across all 47 counties in Kenya, with particular density in major urban centers. Our expansion is adaptive and localized to meet the unique needs of different regions."
+          answer: "GONEP is implementing a phased expansion strategy. Phase 1 focuses on perfecting operations in Utawala. Phase 2 will expand to additional Nairobi constituencies and introduce specialized programs. Phase 3 aims for national coverage across all 47 counties in Kenya, with particular density in major urban centers. Our expansion is adaptive and localized to meet the unique needs of different regions."
         },
         {
           question: "What new services is GONEP planning to offer?",
@@ -160,7 +160,7 @@ export function SupportPage() {
         },
         {
           question: "How can I stay updated on GONEP's developments?",
-          answer: "You can stay updated on GONEP Healthcare developments by contacting us at info@gonepharm.com to join our newsletter, following our updates through our website, or connecting with us directly. We regularly share information about new services, expansion plans, and healthcare innovations through various communication channels."
+          answer: "You can stay updated on GONEP developments by contacting us at info@gonepharm.com to join our newsletter, following our updates through our website, or connecting with us directly. We regularly share information about new services, expansion plans, and healthcare innovations through various communication channels."
         }
       ]
     }

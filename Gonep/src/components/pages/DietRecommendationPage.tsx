@@ -167,8 +167,9 @@ export function DietRecommendationPage() {
   };
 
   const seoData = {
-    title: "Diet Recommendation Tool - Personalized Nutrition Plan | GONEP Healthcare",
-    description: "Get personalized diet recommendations based on your age, gender, activity level, health goals, and dietary restrictions. Free nutrition planning tool from GONEP Healthcare.",
+    title: "Diet Recommendation Tool - Personalized Nutrition Plan | GONEP",
+    description:
+      "Get personalized diet recommendations based on your age, gender, activity level, health goals, and dietary restrictions. Free nutrition planning tool from GONEP.",
     keywords: [
       "diet recommendation",
       "nutrition plan",

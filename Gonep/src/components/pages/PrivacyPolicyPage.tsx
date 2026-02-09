@@ -6,10 +6,12 @@ import { BASE_URL } from "../../utils/config";
 
 export function PrivacyPolicyPage() {
   const seoData = {
-    title: "Privacy Policy - GONEP Healthcare Data Protection & Privacy",
-    description: "GONEP Healthcare Privacy Policy. Learn how we collect, use, protect, and manage your personal information. Our commitment to data privacy and security in healthcare technology.",
+    title: "Privacy Policy - GONEP Data Protection & Privacy",
+    description:
+      "GONEP Privacy Policy. Learn how we collect, use, protect, and manage your personal information. Our commitment to data privacy and security in healthcare technology.",
     keywords: [
-      "GONEP Healthcare privacy policy",
+      "GONEP privacy policy",
+      "gonepharm.com privacy",
       "data protection",
       "healthcare privacy",
       "medical data security",
@@ -47,7 +49,7 @@ export function PrivacyPolicyPage() {
               Privacy Policy
             </h1>
             <p className="text-lg text-muted-foreground">
-              Your privacy is important to us. This policy explains how GONEP Healthcare collects, uses, and protects your personal information.
+              Your privacy is important to us. This policy explains how GONEP collects, uses, and protects your personal information.
             </p>
             <p className="text-sm text-muted-foreground">
               Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
@@ -73,10 +75,20 @@ export function PrivacyPolicyPage() {
                 1. Introduction
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                GONEP Healthcare ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website at <a href={BASE_URL} className="text-primary hover:underline">{BASE_URL}</a> or use our healthcare technology services, including our Clinic at Hand diagnostic device and related digital health tools.
+                GONEP ("we," "our," or "us") is committed to protecting your privacy.
+                This Privacy Policy explains how we collect, use, disclose, and safeguard
+                your information when you visit our website at{" "}
+                <a href={BASE_URL} className="text-primary hover:underline">
+                  {BASE_URL}
+                </a>{" "}
+                or use our healthcare technology services, including our Clinic at Hand
+                diagnostic device and related digital health tools.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                As a healthcare technology company operating in Kenya and across Africa, we understand the sensitive nature of health-related information and are committed to maintaining the highest standards of data protection and privacy.
+                As a healthcare technology company operating in Kenya and across Africa,
+                we understand the sensitive nature of health-related information and are
+                committed to maintaining the highest standards of data protection and
+                privacy.
               </p>
             </motion.div>
 

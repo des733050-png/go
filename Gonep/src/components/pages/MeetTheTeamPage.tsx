@@ -96,10 +96,11 @@ export function MeetTheTeamPage() {
 
 
   const seoData = {
-    title: "Meet the Team - GONEP Healthcare Leadership & Experts",
-    description: "Meet the diverse leadership team and experts driving GONEP Healthcare's mission. Learn about the expertise, passion, and commitment that transforms healthcare access across Africa.",
+    title: "Meet the Team - GONEP Leadership & Experts",
+    description:
+      "Meet the diverse leadership team and experts driving GONEP's mission. Learn about the expertise, passion, and commitment that transforms healthcare access across Africa.",
     keywords: [
-      "GONEP Healthcare team",
+      "GONEP team",
       "healthcare leadership",
       "medical device team",
       "healthcare technology experts",
@@ -431,7 +432,7 @@ export function MeetTheTeamPage() {
                     <div className="relative h-64">
                       <ImageWithFallback
                         src={leader.image}
-                        alt={`${leader.name} - ${leader.role} at GONEP Healthcare leadership team`}
+                        alt={`${leader.name} - ${leader.role} at GONEP leadership team`}
                         className="w-full h-full object-cover"
                         loading="lazy"
                         width="300"
@@ -614,7 +615,7 @@ export function MeetTheTeamPage() {
             >
               <ImageWithFallback
                 src={works}
-                alt="GONEP Healthcare team members collaborating on healthcare innovation projects and medical device development"
+                alt="GONEP team members collaborating on healthcare innovation projects and medical device development"
                 className="w-full h-auto rounded-2xl shadow-lg"
                 loading="lazy"
                 width="1000"

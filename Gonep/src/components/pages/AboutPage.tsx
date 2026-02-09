@@ -40,10 +40,12 @@ export function AboutPage() {
   ];
 
   const seoData = {
-    title: "About GONEP Healthcare - African Healthcare Innovation Company",
-    description: "Learn about GONEP Healthcare, a mission-driven healthcare technology company transforming African healthcare through innovative IoT solutions. Founded in 2022, we're closing the diagnostic gap in rural communities across Africa.",
+    title: "About GONEP - African Healthcare Innovation Company",
+    description:
+      "Learn about GONEP, a mission-driven healthcare technology company transforming African healthcare through innovative solutions like Clinic at Hand. Founded in 2022, we're closing the diagnostic gap in rural communities across Africa.",
     keywords: [
-      "GONEP Healthcare",
+      "GONEP",
+      "gonepharm.com",
       "African healthcare innovation",
       "healthcare technology company Kenya",
       "healthcare startup Africa",
@@ -70,10 +72,14 @@ export function AboutPage() {
             className="text-center space-y-6 max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-              About GONEP Healthcare
+              About GONEP
             </h1>
             <p className="text-lg text-muted-foreground">
-              <strong>Founded in 2022.</strong> <strong>50,000+ patients served.</strong> <strong>12 African countries.</strong> <strong>Presidential Innovation Award winner.</strong> We're closing Africa's diagnostic gap with affordable, portable healthcare solutions.
+              <strong>Founded in 2022.</strong> <strong>50,000+ patients served.</strong>{" "}
+              <strong>12 African countries.</strong>{" "}
+              <strong>Presidential Innovation Award winner.</strong> GONEP is
+              closing Africa&apos;s diagnostic gap with affordable, portable healthcare
+              solutions.
             </p>
           </motion.div>
         </div>
@@ -92,7 +98,12 @@ export function AboutPage() {
               Discover Our Impact & Story
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              <strong>GONEP Healthcare</strong> is a <strong>mission-driven healthcare technology company</strong> bringing <strong>affordable diagnostic solutions</strong> to Africa. Explore our founding mission, the passionate team behind our innovation, and the impact we're creating across <strong>12 African countries</strong> with <strong>50,000+ patients served</strong>.
+              <strong>GONEP</strong> is a{" "}
+              <strong>mission-driven healthcare technology company</strong> bringing{" "}
+              <strong>affordable diagnostic solutions</strong> to Africa. Explore our
+              founding mission, the passionate team behind our innovation, and the
+              impact we&apos;re creating across <strong>12 African countries</strong>{" "}
+              with <strong>50,000+ patients served</strong>.
             </p>
           </motion.div>
 
@@ -112,7 +123,7 @@ export function AboutPage() {
                     <div className="relative h-48 overflow-hidden">
                       <ImageWithFallback
                         src={section.image}
-                        alt={`${section.title} - GONEP Healthcare about section showcasing company ${section.title.toLowerCase()}`}
+                        alt={`${section.title} - GONEP about section showcasing company ${section.title.toLowerCase()}`}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         loading="lazy"
                         width="400"

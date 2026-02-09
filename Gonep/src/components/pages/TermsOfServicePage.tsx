@@ -6,10 +6,12 @@ import { BASE_URL } from "../../utils/config";
 
 export function TermsOfServicePage() {
   const seoData = {
-    title: "Terms of Service - GONEP Healthcare Website Terms & Conditions",
-    description: "GONEP Healthcare Terms of Service. Read our terms and conditions for using our website, products, and services. Understand your rights and responsibilities when engaging with GONEP Healthcare.",
+    title: "Terms of Service - GONEP Website Terms & Conditions",
+    description:
+      "GONEP Terms of Service. Read our terms and conditions for using our website, products, and services. Understand your rights and responsibilities when engaging with GONEP.",
     keywords: [
-      "GONEP Healthcare terms of service",
+      "GONEP terms of service",
+      "gonepharm.com terms",
       "website terms and conditions",
       "healthcare technology terms",
       "medical device terms",
@@ -72,10 +74,18 @@ export function TermsOfServicePage() {
                 1. Agreement to Terms
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                By accessing or using the GONEP Healthcare website at <a href={BASE_URL} className="text-primary hover:underline">{BASE_URL}</a> ("Website"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our Website or services.
+                By accessing or using the GONEP website at{" "}
+                <a href={BASE_URL} className="text-primary hover:underline">
+                  {BASE_URL}
+                </a>{" "}
+                ("Website"), you agree to be bound by these Terms of Service ("Terms").
+                If you do not agree to these Terms, please do not use our Website or
+                services.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                GONEP Healthcare ("we," "us," or "our") reserves the right to modify these Terms at any time. Your continued use of the Website after any changes constitutes acceptance of the modified Terms.
+                GONEP ("we," "us," or "our") reserves the right to modify these Terms at
+                any time. Your continued use of the Website after any changes
+                constitutes acceptance of the modified Terms.
               </p>
             </motion.div>
 
@@ -89,7 +99,7 @@ export function TermsOfServicePage() {
             >
               <h2 className="text-2xl font-bold text-foreground">2. Description of Services</h2>
               <p className="text-muted-foreground leading-relaxed">
-                GONEP Healthcare provides:
+                GONEP provides:
               </p>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
                 <li>Information about our healthcare technology products and services</li>
@@ -157,7 +167,10 @@ export function TermsOfServicePage() {
             >
               <h2 className="text-2xl font-bold text-foreground">5. Intellectual Property Rights</h2>
               <p className="text-muted-foreground leading-relaxed">
-                All content on this Website, including text, graphics, logos, images, software, and other materials, is the property of GONEP Healthcare or its licensors and is protected by copyright, trademark, and other intellectual property laws.
+                All content on this Website, including text, graphics, logos, images,
+                software, and other materials, is the property of GONEP or its licensors
+                and is protected by copyright, trademark, and other intellectual
+                property laws.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 You may not reproduce, distribute, modify, create derivative works of, publicly display, or use any content from this Website without our prior written permission, except for personal, non-commercial use.
@@ -191,8 +204,12 @@ export function TermsOfServicePage() {
             >
               <h2 className="text-2xl font-bold text-foreground">7. Limitation of Liability</h2>
               <p className="text-muted-foreground leading-relaxed">
-                To the maximum extent permitted by law, GONEP Healthcare and its officers, directors, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses resulting from:
-              </p>
+                To the maximum extent permitted by law, GONEP and its officers,
+                directors, employees, and agents shall not be liable for any indirect,
+                incidental, special, consequential, or punitive damages, or any loss of
+                profits or revenues, whether incurred directly or indirectly, or any
+                loss of data, use, goodwill, or other intangible losses resulting from: 
+                </p>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
                 <li>Your use or inability to use the Website or services</li>
                 <li>Any unauthorized access to or use of our servers or data</li>
@@ -211,7 +228,11 @@ export function TermsOfServicePage() {
             >
               <h2 className="text-2xl font-bold text-foreground">8. Indemnification</h2>
               <p className="text-muted-foreground leading-relaxed">
-                You agree to indemnify, defend, and hold harmless GONEP Healthcare and its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses, including reasonable attorneys' fees, arising out of or in any way connected with your use of the Website or violation of these Terms.
+                You agree to indemnify, defend, and hold harmless GONEP and its
+                officers, directors, employees, and agents from and against any claims,
+                liabilities, damages, losses, and expenses, including reasonable
+                attorneys' fees, arising out of or in any way connected with your use
+                of the Website or violation of these Terms.
               </p>
             </motion.div>
 

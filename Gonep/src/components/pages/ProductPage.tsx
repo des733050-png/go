@@ -162,8 +162,9 @@ export function ProductPage() {
   ];
 
   const seoData = {
-    title: "Clinic at Hand - 3-in-1 Portable Diagnostic Device | GONEP Healthcare",
-    description: "Clinic at Hand: Revolutionary 3-in-1 portable diagnostic device for blood analysis, urine testing, and vital signs monitoring. Get lab-grade results in 15 minutes with our point of care diagnostics device. Perfect for rural healthcare, mobile health units, and remote clinics.",
+    title: "Clinic at Hand - 3-in-1 Portable Diagnostic Device | GONEP",
+    description:
+      "Clinic at Hand: Revolutionary 3-in-1 portable diagnostic device for blood analysis, urine testing, and vital signs monitoring. Get lab-grade results in 15 minutes with our point of care diagnostics device. Perfect for rural healthcare, mobile health units, and remote clinics.",
     keywords: [
       "Clinic at Hand",
       "3-in-1 diagnostic device",
@@ -188,7 +189,7 @@ export function ProductPage() {
     description: "Revolutionary 3-in-1 portable diagnostic device for blood analysis, urine testing, and vital signs monitoring. Delivers lab-grade results in 15 minutes with AI-powered analysis and offline capability.",
     image: `${generateCanonical("/")}/clinic-at-hand-device.jpg`,
     brand: {
-      name: "GONEP Healthcare"
+      name: "GONEP"
     },
     offers: {
       priceCurrency: "USD",

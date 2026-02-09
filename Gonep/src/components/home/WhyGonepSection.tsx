@@ -25,7 +25,7 @@ export function WhyGonepSection() {
             className="space-y-6"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Why Choose <span className="text-primary">GONEP Healthcare</span>?
+              Why Choose <span className="text-primary">GONEP</span>?
             </h2>
             <p className="text-lg text-muted-foreground">
               <strong>GONEP Clinic at Hand</strong> is the affordable, proven solution transforming healthcare across Africa. Trusted by 50,000+ patients and recognized with the Presidential Innovation Award, it's designed specifically for African healthcare realities.

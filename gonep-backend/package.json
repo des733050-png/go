@@ -4,7 +4,7 @@
   "description": "GONEP Healthcare Backend API",
   "main": "dist/index.js",
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "tsx watch src/index.ts",
@@ -14,6 +14,13 @@
     "test:connection": "node test-connection.js",
     "migrate": "drizzle-kit push",
     "migrate:simple": "node migrate-simple.js",
+    "migrate:update": "node create-missing-tables.js",
+    "migrate:consolidated": "node run-consolidated-migration.js",
+    "migrate:complete": "node run-complete-migration.js",
+    "migrate:fix-placement": "node fix-placement-column.js",
+    "create:table": "node create-missing-tables.js",
+    "create:blog": "node run-create-blog-tables.js",
+    "create:admin": "node run-create-admin.js",
     "db:status": "node check-db-status.js",
     "generate": "drizzle-kit generate",
     "studio": "drizzle-kit studio",
@@ -50,6 +57,7 @@
     "archiver": "^7.0.1",
     "axios": "^1.11.0",
     "bcryptjs": "^2.4.3",
+    "cli-table3": "^0.6.5",
     "cloudinary": "^2.7.0",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
@@ -60,6 +68,7 @@
     "express-rate-limit": "^7.1.5",
     "helmet": "^7.1.0",
     "joi": "^17.11.0",
+    "json2csv": "^6.0.0-alpha.2",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
